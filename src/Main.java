@@ -4,17 +4,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+import java.io.IOException;
 
+public class Main extends Application {
+private Stage mainScreen;
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
-        primaryStage.setTitle("h2clean");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+    public void start(Stage primaryStage) throws Exception {
+        mainScreen = primaryStage;
+        welcomeScreen(mainScreen);
     }
 
-
+    private void welcomeScreen(Stage mainScreen) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+            mainScreen.setTitle("h2clean");
+            mainScreen.setScene(new Scene(root, 300, 275));
+            mainScreen.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         launch(args);
     }
