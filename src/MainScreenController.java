@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class Controller{
+public class MainScreenController {
     @FXML
     private void handleLoginButtonAction(ActionEvent event) {
         System.out.println("clicked");

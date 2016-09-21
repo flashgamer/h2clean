@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Application {
+public class MainFXApplication extends Application {
 private Stage mainScreen;
     @Override
     public void start(Stage primaryStage) throws Exception {
