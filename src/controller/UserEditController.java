@@ -82,7 +82,7 @@ public class UserEditController {
         thisStage.close();
         thisStage.hide();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../view/WelcomeScreen.fxml"));
             Stage landingStage = new Stage();
             landingStage.setTitle("Welcome Screen");
             landingStage.setScene(new Scene(root,600,400));
