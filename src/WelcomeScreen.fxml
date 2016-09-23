@@ -20,7 +20,7 @@
    <children>
       <VBox prefHeight="318.0" prefWidth="600.0">
          <children>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="671.0" text="Welcome!" textAlignment="CENTER">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="671.0" text="Welcome!" textAlignment="CENTER" fx:id="welcome">
                <font>
                   <Font name="Helvetica" size="36.0" />
                </font>

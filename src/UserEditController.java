@@ -41,7 +41,7 @@ public class UserEditController {
     /**
      * Sets the stage of the dialog.
      *
-     * @param loginStage the stage fo the login
+     * @param loginStage the stage of the login
      */
     public void setLoginStage(Stage loginStage) { _loginStage = loginStage; }
 
@@ -59,7 +59,9 @@ public class UserEditController {
     private void handleSignInButtonAction(ActionEvent event) {
         if (isInputValid()) {
             _loginClicked = true;
-            _loginStage.close();
+            Stage thisStage = (Stage) userField.getScene().getWindow();
+            thisStage.close();
+            thisStage.hide();
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("LandingScreen.fxml"));
                 Stage landingStage = new Stage();
@@ -74,7 +76,9 @@ public class UserEditController {
 
     @FXML
     private void handleCancelPressed() {
-        _loginStage.close();
+        Stage thisStage = (Stage) userField.getScene().getWindow();
+        thisStage.close();
+        thisStage.hide();
     }
     /**
      * Checks correct username and password is in system

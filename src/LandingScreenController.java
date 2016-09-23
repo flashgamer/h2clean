@@ -3,30 +3,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 
-public class MainScreenController {
-    public Stage primaryStage;
+public class LandingScreenController {
+    @FXML
+    private Button logoutButton;
 
     @FXML
-    private Label welcome;
-
-    public void setPrimaryStage(Stage stage) {
-        primaryStage = stage;
-    }
-
-    @FXML
-    private void handleLoginButtonAction(ActionEvent event) {
-        System.out.println("clicked");
-        Stage thisStage = (Stage) welcome.getScene().getWindow();
+    private void handleLogoutButtonAction(ActionEvent event) {
+        Stage thisStage = (Stage) logoutButton.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
             Stage loginStage = new Stage();
             loginStage.setTitle("Login Screen");
             loginStage.setScene(new Scene(root,600,400));
