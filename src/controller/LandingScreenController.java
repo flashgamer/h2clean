@@ -1,3 +1,5 @@
+package controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +21,7 @@ public class LandingScreenController {
         thisStage.close();
         thisStage.hide();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../view/WelcomeScreen.fxml"));
             Stage loginStage = new Stage();
             loginStage.setTitle("Login Screen");
             loginStage.setScene(new Scene(root,600,400));

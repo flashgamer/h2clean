@@ -1,3 +1,5 @@
+package controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,12 +23,12 @@ public class MainScreenController {
 
     @FXML
     private void handleLoginButtonAction(ActionEvent event) {
-        System.out.println("clicked");
+        //System.out.println("clicked");
         Stage thisStage = (Stage) welcome.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../view/LoginScreen.fxml"));
             Stage loginStage = new Stage();
             loginStage.setTitle("Login Screen");
             loginStage.setScene(new Scene(root,600,400));

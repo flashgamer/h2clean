@@ -1,3 +1,5 @@
+package controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,7 +65,7 @@ public class UserEditController {
             thisStage.close();
             thisStage.hide();
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("LandingScreen.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreen.fxml"));
                 Stage landingStage = new Stage();
                 landingStage.setTitle("Landing Screen");
                 landingStage.setScene(new Scene(root,600,400));
@@ -99,10 +101,10 @@ public class UserEditController {
 
         //checking if user and pass are correct
         if (userField.getText() == null || userField.getText().length() == 0) {
-            errorMessage += "No valid username!\n";
+            errorMessage += "Not a valid username!\n";
         }
         if (passField.getText() == null || passField.getText().length() == 0) {
-            errorMessage += "This password does not match!\n";
+            errorMessage += "Not a valid password!\n";
         }
 
         //successful login
@@ -113,8 +115,10 @@ public class UserEditController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(_loginStage);
             alert.setTitle("Invalid Login");
-            alert.setHeaderText("Please try to login again with correct username and password.");
+            alert.setHeaderText("Please try again with the correct login details.");
             alert.setContentText(errorMessage);
+
+            alert.showAndWait();
 
             return false;
         }
