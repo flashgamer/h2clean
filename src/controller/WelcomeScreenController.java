@@ -10,8 +10,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-public class MainScreenController {
+/**
+ * Controller for the Welcome Screen
+ * Some code reused from other files in this project.
+ *
+ * @author Hotline String
+ */
+public class WelcomeScreenController {
     public Stage primaryStage;
 
     @FXML

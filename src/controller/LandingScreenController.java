@@ -10,7 +10,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
+/**
+ * Controller for landing page once user logs in successfully
+ * Some code reused from other files within the package.
+ *
+ * @author Hotline String
+ */
 public class LandingScreenController {
     @FXML
     private Button logoutButton;
