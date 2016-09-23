@@ -10,12 +10,23 @@ import java.io.IOException;
 
 public class MainFXApplication extends Application {
 private Stage mainScreen;
+
+    /**
+     * Called when program launched.
+     * @param primaryStage The first stage to show up
+     * @throws Exception because exceptions will happen
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         mainScreen = primaryStage;
         welcomeScreen(mainScreen);
     }
 
+    /**
+     * Loads and shows the Welcome Screen as shown in the
+     * corresponding Welcome Screen FXML file
+     * @param mainScreen Stage to be shown.
+     */
     private void welcomeScreen(Stage mainScreen) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/WelcomeScreen.fxml"));
@@ -26,6 +37,11 @@ private Stage mainScreen;
             e.printStackTrace();
         }
     }
+
+    /**
+     * Called to launch the JavaFX application.
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
     }

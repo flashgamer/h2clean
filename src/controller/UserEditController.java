@@ -76,6 +76,9 @@ public class UserEditController {
         }
     }
 
+    /**
+     * Called when user clicks Cancel
+     */
     @FXML
     private void handleCancelPressed() {
         Stage thisStage = (Stage) userField.getScene().getWindow();
@@ -92,23 +95,27 @@ public class UserEditController {
         }
     }
     /**
-     * Checks correct username and password is in system
+     * Checks if username and password fields have been filled in
+     * and then checks if the username and password are in the database.
      *
      * @return true if input is valid
      */
     private boolean isInputValid() {
         String errorMessage = "";
 
-        //checking if user and pass are correct
+        // Checks if username field has been filled in
         if (userField.getText() == null || userField.getText().length() == 0) {
             errorMessage += "Not a valid username!\n";
         }
+        // Checks if username field is one in database
         if (!userField.getText().equals("user")) {
             errorMessage += "Not a valid username!\n";
         }
+        // Checks if password field has been filled in
         if (passField.getText() == null || passField.getText().length() == 0) {
             errorMessage += "Not a valid password!\n";
         }
+        // Checks if password field is one in database
         if (!passField.getText().equals("pass")) {
             errorMessage += "Not a valid password!\n";
         }

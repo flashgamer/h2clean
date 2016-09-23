@@ -15,6 +15,10 @@ public class LandingScreenController {
     @FXML
     private Button logoutButton;
 
+    /**
+     * Called when user clicks on Logout button.
+     * @param event Unused
+     */
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) {
         Stage thisStage = (Stage) logoutButton.getScene().getWindow();

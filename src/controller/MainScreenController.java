@@ -21,6 +21,10 @@ public class MainScreenController {
         primaryStage = stage;
     }
 
+    /**
+     * Called when user clicks on Login button.
+     * @param event unused
+     */
     @FXML
     private void handleLoginButtonAction(ActionEvent event) {
         //System.out.println("clicked");
