@@ -1,7 +1,13 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  * Controller for user login
@@ -50,13 +56,26 @@ public class UserEditController {
      * Called when user clicks Login
      */
     @FXML
-    private void handleLoginPressed() {
+    private void handleSignInButtonAction(ActionEvent event) {
         if (isInputValid()) {
             _loginClicked = true;
             _loginStage.close();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("LandingScreen.fxml"));
+                Stage landingStage = new Stage();
+                landingStage.setTitle("Landing Screen");
+                landingStage.setScene(new Scene(root,600,400));
+                landingStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    @FXML
+    private void handleCancelPressed() {
+        _loginStage.close();
+    }
     /**
      * Checks correct username and password is in system
      *
