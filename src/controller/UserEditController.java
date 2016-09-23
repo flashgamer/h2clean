@@ -103,12 +103,18 @@ public class UserEditController {
         if (userField.getText() == null || userField.getText().length() == 0) {
             errorMessage += "Not a valid username!\n";
         }
+        if (!userField.getText().equals("user")) {
+            errorMessage += "Not a valid username!\n";
+        }
         if (passField.getText() == null || passField.getText().length() == 0) {
+            errorMessage += "Not a valid password!\n";
+        }
+        if (!passField.getText().equals("pass")) {
             errorMessage += "Not a valid password!\n";
         }
 
         //successful login
-        if (errorMessage.length() == 0 || (userField.getText().equals("user") && passField.getText().equals("pass"))) {
+        if (errorMessage.length() == 0) {
             return true;
         } else {
             //show error message
