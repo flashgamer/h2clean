@@ -79,6 +79,15 @@ public class UserEditController {
         Stage thisStage = (Stage) userField.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+            Stage landingStage = new Stage();
+            landingStage.setTitle("Welcome Screen");
+            landingStage.setScene(new Scene(root,600,400));
+            landingStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     /**
      * Checks correct username and password is in system

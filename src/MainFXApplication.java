@@ -16,12 +16,9 @@ private Stage mainScreen;
 
     private void welcomeScreen(Stage mainScreen) {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("WelcomeScreen.fxml"));
-            Parent root = loader.load();
-            ((MainScreenController)loader.getController()).setPrimaryStage(mainScreen);
+            Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
             mainScreen.setTitle("h2clean");
-            mainScreen.setScene(new Scene(root, 300, 275));
+            mainScreen.setScene(new Scene(root, 600, 400));
             mainScreen.show();
         } catch (IOException e) {
             e.printStackTrace();
