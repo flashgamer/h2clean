@@ -1,3 +1,5 @@
+package fxapp;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,11 +19,11 @@ private Stage mainScreen;
     private void welcomeScreen(Stage mainScreen) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("WelcomeScreen.fxml"));
+            loader.setLocation(getClass().getResource("../view/WelcomeScreen.fxml"));
             Parent root = loader.load();
-            ((MainScreenController)loader.getController()).setPrimaryStage(mainScreen);
+            ((controller.MainScreenController)loader.getController()).setPrimaryStage(mainScreen);
             mainScreen.setTitle("h2clean");
-            mainScreen.setScene(new Scene(root, 300, 275));
+            mainScreen.setScene(new Scene(root, 600, 400));
             mainScreen.show();
         } catch (IOException e) {
             e.printStackTrace();
