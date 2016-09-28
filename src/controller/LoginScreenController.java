@@ -17,7 +17,7 @@ import java.io.IOException;
  *
  * @author mkwon41
  */
-public class UserEditController {
+public class LoginScreenController {
     /*
         References to the FXML widgets in .fxml files
      */
