@@ -46,4 +46,20 @@ public class WelcomeScreenController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleRegistrationButtonAction(ActionEvent event) {
+        Stage thisStage = (Stage) welcome.getScene().getWindow();
+        thisStage.close();
+        thisStage.hide();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../view/RegistrationScreen.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.setTitle("Registration Screen");
+            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
