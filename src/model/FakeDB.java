@@ -54,4 +54,23 @@ public class FakeDB {
         }
     }
 
+    /**
+     * Checks if a specific key-value pair exists within the database.
+     * @param entryName key of entry
+     * @param value value of entry
+     * @return whether the key-value pair exists within the database.
+     */
+    public boolean isValid(String entryName, Object value) {
+        return databaseBacking.containsKey(entryName) &&
+                databaseBacking.get(entryName).equals(value);
+    }
+
+    /**
+     * Checks if a specific key exists within the database.
+     * @param entryName key to be checked
+     * @return whether the key exists within the database.
+     */
+    public boolean containsKey(String entryName) {
+        return databaseBacking.containsKey(entryName);
+    }
 }

@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static model.FakeDB.database;
+
 /**
  * Controller for user login
  * Some code reused from CS2340 Resources
@@ -107,18 +109,14 @@ public class LoginScreenController {
         if (userField.getText() == null || userField.getText().length() == 0) {
             errorMessage += "Not a valid username!\n";
         }
-        // Checks if username field is one in database
-        if (!userField.getText().equals("user")) {
-            errorMessage += "Not a valid username!\n";
-        }
         // Checks if password field has been filled in
         if (passField.getText() == null || passField.getText().length() == 0) {
             errorMessage += "Not a valid password!\n";
         }
-        // Checks if password field is one in database
-        if (!passField.getText().equals("pass")) {
-            errorMessage += "Not a valid password!\n";
+        if (!database.isValid(userField.getText(), passField.getText())) {
+            errorMessage += "Username or password is invalid.\n";
         }
+
 
         //successful login
         if (errorMessage.length() == 0) {

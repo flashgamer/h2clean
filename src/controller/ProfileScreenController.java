@@ -18,26 +18,27 @@ import java.io.IOException;
  * Created by Minju on 10/3/2016.
  */
 public class ProfileScreenController {
-    @FXML
-    private TextField titleField;
 
     @FXML
-    private TextField firstNameField;
+    private Label titleField;
 
     @FXML
-    private TextField lastNameField;
+    private Label firstNameField;
 
     @FXML
-    private TextField userField;
+    private Label lastNameField;
 
     @FXML
-    private PasswordField passField;
+    private Label userField;
 
     @FXML
-    private TextField emailField;
+    private Label passField;
 
     @FXML
-    private TextField addressField;
+    private Label emailField;
+
+    @FXML
+    private Label addressField;
 
     @FXML
     private TextField changeTitle;

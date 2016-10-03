@@ -36,12 +36,11 @@ public class RegistrationScreenController {
     @FXML
     private void initialize() {
         List<String> comboBoxList = new ArrayList<>();
-        comboBoxList.add("User");
         comboBoxList.add("Worker");
         comboBoxList.add("Manager");
         comboBoxList.add("Administrator");
         typeBox.setItems(FXCollections.observableArrayList(comboBoxList));
-        typeBox.setValue("User");
+        typeBox.setValue("Worker");
     }
     /**
      * Controls what happens when the user clicks on the register button.
@@ -52,19 +51,6 @@ public class RegistrationScreenController {
             Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue());
             ObservableList<Account> accountList = (ObservableList<Account>) database.get("ACCOUNTLIST");
             accountList.add(account);
-
-            Stage thisStage = (Stage) userField.getScene().getWindow();
-            thisStage.close();
-            thisStage.hide();
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreen.fxml"));
-                Stage landingStage = new Stage();
-                landingStage.setTitle("Landing Screen");
-                landingStage.setScene(new Scene(root,600,400));
-                landingStage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -92,18 +78,15 @@ public class RegistrationScreenController {
         String errorMessage = "";
 
         // Checks if username field has been filled in
-        if (userField.getText() == null || userField.getText().length() == 0 ) {
+        if (userField.getText() == null || userField.getText().length() == 0) {
             errorMessage += "Not a valid username!\n";
-        } else if (!userField.getText().equals("user")) {
-            // Checks if username field is one in database
-            errorMessage += "Not a valid username!\n";
-        }
-        // Checks if password field has been filled in
+        }        // Checks if password field has been filled in
         if (passField.getText() == null || passField.getText().length() == 0) {
             errorMessage += "Not a valid password!\n";
-        } else if (!passField.getText().equals("pass")) {
-            // Checks if password field is one in database
-            errorMessage += "Not a valid password!\n";
+        }
+        // Checks if username has already been taken
+        if (database.containsKey(userField.getText())) {
+            errorMessage += "That username has already been taken!\n";
         }
 
         //successful login
