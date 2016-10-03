@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 public class FakeDB {
 
     public final static FakeDB database = new FakeDB();
-    Map<String, Object> databaseBacking;
+    private Map<String, Object> databaseBacking;
 
     public FakeDB() {
         this.databaseBacking = new HashMap<String, Object>();
@@ -23,7 +23,7 @@ public class FakeDB {
      * default entries in database go here
      */
     private void populateDefaults() {
-        this.insert("ACCOUNTLIST", FXCollections.emptyObservableList());
+        this.insert("ACCOUNTLIST", FXCollections.observableArrayList());
     }
 
     /**
