@@ -52,18 +52,19 @@ public class RegistrationScreenController {
             Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue());
             ObservableList<Account> accountList = (ObservableList<Account>) database.get("ACCOUNTLIST");
             accountList.add(account);
-        }
-        Stage thisStage = (Stage) userField.getScene().getWindow();
-        thisStage.close();
-        thisStage.hide();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreenController.fxml"));
-            Stage landingStage = new Stage();
-            landingStage.setTitle("Landing Screen");
-            landingStage.setScene(new Scene(root,600,400));
-            landingStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            Stage thisStage = (Stage) userField.getScene().getWindow();
+            thisStage.close();
+            thisStage.hide();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreen.fxml"));
+                Stage landingStage = new Stage();
+                landingStage.setTitle("Landing Screen");
+                landingStage.setScene(new Scene(root,600,400));
+                landingStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

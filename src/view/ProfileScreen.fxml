@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="registrationScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistrationScreenController">
+    <top>
+        <Label prefHeight="95.0" prefWidth="283.0" text="Profile" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="Arial Bold" size="48.0" />
+            </font>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="80.0" />
+         </padding>
+        </Label>
+    </top>
+   <center>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ListView prefHeight="303.0" prefWidth="176.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="303.0" prefWidth="488.0">
+               <children>
+                  <GridPane alignment="TOP_CENTER" layoutX="10.0" layoutY="3.0" prefHeight="287.0" prefWidth="330.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="148.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="52.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="154.0" text="Title: ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets right="13.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="titleField" layoutX="275.0" layoutY="132.0" prefHeight="25.0" prefWidth="49.0" promptText="e.g. Mr./Ms." GridPane.columnIndex="1" />
+                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="84.0" prefHeight="30.0" prefWidth="301.0" text="Full Name: " GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets right="13.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="firstNameField" layoutX="275.0" layoutY="89.0" prefHeight="25.0" prefWidth="111.0" promptText="First" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="120.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="lastNameField" layoutX="275.0" layoutY="23.0" prefHeight="25.0" prefWidth="111.0" promptText="Last" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="120.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="18.0" prefHeight="30.0" prefWidth="301.0" text="Email: " GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets right="13.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="emailField" layoutX="275.0" layoutY="23.0" promptText="e.g. john@gmail.com" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" text="Username:   " GridPane.rowIndex="4">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="245.0" text="Password:   " GridPane.rowIndex="5">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="userField" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="192.0" text="              Type:" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <ComboBox fx:id="typeBox" prefHeight="27.0" prefWidth="160.0" promptText="choose type" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <PasswordField fx:id="passField" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="89.0" prefHeight="30.0" prefWidth="301.0" text="Address: " GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets right="13.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="addressField" layoutX="275.0" layoutY="17.0" promptText="Street Name, City, State, Zip" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                     <padding>
+                        <Insets left="30.0" right="100.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>
