@@ -14,15 +14,15 @@ public class User {
         this.profile = new Profile();
     }
 
-    /*
-    * submit a report on water availability
+    /**
+     * submit a report on water availability
      */
     public void submitWaterReport(){
         System.out.println("water report submitted");
     }
 
-    /*
-    * view available water sources
+    /**
+     * view available water sources
      */
     public void viewWaterSources() {
         System.out.println("viewing water report");

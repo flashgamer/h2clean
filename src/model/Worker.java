@@ -10,8 +10,8 @@ public class Worker extends User {
     public Worker() {
     }
 
-    /*
-    * submit report on water purity levels
+    /**
+     * submit report on water purity levels
      */
     public void reportWaterPurity() {
         System.out.println("view history reports");
