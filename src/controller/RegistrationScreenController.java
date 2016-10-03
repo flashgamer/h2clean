@@ -36,11 +36,12 @@ public class RegistrationScreenController {
     @FXML
     private void initialize() {
         List<String> comboBoxList = new ArrayList<>();
+        comboBoxList.add("User");
         comboBoxList.add("Worker");
         comboBoxList.add("Manager");
         comboBoxList.add("Administrator");
         typeBox.setItems(FXCollections.observableArrayList(comboBoxList));
-        typeBox.setValue("Worker");
+        typeBox.setValue("User");
     }
     /**
      * Controls what happens when the user clicks on the register button.
