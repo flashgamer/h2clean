@@ -19,10 +19,18 @@ public class FakeDB {
         this.populateDefaults();
     }
 
+    /**
+     * default entries in database go here
+     */
     private void populateDefaults() {
         this.insert("ACCOUNTLIST", FXCollections.emptyObservableList());
     }
 
+    /**
+     * gets a value from the FakeDB provided a key
+     * @param entryName key of value
+     * @return value for given key
+     */
     public Object get(String entryName) {
         if (databaseBacking.containsKey(entryName)) {
             return databaseBacking.get(entryName);
@@ -31,6 +39,11 @@ public class FakeDB {
         }
     }
 
+    /**
+     * inserts key and value pair into FakeDB
+     * @param entryName key of entry
+     * @param value value of entry
+     */
     public void insert(String entryName, Object value) {
         if (value == null) {
             throw new IllegalArgumentException("Value cannot be null.");

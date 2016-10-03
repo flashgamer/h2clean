@@ -9,10 +9,6 @@ public class Account {
     private String password;
     private String accountType;
 
-    /*
-    * no args constructor
-     */
-
     public Account(String username, String password, String accountType) {
         this.user = new User();
         this.username = username;
@@ -20,22 +16,42 @@ public class Account {
         this.accountType = accountType;
     }
 
+    /**
+     * gets username
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * gets password
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * sets password
+     * @param password to be set
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * gets User object
+     * @return User
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * gets AccountType
+     * @return accountType
+     */
     public String getAccountType() {
         return accountType;
     }
