@@ -63,15 +63,15 @@ public class LandingScreenController {
      */
     @FXML
     private void editProfile(ActionEvent event) {
-        Stage thisStage = (Stage)editProfileButton.getScene().getWindow();
+        Stage thisStage = (Stage) editProfileButton.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/WelcomeScreen.fxml"));
-            Stage loginStage = new Stage();
-            loginStage.setTitle("Login Screen");
-            loginStage.setScene(new Scene(root,600,400));
-            loginStage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("../view/ProfileScreen.fxml"));
+            Stage profileStage = new Stage();
+            profileStage.setTitle("Profile Screen");
+            profileStage.setScene(new Scene(root,600,400));
+            profileStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
