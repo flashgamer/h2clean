@@ -39,4 +39,12 @@ public class LandingScreenController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Called when user clocks on Submit Report button
+     */
+    @FXML
+    private void handleSubmitButtonAction(ActionEvent event) {
+
+    }
 }
