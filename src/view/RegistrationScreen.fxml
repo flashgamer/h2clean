@@ -67,7 +67,7 @@
                   <Insets left="120.0" />
                </GridPane.margin>
             </TextField>
-            <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="18.0" prefHeight="30.0" prefWidth="301.0" text="Email: " GridPane.rowIndex="3">
+            <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="18.0" prefHeight="30.0" prefWidth="301.0" text="Email: " GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Insets right="13.0" />
                </padding>
             </Label>
-            <TextField fx:id="emailField" layoutX="275.0" layoutY="23.0" promptText="e.g. john@gmail.com" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="emailField" layoutX="275.0" layoutY="23.0" promptText="e.g. john@gmail.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" text="Username:   " GridPane.rowIndex="4">
                     <font>
                         <Font size="24.0" />
@@ -107,7 +107,7 @@
             </Label>
             <ComboBox fx:id="typeBox" prefHeight="27.0" prefWidth="160.0" promptText="choose type" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <PasswordField fx:id="passField" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="89.0" prefHeight="30.0" prefWidth="301.0" text="Address: " GridPane.rowIndex="2">
+            <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="89.0" prefHeight="30.0" prefWidth="301.0" text="Address: " GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
@@ -115,7 +115,7 @@
                   <Insets right="13.0" />
                </padding>
             </Label>
-            <TextField fx:id="addressField" layoutX="275.0" layoutY="17.0" promptText="Street Name, City, State, Zip" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="addressField" layoutX="275.0" layoutY="17.0" promptText="Street Name, City, State, Zip" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
             <BorderPane.margin>
                 <Insets />

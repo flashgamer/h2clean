@@ -10,8 +10,8 @@ public class Profile {
     private String firstName;
     private String lastName;
 
-    public Profile(String email, Address address, String title, String firstName,
-                   String lastName) {
+    public Profile(String title, String firstName,
+                   String lastName, String email, Address address) {
         this.email = email;
         this.address = address;
         this.title = title;
@@ -20,7 +20,7 @@ public class Profile {
     }
 
     public Profile() {
-        this("", new Address(), "", "John", "Smith");
+        this("", "John", "Smith", "", new Address());
     }
 
     public String getEmail() {
