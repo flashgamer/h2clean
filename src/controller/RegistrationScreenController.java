@@ -1,15 +1,23 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Account;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static model.FakeDB.database;
 
 /**
  * Controller for the registration screen.
@@ -20,15 +28,29 @@ public class RegistrationScreenController {
     private TextField userField;
 
     @FXML
-    private TextField passField;
+    private PasswordField passField;
 
+    @FXML
+    private ComboBox<String> typeBox;
+
+    @FXML
+    private void initialize() {
+        List<String> comboBoxList = new ArrayList<>();
+        comboBoxList.add("Worker");
+        comboBoxList.add("Manager");
+        comboBoxList.add("Administrator");
+        typeBox.setItems(FXCollections.observableArrayList(comboBoxList));
+        typeBox.setValue("Worker");
+    }
     /**
      * Controls what happens when the user clicks on the register button.
      */
     @FXML
     private void handleRegisterButtonAction() {
         if (isInputValid()) {
-
+            Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue());
+            ObservableList<Account> accountList = (ObservableList<Account>) database.get("ACCOUNTLIST");
+            accountList.add(account);
         }
     }
 

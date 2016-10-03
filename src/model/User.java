@@ -5,10 +5,13 @@ package model;
  * Version 1.0
  */
 public class User {
+
+    private Profile profile;
     /*
     * No args constructor
      */
     public User() {
+        this.profile = new Profile();
     }
 
     /*
