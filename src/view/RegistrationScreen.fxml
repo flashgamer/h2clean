@@ -86,8 +86,25 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
+                <TextField fx:id="addressField" layoutX="275.0" layoutY="17.0" promptText="Street Name, City, State, Zip" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="userField" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleRegisterButtonAction" prefHeight="43.0" prefWidth="132.0" text="Register" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+
+                <Label alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="192.0" text="              Type:" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                <font>
+                   <Font size="24.0" />
+               </font>
+            </Label>
+                <PasswordField fx:id="passField" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <ComboBox fx:id="typeBox" prefHeight="27.0" prefWidth="160.0" promptText="choose type" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="89.0" prefHeight="30.0" prefWidth="301.0" text="Address: " GridPane.rowIndex="3">
+                    <font>
+                   <Font size="24.0" />
+               </font>
+                    <padding>
+                   <Insets right="13.0" />
+               </padding>
+                </Label>
+                <Button fx:id="registerButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleRegisterButtonAction" prefHeight="43.0" prefWidth="132.0" text="Register" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
                     <font>
                         <Font name="Arial Bold" size="24.0" />
                     </font>
@@ -95,27 +112,11 @@
                         <Insets />
                     </opaqueInsets>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="43.0" prefWidth="132.0" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="43.0" prefWidth="132.0" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Button>
-            <Label alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="192.0" text="              Type:" GridPane.halignment="CENTER" GridPane.rowIndex="6">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="typeBox" prefHeight="27.0" prefWidth="160.0" promptText="choose type" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <PasswordField fx:id="passField" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="89.0" prefHeight="30.0" prefWidth="301.0" text="Address: " GridPane.rowIndex="3">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <padding>
-                  <Insets right="13.0" />
-               </padding>
-            </Label>
-            <TextField fx:id="addressField" layoutX="275.0" layoutY="17.0" promptText="Street Name, City, State, Zip" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
             <BorderPane.margin>
                 <Insets />

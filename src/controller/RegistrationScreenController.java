@@ -49,8 +49,19 @@ public class RegistrationScreenController {
     private void handleRegisterButtonAction() {
         if (isInputValid()) {
             Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue());
-            ObservableList<Account> accountList = (ObservableList<Account>) database.get("ACCOUNTLIST");
-            accountList.add(account);
+            database.insert(userField.getText(), account);
+            Stage thisStage = (Stage) userField.getScene().getWindow();
+            thisStage.close();
+            thisStage.hide();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreen.fxml"));
+                Stage landingStage = new Stage();
+                landingStage.setTitle("Landing Screen");
+                landingStage.setScene(new Scene(root,600,400));
+                landingStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -79,13 +90,14 @@ public class RegistrationScreenController {
 
         // Checks if username field has been filled in
         if (userField.getText() == null || userField.getText().length() == 0) {
-            errorMessage += "Not a valid username!\n";
+            errorMessage += "Username cannot be empty!\n";
         }        // Checks if password field has been filled in
         if (passField.getText() == null || passField.getText().length() == 0) {
-            errorMessage += "Not a valid password!\n";
+            errorMessage += "Password cannot be empty!\n";
         }
         // Checks if username has already been taken
-        if (database.containsKey(userField.getText())) {
+        if ((userField.getText() != null || userField.getText().length() != 0)
+                && database.containsKey(userField.getText())) {
             errorMessage += "That username has already been taken!\n";
         }
 

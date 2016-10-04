@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,7 +28,7 @@ public class LoginScreenController {
     private TextField userField;
 
     @FXML
-    private TextField passField;
+    private PasswordField passField;
 
     private Stage _loginStage;
 
@@ -107,14 +108,25 @@ public class LoginScreenController {
 
         // Checks if username field has been filled in
         if (userField.getText() == null || userField.getText().length() == 0) {
-            errorMessage += "Not a valid username!\n";
+            errorMessage += "Username cannot be empty!\n";
         }
         // Checks if password field has been filled in
         if (passField.getText() == null || passField.getText().length() == 0) {
-            errorMessage += "Not a valid password!\n";
+            errorMessage += "Password cannot be empty!\n";
         }
-        if (!database.isValid(userField.getText(), passField.getText())) {
-            errorMessage += "Username or password is invalid.\n";
+        // Checks if username is in database
+        if ((userField.getText() != null || userField.getText().length() != 0)
+                && !database.containsKey(userField.getText())) {
+            errorMessage += "Username is invalid!\n";
+        }
+        // Checks if password matches to the user.
+        if ((userField.getText() != null || userField.getText().length() != 0)
+                && database.containsKey(userField.getText())) {
+            String pass = database.get(userField.getText()).getPassword();
+            if ((passField.getText() != null || passField.getText().length() != 0)
+                    && !passField.getText().equals(pass)) {
+                errorMessage += "Password is invalid!\n";
+            }
         }
 
 
