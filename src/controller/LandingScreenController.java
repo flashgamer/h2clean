@@ -23,6 +23,8 @@ public class LandingScreenController {
     @FXML
     private Button logoutButton;
 
+    private String userKey;
+
     /**
      * Called when user clicks on Edit Profile button
      * @param event Unused
@@ -33,10 +35,14 @@ public class LandingScreenController {
         thisStage.close();
         thisStage.hide();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/ProfileScreen.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ProfileScreen.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
             Stage profileStage = new Stage();
+            ProfileScreenController psc = fxmlLoader.<ProfileScreenController>getController();
             profileStage.setTitle("Profile Screen");
             profileStage.setScene(new Scene(root,600,400));
+            psc.receiveUserKey(userKey);
+            psc.update();
             profileStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,5 +68,9 @@ public class LandingScreenController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void receiveUserKey(String userKey) {
+        this.userKey = userKey;
     }
 }

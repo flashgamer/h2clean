@@ -36,11 +36,12 @@ public class RegistrationScreenController {
     @FXML
     private void initialize() {
         List<String> comboBoxList = new ArrayList<>();
+        comboBoxList.add("User");
         comboBoxList.add("Worker");
         comboBoxList.add("Manager");
         comboBoxList.add("Administrator");
         typeBox.setItems(FXCollections.observableArrayList(comboBoxList));
-        typeBox.setValue("Worker");
+        typeBox.setValue("User");
     }
     /**
      * Controls what happens when the user clicks on the register button.
@@ -50,13 +51,14 @@ public class RegistrationScreenController {
         if (isInputValid()) {
             Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue());
             database.insert(userField.getText(), account);
+            System.out.println(database.containsKey(userField.getText()));
             Stage thisStage = (Stage) userField.getScene().getWindow();
             thisStage.close();
             thisStage.hide();
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreen.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("../view/WelcomeScreen.fxml"));
                 Stage landingStage = new Stage();
-                landingStage.setTitle("Landing Screen");
+                landingStage.setTitle("Welcome Screen");
                 landingStage.setScene(new Scene(root,600,400));
                 landingStage.show();
             } catch (IOException e) {

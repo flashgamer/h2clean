@@ -28,4 +28,8 @@ public class User {
         System.out.println("viewing water report");
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
 }

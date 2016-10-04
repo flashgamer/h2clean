@@ -32,6 +32,8 @@ public class LoginScreenController {
 
     private Stage _loginStage;
 
+    private String userKey;
+
     /** flag to signal if login clicked **/
     private boolean _loginClicked = false;
 
@@ -68,8 +70,12 @@ public class LoginScreenController {
             thisStage.close();
             thisStage.hide();
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreen.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LandingScreen.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
                 Stage landingStage = new Stage();
+                LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
+                //System.out.println(userField.getText());
+                lsc.receiveUserKey(userField.getText());
                 landingStage.setTitle("Landing Screen");
                 landingStage.setScene(new Scene(root,600,400));
                 landingStage.show();
@@ -146,5 +152,4 @@ public class LoginScreenController {
             return false;
         }
     }
-
 }
