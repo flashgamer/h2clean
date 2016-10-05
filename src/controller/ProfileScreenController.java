@@ -63,12 +63,8 @@ public class ProfileScreenController {
      * Updates the profile information
      */
     protected void save() {
-        System.out.println(database.containsKey(userKey));
         Account account = database.get(userKey);
         Profile profile = account.getUser().getProfile();
-
-        System.out.println(profile.getFirstName());
-
         userField.setText(account.getUsername());
         accountTypeField.setText(account.getAccountType());
         titleField.setText(profile.getTitle());
