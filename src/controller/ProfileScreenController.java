@@ -81,6 +81,7 @@ public class ProfileScreenController {
         Account account = database.get(userKey);
         Profile profile = account.getUser().getProfile();
 
+        account.setPassword(changePass.getText());
         if (!changeTitle.equals("")) {
             titleField.setText(changeTitle.getText());
             profile.setTitle(changeTitle.getText());
