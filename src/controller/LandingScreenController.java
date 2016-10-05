@@ -18,7 +18,37 @@ import java.io.IOException;
  */
 public class LandingScreenController {
     @FXML
+    private Button editProfileButton;
+
+    @FXML
     private Button logoutButton;
+
+    private String userKey;
+
+    /**
+     * Called when user clicks on Edit Profile button
+     * @param event Unused
+     */
+    @FXML
+    private void editProfile(ActionEvent event) {
+        Stage thisStage = (Stage) editProfileButton.getScene().getWindow();
+        thisStage.close();
+        thisStage.hide();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ProfileScreen.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage profileStage = new Stage();
+            ProfileScreenController psc = fxmlLoader.<ProfileScreenController>getController();
+            profileStage.setTitle("Profile Screen");
+            profileStage.setScene(new Scene(root,600,400));
+            psc.receiveUserKey(userKey);
+            psc.save();
+            profileStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     /**
      * Called when user clicks on Logout button.
@@ -38,5 +68,9 @@ public class LandingScreenController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void receiveUserKey(String userKey) {
+        this.userKey = userKey;
     }
 }
