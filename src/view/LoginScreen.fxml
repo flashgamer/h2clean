@@ -11,6 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
+<?import javafx.scene.control.PasswordField?>
 <BorderPane fx:id="loginScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
    <top>
       <Label prefHeight="95.0" prefWidth="256.0" text="User Login" textAlignment="CENTER" BorderPane.alignment="CENTER">
@@ -41,8 +42,8 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="userField" GridPane.columnIndex="1" />
-            <TextField fx:id="passField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="userField" promptText="Username" GridPane.columnIndex="1" />
+            <PasswordField fx:id="passField" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Password"/>
             <Button alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="Sign In" GridPane.halignment="RIGHT" GridPane.rowIndex="2" onAction="#handleSignInButtonAction">
                <font>
                   <Font name="Arial Bold" size="24.0" />

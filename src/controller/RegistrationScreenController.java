@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,16 +30,32 @@ public class RegistrationScreenController {
     private PasswordField passField;
 
     @FXML
+    private TextField titleField;
+
+    @FXML
+    private TextField firstNameField;
+
+    @FXML
+    private TextField lastNameField;
+
+    @FXML
+    private TextField emailField;
+
+    @FXML
+    private TextField addressField;
+
+    @FXML
     private ComboBox<String> typeBox;
 
     @FXML
     private void initialize() {
         List<String> comboBoxList = new ArrayList<>();
+        comboBoxList.add("User");
         comboBoxList.add("Worker");
         comboBoxList.add("Manager");
         comboBoxList.add("Administrator");
         typeBox.setItems(FXCollections.observableArrayList(comboBoxList));
-        typeBox.setValue("Worker");
+        typeBox.setValue("User");
     }
     /**
      * Controls what happens when the user clicks on the register button.
@@ -48,9 +63,20 @@ public class RegistrationScreenController {
     @FXML
     private void handleRegisterButtonAction() {
         if (isInputValid()) {
-            Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue());
-            ObservableList<Account> accountList = (ObservableList<Account>) database.get("ACCOUNTLIST");
-            accountList.add(account);
+            Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue(), titleField.getText(), firstNameField.getText(), lastNameField.getText(), emailField.getText(), addressField.getText());
+            database.insert(userField.getText(), account);
+            Stage thisStage = (Stage) userField.getScene().getWindow();
+            thisStage.close();
+            thisStage.hide();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../view/WelcomeScreen.fxml"));
+                Stage landingStage = new Stage();
+                landingStage.setTitle("Welcome Screen");
+                landingStage.setScene(new Scene(root,600,400));
+                landingStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -79,19 +105,15 @@ public class RegistrationScreenController {
 
         // Checks if username field has been filled in
         if (userField.getText() == null || userField.getText().length() == 0) {
-            errorMessage += "Not a valid username!\n";
-        }
-        // Checks if username field is one in database
-        if (!userField.getText().equals("user")) {
-            errorMessage += "Not a valid username!\n";
-        }
-        // Checks if password field has been filled in
+            errorMessage += "Username cannot be empty!\n";
+        }        // Checks if password field has been filled in
         if (passField.getText() == null || passField.getText().length() == 0) {
-            errorMessage += "Not a valid password!\n";
+            errorMessage += "Password cannot be empty!\n";
         }
-        // Checks if password field is one in database
-        if (!passField.getText().equals("pass")) {
-            errorMessage += "Not a valid password!\n";
+        // Checks if username has already been taken
+        if ((userField.getText() != null || userField.getText().length() != 0)
+                && database.containsKey(userField.getText())) {
+            errorMessage += "That username has already been taken!\n";
         }
 
         //successful login

@@ -6,10 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static model.FakeDB.database;
 
 /**
  * Controller for user login
@@ -25,9 +28,11 @@ public class LoginScreenController {
     private TextField userField;
 
     @FXML
-    private TextField passField;
+    private PasswordField passField;
 
     private Stage _loginStage;
+
+    private String userKey;
 
     /** flag to signal if login clicked **/
     private boolean _loginClicked = false;
@@ -65,8 +70,12 @@ public class LoginScreenController {
             thisStage.close();
             thisStage.hide();
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreen.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LandingScreen.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
                 Stage landingStage = new Stage();
+                LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
+                //System.out.println(userField.getText());
+                lsc.receiveUserKey(userField.getText());
                 landingStage.setTitle("Landing Screen");
                 landingStage.setScene(new Scene(root,600,400));
                 landingStage.show();
@@ -105,20 +114,27 @@ public class LoginScreenController {
 
         // Checks if username field has been filled in
         if (userField.getText() == null || userField.getText().length() == 0) {
-            errorMessage += "Not a valid username!\n";
-        }
-        // Checks if username field is one in database
-        if (!userField.getText().equals("user")) {
-            errorMessage += "Not a valid username!\n";
+            errorMessage += "Username cannot be empty!\n";
         }
         // Checks if password field has been filled in
         if (passField.getText() == null || passField.getText().length() == 0) {
-            errorMessage += "Not a valid password!\n";
+            errorMessage += "Password cannot be empty!\n";
         }
-        // Checks if password field is one in database
-        if (!passField.getText().equals("pass")) {
-            errorMessage += "Not a valid password!\n";
+        // Checks if username is in database
+        if ((userField.getText() != null || userField.getText().length() != 0)
+                && !database.containsKey(userField.getText())) {
+            errorMessage += "Username is invalid!\n";
         }
+        // Checks if password matches to the user.
+        if ((userField.getText() != null || userField.getText().length() != 0)
+                && database.containsKey(userField.getText())) {
+            String pass = database.get(userField.getText()).getPassword();
+            if ((passField.getText() != null || passField.getText().length() != 0)
+                    && !passField.getText().equals(pass)) {
+                errorMessage += "Password is invalid!\n";
+            }
+        }
+
 
         //successful login
         if (errorMessage.length() == 0) {
@@ -136,5 +152,4 @@ public class LoginScreenController {
             return false;
         }
     }
-
 }
