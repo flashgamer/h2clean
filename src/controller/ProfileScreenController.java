@@ -62,7 +62,6 @@ public class ProfileScreenController {
     protected void save() {
         Account account = database.get(userKey);
         Profile profile = account.getUser().getProfile();
-
         userField.setText(account.getUsername());
         accountTypeField.setText(account.getAccountType());
         titleField.setText(profile.getTitle());
