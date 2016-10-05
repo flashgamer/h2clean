@@ -66,7 +66,6 @@ public class RegistrationScreenController {
         if (isInputValid()) {
             Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue(), titleField.getText(), firstNameField.getText(), lastNameField.getText(), emailField.getText(), addressField.getText());
             database.insert(userField.getText(), account);
-            System.out.println(database.containsKey(userField.getText()));
             Stage thisStage = (Stage) userField.getScene().getWindow();
             thisStage.close();
             thisStage.hide();

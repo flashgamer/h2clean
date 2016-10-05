@@ -54,20 +54,14 @@ public class ProfileScreenController {
     @FXML
     private TextField changeAddress;
 
-    @FXML
-    private TextField changePass;
-
     private String userKey;
 
     /**
      * Updates the profile information
      */
     protected void save() {
-        System.out.println(database.containsKey(userKey));
         Account account = database.get(userKey);
         Profile profile = account.getUser().getProfile();
-
-        System.out.println(profile.getFirstName());
 
         userField.setText(account.getUsername());
         accountTypeField.setText(account.getAccountType());
@@ -100,9 +94,8 @@ public class ProfileScreenController {
         }
         if (!changeAddress.equals("")) {
             addressField.setText(changeAddress.getText());
-//            profile.setAddress();
+            profile.setAddress(changeAddress.getText());
         }
-
     }
 
     /**
