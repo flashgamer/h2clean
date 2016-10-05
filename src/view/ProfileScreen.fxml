@@ -29,7 +29,7 @@
         </Label>
     </top>
    <center>
-      <SplitPane dividerPositions="0.3494983277591973" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.36454849498327757" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
                <children>
@@ -95,7 +95,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="303.0" prefWidth="488.0">
                <children>
-                  <GridPane alignment="TOP_CENTER" layoutX="10.0" layoutY="-2.0" prefHeight="304.0" prefWidth="408.0">
+                  <GridPane alignment="TOP_CENTER" layoutX="10.0" layoutY="-2.0" prefHeight="304.0" prefWidth="380.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="87.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="261.0" />

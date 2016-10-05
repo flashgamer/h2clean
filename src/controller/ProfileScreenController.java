@@ -31,9 +31,6 @@ public class ProfileScreenController {
     private Label userField;
 
     @FXML
-    private Label passField;
-
-    @FXML
     private Label emailField;
 
     @FXML
@@ -65,24 +62,19 @@ public class ProfileScreenController {
     /**
      * Updates the profile information
      */
-    protected void update() {
-        //userField.setText(userKey);
-        //Account account = new Account(userField.getText(), passField.getText(), accountTypeField.getText());
+    protected void save() {
         System.out.println(database.containsKey(userKey));
         Account account = database.get(userKey);
         Profile profile = account.getUser().getProfile();
 
+        System.out.println(profile.getFirstName());
+
         userField.setText(account.getUsername());
-        //passField.setText(account.getPassword());
         accountTypeField.setText(account.getAccountType());
         titleField.setText(profile.getTitle());
         nameField.setText(profile.getFirstName() + " " + profile.getLastName());
         emailField.setText(profile.getEmail());
-        String line1 = profile.getAddress().getLine1();
-        String line2 = profile.getAddress().getLine2();
-        String city = profile.getAddress().getCity();
-        String zip = profile.getAddress().getZip();
-        addressField.setText(line1 + ", " + line2 + ", " + city + ", " + zip);
+        addressField.setText(profile.getAddress());
     }
 
     /**
@@ -90,10 +82,26 @@ public class ProfileScreenController {
      */
     @FXML
     private void handleEditPressed() {
-        titleField.setText(changeTitle.getText());
-        nameField.setText(changeFirst.getText() + " " + changeLast.getText());
-        emailField.setText(changeEmail.getText());
-        addressField.setText(changeAddress.getText());
+        Account account = database.get(userKey);
+        Profile profile = account.getUser().getProfile();
+
+        if (!changeTitle.equals("")) {
+            titleField.setText(changeTitle.getText());
+            profile.setTitle(changeTitle.getText());
+        }
+        if (!(changeFirst.equals("") || changeLast.equals(""))) {
+            nameField.setText(changeFirst.getText() + " " + changeLast.getText());
+            profile.setFirstName(changeFirst.getText());
+            profile.setLastName(changeLast.getText());
+        }
+        if (!changeEmail.equals("")) {
+            emailField.setText(changeEmail.getText());
+            profile.setEmail(changeEmail.getText());
+        }
+        if (!changeAddress.equals("")) {
+            addressField.setText(changeAddress.getText());
+//            profile.setAddress();
+        }
 
     }
 

@@ -7,11 +7,16 @@ package model;
 public class User {
 
     private Profile profile;
-    /*
+
+    /**
     * No args constructor
      */
     public User() {
-        this.profile = new Profile();
+
+    }
+
+    public User(String title, String firstName, String lastName, String email, String address) {
+        this.profile = new Profile(title, firstName, lastName, email, address);
     }
 
     /**

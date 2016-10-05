@@ -5,13 +5,13 @@ package model;
  */
 public class Profile {
     private String email;
-    private Address address;
+    private String address;
     private String title;
     private String firstName;
     private String lastName;
 
     public Profile(String title, String firstName,
-                   String lastName, String email, Address address) {
+                   String lastName, String email, String address) {
         this.email = email;
         this.address = address;
         this.title = title;
@@ -20,7 +20,6 @@ public class Profile {
     }
 
     public Profile() {
-        this("", "John", "Smith", "", new Address());
     }
 
     public String getEmail() {
@@ -32,11 +31,11 @@ public class Profile {
     }
 
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

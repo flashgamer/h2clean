@@ -42,7 +42,7 @@ public class LandingScreenController {
             profileStage.setTitle("Profile Screen");
             profileStage.setScene(new Scene(root,600,400));
             psc.receiveUserKey(userKey);
-            psc.update();
+            psc.save();
             profileStage.show();
         } catch (IOException e) {
             e.printStackTrace();

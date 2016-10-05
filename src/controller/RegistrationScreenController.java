@@ -31,6 +31,21 @@ public class RegistrationScreenController {
     private PasswordField passField;
 
     @FXML
+    private TextField titleField;
+
+    @FXML
+    private TextField firstNameField;
+
+    @FXML
+    private TextField lastNameField;
+
+    @FXML
+    private TextField emailField;
+
+    @FXML
+    private TextField addressField;
+
+    @FXML
     private ComboBox<String> typeBox;
 
     @FXML
@@ -49,7 +64,7 @@ public class RegistrationScreenController {
     @FXML
     private void handleRegisterButtonAction() {
         if (isInputValid()) {
-            Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue());
+            Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue(), titleField.getText(), firstNameField.getText(), lastNameField.getText(), emailField.getText(), addressField.getText());
             database.insert(userField.getText(), account);
             System.out.println(database.containsKey(userField.getText()));
             Stage thisStage = (Stage) userField.getScene().getWindow();

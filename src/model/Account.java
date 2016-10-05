@@ -9,8 +9,8 @@ public class Account {
     private String password;
     private String accountType;
 
-    public Account(String username, String password, String accountType) {
-        this.user = new User();
+    public Account(String username, String password, String accountType, String title, String firstName, String lastName, String email, String address) {
+        this.user = new User(title, firstName, lastName, email, address);
         this.username = username;
         this.password = password;
         this.accountType = accountType;
