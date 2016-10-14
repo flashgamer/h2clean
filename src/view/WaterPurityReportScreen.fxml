@@ -12,12 +12,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WaterSourceReportScreenController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label />
-            <Label text="Submit Water Report">
+            <Label text="Water Purity Report">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
@@ -37,38 +37,51 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Location of Water: " GridPane.halignment="RIGHT">
+            <Label text="Location: " GridPane.halignment="RIGHT">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="Type of Water: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Label text="Overall Condition:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
             </Label>
-            <Label text="Condition of Water: " GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label text="Contaminant PPM:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
             </Label>
             <TextField fx:id="locationField" promptText="e.g. 123 Main St." GridPane.columnIndex="1" />
-            <ComboBox fx:id="waterTypeField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="waterConditionField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="Submit Report" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <ComboBox fx:id="conditionField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" text="Confirm" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
+            <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="92.0" text="Virus PPM:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="virusField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="contaminantField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <opaqueInsets>
             <Insets />
