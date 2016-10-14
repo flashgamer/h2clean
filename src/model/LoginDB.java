@@ -1,7 +1,5 @@
 package model;
 
-import javafx.collections.FXCollections;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -11,12 +9,12 @@ import java.util.NoSuchElementException;
  * and the value being the associated account.
  * Created by lol on 10/3/16.
  */
-public class FakeDB {
+public class LoginDB {
 
-    public final static FakeDB database = new FakeDB();
+    public final static LoginDB database = new LoginDB();
     private Map<String, Account> databaseBacking;
 
-    public FakeDB() {
+    public LoginDB() {
         this.databaseBacking = new HashMap<String, Account>();
         this.populateDefaults();
     }
@@ -29,7 +27,7 @@ public class FakeDB {
     }
 
     /**
-     * gets a value from the FakeDB provided a key
+     * gets a value from the LoginDB provided a key
      * @param entryName key of value
      * @return value for given key
      */
@@ -42,7 +40,7 @@ public class FakeDB {
     }
 
     /**
-     * inserts key and value pair into FakeDB
+     * inserts key and value pair into LoginDB
      * @param entryName key of entry
      * @param value value of entry
      */
