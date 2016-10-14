@@ -75,7 +75,7 @@ public class LandingScreenController {
     }
 
     /**
-     * Called when user clocks on Submit Report button
+     * Called when user clicks on Submit Report button
      */
     @FXML
     private void handleSubmitButtonAction(ActionEvent event) {

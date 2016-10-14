@@ -42,7 +42,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                <children>
-                  <Button mnemonicParsing="false" text="Edit Profile">
+                  <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfile" text="Edit Profile">
                      <HBox.margin>
                         <Insets left="25.0" top="-75.0" />
                      </HBox.margin>
