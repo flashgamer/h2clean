@@ -12,7 +12,7 @@ import java.util.List;
  * Controller for the submit water report screen.
  * @author Hotline String
  */
-public class SubmitWaterReportScreenController {
+public class WaterSourceReportScreenController {
     @FXML
     private TextField locationField;
 
