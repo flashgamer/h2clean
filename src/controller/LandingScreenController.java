@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static model.FakeDB.database;
+
 /**
  * Controller for landing page once user logs in successfully
  * Some code reused from other files within the package.
@@ -27,6 +29,7 @@ public class LandingScreenController {
 
     /**
      * Called when user clicks on Edit Profile button
+     *
      * @param event Unused
      */
     @FXML
@@ -40,7 +43,7 @@ public class LandingScreenController {
             Stage profileStage = new Stage();
             ProfileScreenController psc = fxmlLoader.<ProfileScreenController>getController();
             profileStage.setTitle("Profile Screen");
-            profileStage.setScene(new Scene(root,600,400));
+            profileStage.setScene(new Scene(root, 600, 400));
             psc.receiveUserKey(userKey);
             psc.save();
             profileStage.show();
@@ -52,6 +55,7 @@ public class LandingScreenController {
 
     /**
      * Called when user clicks on Logout button.
+     *
      * @param event Unused
      */
     @FXML
@@ -63,22 +67,15 @@ public class LandingScreenController {
             Parent root = FXMLLoader.load(getClass().getResource("../view/WelcomeScreen.fxml"));
             Stage loginStage = new Stage();
             loginStage.setTitle("Login Screen");
-            loginStage.setScene(new Scene(root,600,400));
+            loginStage.setScene(new Scene(root, 600, 400));
             loginStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    protected void receiveUserKey(String userKey) {
-        this.userKey = userKey;
-    }
+//add implementation to make dialog box show up when 'Submit Report' is
+// clicked YAYYYYYY
 
-    /**
-     * Called when user clicks on Submit Report button
-     */
-    @FXML
-    private void handleSubmitButtonAction(ActionEvent event) {
 
-    }
 }
