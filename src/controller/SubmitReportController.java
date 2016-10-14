@@ -16,7 +16,7 @@ import static model.FakeDB.database;
 /**
  * Created by Jonathan on 10/3/2016.
  */
-public class ReportSubmitController {
+public class SubmitReportController {
 
     @FXML
     Label headingText;
