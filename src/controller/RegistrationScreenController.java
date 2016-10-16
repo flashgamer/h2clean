@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static model.FakeDB.database;
+import static model.LoginDB.database;
 
 /**
  * Controller for the registration screen.
