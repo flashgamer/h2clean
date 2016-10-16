@@ -13,7 +13,7 @@ import model.Account;
 
 import java.io.IOException;
 
-import static model.FakeDB.database;
+import static model.LoginDB.database;
 
 /**
  * Created by Jonathan on 10/3/2016.
@@ -73,28 +73,61 @@ public class SubmitReportController {
     }
 
     /**
-     * Called when user clicks on Submit Report button
+     * Called when user clicks the Proceed button after selecting the report
+     * they want to view.
+     *
+     * @param event Unused
      */
     @FXML
-    private void handleSubmitButtonAction(ActionEvent event) {
+    private void handleProceedPressed(ActionEvent event) {
         if (isUserValid().equals("error")) {
-
             //show error message
             String errorMessage = "You are not authorized to view this report" +
                     ".\n";
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(_submitReportPopupStage);
-            alert.setTitle("Invalid Login");
-            alert.setHeaderText("Please try again with the correct login details.");
+            alert.setTitle("Invalid Authorization");
+            alert.setHeaderText("Authorization required.");
             alert.setContentText(errorMessage);
-
             alert.showAndWait();
         } else if (isUserValid().equals("noneSelected")) {
-
+            //show error message
+            String errorMessage = "Please select a report." +
+                    ".\n";
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(_submitReportPopupStage);
+            alert.setTitle("Invalid Authorization");
+            alert.setHeaderText("Authorization required.");
+            alert.setContentText(errorMessage);
+            alert.showAndWait();
         } else if (isUserValid().equals("waterSourceReport")) {
-
+            Stage thisStage = (Stage) typeReport.getScene().getWindow();
+            thisStage.close();
+            thisStage.hide();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource
+                        ("../view/WaterSourceReportScreen.fxml"));
+                Stage waterSourceReportStage = new Stage();
+                waterSourceReportStage.setTitle("Water Source Report");
+                waterSourceReportStage.setScene(new Scene(root, 600, 400));
+                waterSourceReportStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else if (isUserValid().equals("waterPurityReport")) {
-
+            Stage thisStage = (Stage) typeReport.getScene().getWindow();
+            thisStage.close();
+            thisStage.hide();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource
+                        ("../view/WaterPurityReportScreen.fxml"));
+                Stage waterPurityReportStage = new Stage();
+                waterPurityReportStage.setTitle("Water Purity Report");
+                waterPurityReportStage.setScene(new Scene(root, 600, 400));
+                waterPurityReportStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

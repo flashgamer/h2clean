@@ -105,6 +105,7 @@ public class ProfileScreenController {
         Stage thisStage = (Stage) userField.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreen.fxml"));
             Stage landingStage = new Stage();

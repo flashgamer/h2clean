@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static model.FakeDB.database;
+import static model.ReportDB.database;
 
 /**
  * Controller for landing page once user logs in successfully
@@ -24,6 +24,9 @@ public class LandingScreenController {
 
     @FXML
     private Button logoutButton;
+
+    @FXML
+    private Button submitReport;
 
     private String userKey;
 
@@ -74,8 +77,24 @@ public class LandingScreenController {
         }
     }
 
-//add implementation to make dialog box show up when 'Submit Report' is
-// clicked YAYYYYYY
+    /**
+     * Called when user clicks on Submit Report button. Dialog box will pop up.
+     *
+     * @param event Unused
+     */
+    @FXML
+    private void handleSubmitReportButtonAction(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource
+                    ("../view/SubmitReportPopup.fxml"));
+            Stage submitReportStage = new Stage();
+            submitReportStage.setTitle("Submit Report");
+            submitReportStage.setScene(new Scene(root, 400, 250));
+            submitReportStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
