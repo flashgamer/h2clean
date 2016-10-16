@@ -30,7 +30,7 @@
                 </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSubmitButtonAction" text="Submit Report">
+                  <Button fx:id="submitReport" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSubmitReportButtonAction" text="Submit Report">
                      <HBox.margin>
                         <Insets left="260.0" right="30.0" top="30.0" />
                      </HBox.margin>
