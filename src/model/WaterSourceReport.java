@@ -16,6 +16,7 @@ public class WaterSourceReport extends Report {
 
     }
 
+
     public String getUserName() {
         return userName;
     }
@@ -30,5 +31,21 @@ public class WaterSourceReport extends Report {
 
     public WaterCondition getCondition() {
         return condition;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setType(WaterType type) {
+        this.type = type;
+    }
+
+    public void setCondition(WaterCondition condition) {
+        this.condition = condition;
     }
 }

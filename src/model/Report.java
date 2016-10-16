@@ -8,9 +8,14 @@ import java.time.LocalDateTime;
  */
 public class Report {
 
+    private Account submitAccount;
     private LocalDateTime submitTime;
     private int dbLocation;
 
+    /**
+     * Constructs a Report object. Sets submit time to current time as defined
+     * by the machine.
+     */
     public Report() {
         submitTime = LocalDateTime.now();
     }
@@ -25,5 +30,13 @@ public class Report {
 
     public int getDBLocation() {
         return dbLocation;
+    }
+
+    public Account getSubmitAccount() {
+        return submitAccount;
+    }
+
+    public void setSubmitAccount(Account submitAccount) {
+        this.submitAccount = submitAccount;
     }
 }

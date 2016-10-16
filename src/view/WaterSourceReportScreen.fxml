@@ -59,12 +59,12 @@
             <TextField fx:id="locationField" promptText="e.g. 123 Main St." GridPane.columnIndex="1" />
             <ComboBox fx:id="waterTypeField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ComboBox fx:id="waterConditionField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="Confirm" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" text="Confirm" GridPane.halignment="RIGHT" GridPane.rowIndex="3" onAction="#handleConfirmButtonAction">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" onAction="#handleCancelButtonAction">
                <font>
                   <Font size="18.0" />
                </font>

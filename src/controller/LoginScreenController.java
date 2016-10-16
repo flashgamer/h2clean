@@ -9,6 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Account;
+import model.LoginDB;
 
 import java.io.IOException;
 
@@ -33,6 +35,8 @@ public class LoginScreenController {
     private Stage _loginStage;
 
     private String userKey;
+
+    public static Account account; // Account that is logged in for reporting purposes.
 
     /** flag to signal if login clicked **/
     private boolean _loginClicked = false;
@@ -66,6 +70,7 @@ public class LoginScreenController {
     private void handleSignInButtonAction(ActionEvent event) {
         if (isInputValid()) {
             _loginClicked = true;
+            account = LoginDB.database.get(userField.getText());
             Stage thisStage = (Stage) userField.getScene().getWindow();
             thisStage.close();
             thisStage.hide();
