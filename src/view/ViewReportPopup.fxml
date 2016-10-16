@@ -11,12 +11,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SubmitReportController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SubmitReportController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label />
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" text="What type of report to submit?" textAlignment="CENTER" wrapText="true">
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" text="What type of report to view?" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -39,13 +39,13 @@
             <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ComboBox fx:id="typeReport" prefHeight="25.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="cancel" mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="19.0" prefWidth="68.0" text="Cancel" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+            <ComboBox fx:id="viewReportType" prefHeight="25.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="68.0" text="Cancel" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="proceed" mnemonicParsing="false" onAction="#handleProceedPressed" prefHeight="25.0" prefWidth="73.0" text="Proceed" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Proceed" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="20.0" right="30.0" />
                </GridPane.margin>
