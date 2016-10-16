@@ -12,7 +12,7 @@ import model.Profile;
 
 import java.io.IOException;
 
-import static model.FakeDB.database;
+import static model.LoginDB.database;
 
 /**
  * Controller for Profile Screen
