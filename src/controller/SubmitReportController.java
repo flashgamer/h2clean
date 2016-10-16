@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,8 @@ import javafx.stage.Stage;
 import model.Account;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static model.LoginDB.database;
 
@@ -25,6 +28,15 @@ public class SubmitReportController {
 
     @FXML
     ComboBox typeReport;
+
+    @FXML
+    private void initialize() {
+        List<String> comboBoxList = new ArrayList<>();
+        comboBoxList.add("Water Source Report");
+        comboBoxList.add("Water Purity Report");
+        typeReport.setItems(FXCollections.observableArrayList(comboBoxList));
+        typeReport.setValue("Water Source Report");
+    }
 
     private String userKey;
 
