@@ -16,7 +16,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label />
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" text="What type of report to submit?" textAlignment="CENTER" wrapText="true">
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" text="What type of report to view?" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -39,7 +39,7 @@
             <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ComboBox fx:id="typeReport" prefHeight="25.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="viewReportType" prefHeight="25.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="68.0" text="Cancel" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="20.0" />
