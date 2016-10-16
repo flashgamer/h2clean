@@ -37,6 +37,5 @@ public class WaterSourceReportScreenController {
         waterConditionList.add("Potable");
         waterTypeField.setItems(FXCollections.observableArrayList(waterTypeList));
         waterConditionField.setItems(FXCollections.observableArrayList(waterConditionList));
-
     }
 }
