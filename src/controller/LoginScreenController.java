@@ -59,6 +59,7 @@ public class LoginScreenController {
      */
     public boolean isLoginClicked() { return _loginClicked; }
 
+
     /**
      * Called when user clicks Login
      */

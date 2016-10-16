@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static model.ReportDB.database;
+
 /**
  * Controller for landing page once user logs in successfully
  * Some code reused from other files within the package.
@@ -23,10 +25,14 @@ public class LandingScreenController {
     @FXML
     private Button logoutButton;
 
+    @FXML
+    private Button submitReport;
+
     private String userKey;
 
     /**
      * Called when user clicks on Edit Profile button
+     *
      * @param event Unused
      */
     @FXML
@@ -40,7 +46,7 @@ public class LandingScreenController {
             Stage profileStage = new Stage();
             ProfileScreenController psc = fxmlLoader.<ProfileScreenController>getController();
             profileStage.setTitle("Profile Screen");
-            profileStage.setScene(new Scene(root,600,400));
+            profileStage.setScene(new Scene(root, 600, 400));
             psc.receiveUserKey(userKey);
             psc.save();
             profileStage.show();
@@ -52,6 +58,7 @@ public class LandingScreenController {
 
     /**
      * Called when user clicks on Logout button.
+     *
      * @param event Unused
      */
     @FXML
@@ -63,8 +70,27 @@ public class LandingScreenController {
             Parent root = FXMLLoader.load(getClass().getResource("../view/WelcomeScreen.fxml"));
             Stage loginStage = new Stage();
             loginStage.setTitle("Login Screen");
-            loginStage.setScene(new Scene(root,600,400));
+            loginStage.setScene(new Scene(root, 600, 400));
             loginStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Called when user clicks on Submit Report button. Dialog box will pop up.
+     *
+     * @param event Unused
+     */
+    @FXML
+    private void handleSubmitReportButtonAction(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource
+                    ("../view/SubmitReportPopup.fxml"));
+            Stage submitReportStage = new Stage();
+            submitReportStage.setTitle("Submit Report");
+            submitReportStage.setScene(new Scene(root, 400, 250));
+            submitReportStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,13 +98,5 @@ public class LandingScreenController {
 
     protected void receiveUserKey(String userKey) {
         this.userKey = userKey;
-    }
-
-    /**
-     * Called when user clicks on Submit Report button
-     */
-    @FXML
-    private void handleSubmitButtonAction(ActionEvent event) {
-
     }
 }
