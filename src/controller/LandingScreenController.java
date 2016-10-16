@@ -96,5 +96,7 @@ public class LandingScreenController {
         }
     }
 
-
+    protected void receiveUserKey(String userKey) {
+        this.userKey = userKey;
+    }
 }
