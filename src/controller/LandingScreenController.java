@@ -30,6 +30,7 @@ public class LandingScreenController {
 
     private String userKey;
 
+
     /**
      * Called when user clicks on Edit Profile button
      *
@@ -47,7 +48,6 @@ public class LandingScreenController {
             ProfileScreenController psc = fxmlLoader.<ProfileScreenController>getController();
             profileStage.setTitle("Profile Screen");
             profileStage.setScene(new Scene(root, 600, 400));
-            psc.receiveUserKey(userKey);
             psc.save();
             profileStage.show();
         } catch (IOException e) {
@@ -85,18 +85,17 @@ public class LandingScreenController {
     @FXML
     private void handleSubmitReportButtonAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource
                     ("../view/SubmitReportPopup.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
             Stage submitReportStage = new Stage();
+            SubmitReportController src = fxmlLoader.<SubmitReportController>getController();
             submitReportStage.setTitle("Submit Report");
-            submitReportStage.setScene(new Scene(root, 400, 250));
+            submitReportStage.setScene(new Scene(root,400,250));
             submitReportStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    protected void receiveUserKey(String userKey) {
-        this.userKey = userKey;
-    }
 }

@@ -80,8 +80,6 @@ public class LoginScreenController {
                 Parent root = (Parent) fxmlLoader.load();
                 Stage landingStage = new Stage();
                 LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
-                //System.out.println(userField.getText());
-                lsc.receiveUserKey(userField.getText());
                 landingStage.setTitle("Landing Screen");
                 landingStage.setScene(new Scene(root,600,400));
                 landingStage.show();

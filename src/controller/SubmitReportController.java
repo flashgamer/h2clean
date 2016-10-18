@@ -11,6 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Account;
+import model.Profile;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class SubmitReportController {
     @FXML
     ComboBox typeReport;
 
+    private Stage _submitReportPopupStage;
+
+
     @FXML
     private void initialize() {
         List<String> comboBoxList = new ArrayList<>();
@@ -37,10 +41,6 @@ public class SubmitReportController {
         typeReport.setItems(FXCollections.observableArrayList(comboBoxList));
         typeReport.setValue("Water Source Report");
     }
-
-    private String userKey;
-
-    private Stage _submitReportPopupStage;
 
     /**
      * Sets the stage of the dialog.
@@ -69,10 +69,6 @@ public class SubmitReportController {
         thisStage.hide();
     }
 
-    protected void receiveUserKey(String userKey) {
-        this.userKey = userKey;
-    }
-
     /**
      * Called when user clicks the Proceed button after selecting the report
      * they want to view.
@@ -91,17 +87,7 @@ public class SubmitReportController {
             alert.setHeaderText("Authorization required.");
             alert.setContentText(errorMessage);
             alert.showAndWait();
-        } else if (isUserValid().equals("noneSelected")) {
-            //show error message
-            String errorMessage = "Please select a report." +
-                    ".\n";
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(_submitReportPopupStage);
-            alert.setTitle("Invalid Authorization");
-            alert.setHeaderText("Authorization required.");
-            alert.setContentText(errorMessage);
-            alert.showAndWait();
-        } else if (isUserValid().equals("waterSourceReport")) {
+        } else if (isUserValid().equals("WaterSourceReportScreen")) {
             Stage thisStage = (Stage) typeReport.getScene().getWindow();
             thisStage.close();
             thisStage.hide();
@@ -115,7 +101,7 @@ public class SubmitReportController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (isUserValid().equals("waterPurityReport")) {
+        } else if (isUserValid().equals("WaterPurityReportScreen")) {
             Stage thisStage = (Stage) typeReport.getScene().getWindow();
             thisStage.close();
             thisStage.hide();
@@ -133,30 +119,32 @@ public class SubmitReportController {
     }
 
     private String isUserValid() {
-        Account account = database.get(userKey);
-        String accType = account.getAccountType();
 
         // Checks if user is authorized to submit a type of report, error
         // message pops up if otherwise.
-        if (accType.equals("User")) {
-            if (typeReport.getValue().equals("waterSourceReport")) {
-                return "waterSourceReport";
-            } else if (typeReport.getValue().equals("waterPurityReport")) {
-                return "error";
+        if (LoginScreenController.account.getAccountType().equals("User")) {
+            if (typeReport.getValue().equals("Water Source Report")) {
+                return ("WaterSourceReportScreen");
+            } else if (typeReport.getValue().equals("Water Purity Report")) {
+                return ("error");
             }
-        } else if (accType.equals("Worker")) {
-            if (typeReport.getValue().equals("waterSourceReport")) {
-                return "waterSourceReportScreen";
-            } else if (typeReport.getValue().equals("waterPurityReport")) {
-                return "waterPurityReportScreen";
+        } else if (LoginScreenController.account.getAccountType().equals
+                ("Worker")) {
+            if (typeReport.getValue().equals("Water Source Report")) {
+                return ("WaterSourceReportScreen");
+            } else if (typeReport.getValue().equals("Water Purity Report")) {
+                return ("WaterPurityReportScreen");
             }
-        } else if (accType.equals("Manager")) {
-            if (typeReport.getValue().equals("waterSourceReport")) {
-                return "waterSourceReportScreen";
-            } else if (typeReport.getValue().equals("waterPurityReport")) {
-                return "waterPurityReportScreen";
+        } else if (LoginScreenController.account.getAccountType().equals
+                ("Manager")) {
+            if (typeReport.getValue().equals("Water Source Report")) {
+                return ("WaterSourceReportScreen");
+            } else if (typeReport.getValue().equals("Water Purity Report")) {
+                return ("WaterPurityReportScreen");
             }
         }
-        return "noneSelected";
+        return ("WaterSourceReportScreen");
     }
+
+
 }
