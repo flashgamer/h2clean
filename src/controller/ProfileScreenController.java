@@ -56,6 +56,7 @@ public class ProfileScreenController {
 
     private String userKey;
 
+
     /**
      * Updates the profile information
      */
