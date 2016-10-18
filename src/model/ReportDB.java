@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -13,11 +14,10 @@ import java.util.Map;
 public class ReportDB {
 
     public static ReportDB database = new ReportDB();
-    private static int keyCount = 0;
-    private Map<Integer, Report> backingMap;
+    private Map<String, LinkedList<Report>> backingMap;
 
     public ReportDB() {
-        backingMap = new HashMap<Integer, Report>();
+        backingMap = new HashMap<String, LinkedList<Report>>();
     }
 
     /**
@@ -29,16 +29,19 @@ public class ReportDB {
         if (report == null) {
             throw new IllegalArgumentException("Cannot submit null report");
         }
-        report.setDBLocation(keyCount);
-        backingMap.put(keyCount, report);
-        keyCount++;
+        if (backingMap.containsKey(report.getLocation())) {
+            backingMap.get(report.getLocation()).add(report);
+        } else {
+            backingMap.put(report.getLocation(), new LinkedList<Report>());
+            backingMap.get(report.getLocation()).add(report);
+        }
     }
 
-    public Report get(Report report) {
-        if (backingMap.containsValue(report)) {
+    public LinkedList<Report> get(String location) {
+        if (!backingMap.containsValue(location)) {
             throw new IllegalArgumentException("Report does not exist in database");
         }
-        return backingMap.get(report.getDBLocation());
+        return backingMap.get(location);
     }
 
 

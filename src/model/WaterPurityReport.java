@@ -36,4 +36,24 @@ public class WaterPurityReport extends Report {
     public double getContaminantPPM() {
         return contaminantPPM;
     }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setCondition(PurityCondition condition) {
+        this.condition = condition;
+    }
+
+    public void setVirusPPM(double virusPPM) {
+        this.virusPPM = virusPPM;
+    }
+
+    public void setContaminantPPM(double contaminantPPM) {
+        this.contaminantPPM = contaminantPPM;
+    }
 }

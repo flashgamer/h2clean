@@ -64,20 +64,9 @@ public class SubmitReportController {
 
     @FXML
     private void handleCancelPressed() {
-        Stage thisStage = (Stage) headingText.getScene().getWindow();
+        Stage thisStage = (Stage) typeReport.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LandingScreen.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage profileStage = new Stage();
-            ProfileScreenController psc = fxmlLoader.<ProfileScreenController>getController();
-            profileStage.setTitle("Landing Screen");
-            profileStage.setScene(new Scene(root,600,400));
-            profileStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     protected void receiveUserKey(String userKey) {
