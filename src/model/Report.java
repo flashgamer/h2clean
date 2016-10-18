@@ -10,7 +10,7 @@ public class Report {
 
     private Account submitAccount;
     private LocalDateTime submitTime;
-    private int dbLocation;
+    private String location;
 
     /**
      * Constructs a Report object. Sets submit time to current time as defined
@@ -24,12 +24,12 @@ public class Report {
         return submitTime;
     }
 
-    public void setDBLocation(int location) {
-        dbLocation = location;
+    public String getLocation() {
+        return location;
     }
 
-    public int getDBLocation() {
-        return dbLocation;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public Account getSubmitAccount() {
