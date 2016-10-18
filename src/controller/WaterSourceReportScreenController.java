@@ -88,7 +88,6 @@ public class WaterSourceReportScreenController {
             Parent root = (Parent) fxmlLoader.load();
             Stage landingStage = new Stage();
             LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
-            lsc.receiveUserKey(locationField.getText());
             landingStage.setTitle("Landing Screen");
             landingStage.setScene(new Scene(root, 600, 400));
             landingStage.show();
@@ -146,7 +145,6 @@ public class WaterSourceReportScreenController {
             Parent root = (Parent) fxmlLoader.load();
             Stage landingStage = new Stage();
             LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
-            lsc.receiveUserKey(locationField.getText());
             landingStage.setTitle("Landing Screen");
             landingStage.setScene(new Scene(root, 600, 400));
             landingStage.show();

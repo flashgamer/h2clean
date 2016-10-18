@@ -48,7 +48,6 @@ public class LandingScreenController {
             ProfileScreenController psc = fxmlLoader.<ProfileScreenController>getController();
             profileStage.setTitle("Profile Screen");
             profileStage.setScene(new Scene(root, 600, 400));
-            psc.receiveUserKey(userKey);
             psc.save();
             profileStage.show();
         } catch (IOException e) {
@@ -91,7 +90,6 @@ public class LandingScreenController {
             Parent root = (Parent) fxmlLoader.load();
             Stage submitReportStage = new Stage();
             SubmitReportController src = fxmlLoader.<SubmitReportController>getController();
-            src.receiveUserKey(userKey);
             submitReportStage.setTitle("Submit Report");
             submitReportStage.setScene(new Scene(root,400,250));
             submitReportStage.show();
@@ -100,5 +98,4 @@ public class LandingScreenController {
         }
     }
 
-    protected void receiveUserKey(String userKey) {this.userKey = userKey;}
 }

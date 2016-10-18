@@ -32,7 +32,6 @@ public class SubmitReportController {
 
     private Stage _submitReportPopupStage;
 
-    private String userKey;
 
     @FXML
     private void initialize() {
@@ -120,24 +119,24 @@ public class SubmitReportController {
     }
 
     private String isUserValid() {
-        Account account = database.get(userKey);
-        String accType = account.getAccountType();
 
         // Checks if user is authorized to submit a type of report, error
         // message pops up if otherwise.
-        if (accType.equals("User")) {
+        if (LoginScreenController.account.getAccountType().equals("User")) {
             if (typeReport.getValue().equals("Water Source Report")) {
                 return ("WaterSourceReportScreen");
             } else if (typeReport.getValue().equals("Water Purity Report")) {
                 return ("error");
             }
-        } else if (accType.equals("Worker")) {
+        } else if (LoginScreenController.account.getAccountType().equals
+                ("Worker")) {
             if (typeReport.getValue().equals("Water Source Report")) {
                 return ("WaterSourceReportScreen");
             } else if (typeReport.getValue().equals("Water Purity Report")) {
                 return ("WaterPurityReportScreen");
             }
-        } else if (accType.equals("Manager")) {
+        } else if (LoginScreenController.account.getAccountType().equals
+                ("Manager")) {
             if (typeReport.getValue().equals("Water Source Report")) {
                 return ("WaterSourceReportScreen");
             } else if (typeReport.getValue().equals("Water Purity Report")) {
@@ -147,8 +146,5 @@ public class SubmitReportController {
         return ("WaterSourceReportScreen");
     }
 
-    protected void receiveUserKey(String userKey) {
-        this.userKey = userKey;
-    }
 
 }
