@@ -23,4 +23,12 @@ public class WaterAvailabilityReport extends Report {
     public WaterCondition getCondition() {
         return condition;
     }
+
+    public void setType(WaterType type) {
+        this.type = type;
+    }
+
+    public void setCondition(WaterCondition condition) {
+        this.condition = condition;
+    }
 }

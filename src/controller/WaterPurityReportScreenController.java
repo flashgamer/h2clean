@@ -9,8 +9,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.PurityCondition;
 import model.ReportDB;
 import model.WaterCondition;
+import model.WaterPurityReport;
 import model.WaterSourceReport;
 import model.WaterType;
 
@@ -23,33 +25,29 @@ import java.util.List;
  *
  * @author Hotline String
  */
-public class WaterSourceReportScreenController {
+public class WaterPurityReportScreenController {
     @FXML
     private TextField locationField;
 
     @FXML
-    private ComboBox<String> waterTypeField;
+    private ComboBox<String> conditionField;
 
     @FXML
-    private ComboBox<String> waterConditionField;
+    private TextField virusField;
 
-    private Stage sourceStage;
+    @FXML
+    private TextField contaminantField;
+
+    private Stage purityStage;
+
 
     private void initialize() {
-        List<String> waterTypeList = new ArrayList<>();
-        waterTypeList.add("Bottled");
-        waterTypeList.add("Well");
-        waterTypeList.add("Stream");
-        waterTypeList.add("Lake");
-        waterTypeList.add("Spring");
-        waterTypeList.add("Other");
         List<String> waterConditionList = new ArrayList<>();
-        waterConditionList.add("Waste");
-        waterConditionList.add("Treatable-Clear");
-        waterConditionList.add("Treatable-Muddy");
-        waterConditionList.add("Potable");
-        waterTypeField.setItems(FXCollections.observableArrayList(waterTypeList));
-        waterConditionField.setItems(FXCollections.observableArrayList(waterConditionList));
+        waterConditionList.add("Safe");
+        waterConditionList.add("Treatable");
+        waterConditionList.add("Unsafe");
+        conditionField.setItems(FXCollections.observableArrayList(waterConditionList));
+
     }
 
     /**
@@ -59,12 +57,11 @@ public class WaterSourceReportScreenController {
      * report, inserts the report into the database.
      */
     private void store() {
-        WaterSourceReport myReport = new WaterSourceReport();
+        WaterPurityReport myReport = new WaterPurityReport();
         myReport.setSubmitAccount(LoginScreenController.account);
         myReport.setUserName(myReport.getSubmitAccount().getUsername());
         myReport.setLocation(locationField.getText());
-        myReport.setType(WaterType.findByKey(waterTypeField.getValue()));
-        myReport.setCondition(WaterCondition.findByKey(waterConditionField.getValue()));
+        myReport.setCondition(PurityCondition.findByKey(conditionField.getValue()));
         ReportDB.database.insert(myReport);
     }
 
@@ -100,27 +97,34 @@ public class WaterSourceReportScreenController {
     /**
      * Ensures the data entered for the report is valid
      *
-     * @return true if none of the fields are null (i.e. not filled out)
+     * @return true if none of the fields are null (i.e. not filled out) or contain invalid data
      */
     private boolean validateData() {
-
         String errorMessage = "";
         if (locationField.getText() == null) {
             errorMessage += "Location cannot be empty! \n";
         }
-        if (waterTypeField.getValue() == null) {
-            errorMessage += "Water type must be chosen! \n";
+        if (virusField.getText() == null) {
+            errorMessage += "Virus amount cannot be empty! \n";
         }
-        if (waterConditionField.getValue() == null) {
-            errorMessage += "Water condition must be chosen! \n";
+        if (virusField.getText() != null && !isNumeric(virusField.getText())) {
+            errorMessage += "Virus amount must be numeric! \n";
         }
-
+        if (contaminantField.getText() == null) {
+            errorMessage += "Contaminant amount cannot be empty! \n";
+        }
+        if (contaminantField.getText() != null && !isNumeric(contaminantField.getText())) {
+            errorMessage += "Contaminant amount must be numeric! \n";
+        }
+        if (conditionField.getValue() == null) {
+            errorMessage += "Condition of the water must be chosen! \n";
+        }
         if (errorMessage.length() == 0) {
             return true;
         } else {
             //show error message
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(sourceStage);
+            alert.initOwner(purityStage);
             alert.setTitle("Invalid Login");
             alert.setHeaderText("Please try again with the correct login details.");
             alert.setContentText(errorMessage);
@@ -129,6 +133,16 @@ public class WaterSourceReportScreenController {
 
             return false;
         }
+    }
+
+    /**
+     * Checks whether or not the given string is all numbers
+     *
+     * @param str The string to be checked
+     * @return true if str only contains numerals
+     */
+    private boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
 
     /**

@@ -13,6 +13,8 @@ public class LoginDB {
 
     public final static LoginDB database = new LoginDB();
     private Map<String, Account> databaseBacking;
+    public static Account currentUser;
+
 
     public LoginDB() {
         this.databaseBacking = new HashMap<String, Account>();
@@ -72,5 +74,13 @@ public class LoginDB {
      */
     public boolean containsKey(String entryName) {
         return databaseBacking.containsKey(entryName);
+    }
+
+    public static Account getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(Account currentUser) {
+        LoginDB.currentUser = currentUser;
     }
 }
