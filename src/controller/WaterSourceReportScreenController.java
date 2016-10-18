@@ -79,20 +79,9 @@ public class WaterSourceReportScreenController {
     private void handleConfirmButtonAction() {
         if (validateData()) {
             store();
-        }
-        Stage thisStage = (Stage) locationField.getScene().getWindow();
-        thisStage.close();
-        thisStage.hide();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LandingScreen.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage landingStage = new Stage();
-            LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
-            landingStage.setTitle("Landing Screen");
-            landingStage.setScene(new Scene(root, 600, 400));
-            landingStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Stage thisStage = (Stage) locationField.getScene().getWindow();
+            thisStage.close();
+            thisStage.hide();
         }
     }
 
@@ -121,7 +110,7 @@ public class WaterSourceReportScreenController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(sourceStage);
             alert.setTitle("Invalid Login");
-            alert.setHeaderText("Please try again with the correct login details.");
+            alert.setHeaderText("Please try again with the correct values.");
             alert.setContentText(errorMessage);
 
             alert.showAndWait();
@@ -140,16 +129,5 @@ public class WaterSourceReportScreenController {
         Stage thisStage = (Stage) locationField.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LandingScreen.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage landingStage = new Stage();
-            LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
-            landingStage.setTitle("Landing Screen");
-            landingStage.setScene(new Scene(root, 600, 400));
-            landingStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
