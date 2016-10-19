@@ -1,5 +1,7 @@
 package model;
 
+import com.lynden.gmapsfx.GoogleMapView;
+
 /**
  * Model of Water Availability Report as detailed by 2340 Wiki
  * Fields are filled in from Controller
