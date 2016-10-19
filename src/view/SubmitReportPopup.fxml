@@ -39,7 +39,7 @@
             <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ComboBox fx:id="typeReport" prefHeight="25.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="typeReport" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="cancel" mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="19.0" prefWidth="68.0" text="Cancel" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="20.0" />

@@ -40,7 +40,7 @@ public class WaterPurityReportScreenController {
 
     private Stage purityStage;
 
-
+    @FXML
     private void initialize() {
         List<String> waterConditionList = new ArrayList<>();
         waterConditionList.add("Safe");

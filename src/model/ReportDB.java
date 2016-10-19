@@ -3,6 +3,7 @@ package model;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Fake database containing Reports
@@ -44,6 +45,8 @@ public class ReportDB {
         return backingMap.get(location);
     }
 
-
+    public Set<String> getKeys() {
+        return backingMap.keySet();
+    }
 
 }

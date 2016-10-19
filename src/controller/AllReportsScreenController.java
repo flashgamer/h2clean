@@ -2,14 +2,21 @@ package controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.stage.Stage;
 import model.Report;
 import model.WaterPurityReport;
 import model.WaterSourceReport;
 
+import java.io.IOException;
 import java.util.List;
 
 import static model.ReportDB.database;
@@ -20,33 +27,36 @@ import static model.ReportDB.database;
 public class AllReportsScreenController {
 
     @FXML
-    ListView<String> locationColumn;
+    private ListView<String> locationColumn;
 
     @FXML
-    ListView<String> reportNumberColumn;
+    private ListView<String> reportNumberColumn;
 
     @FXML
-    Label reportNumber;
+    private Label reportNumber;
 
     @FXML
-    Label dateTime;
+    private Label dateTime;
 
     @FXML
-    Label reporterName;
+    private Label reporterName;
 
     @FXML
-    Label location;
+    private Label location;
 
     @FXML
-    Label waterType;
+    private Label waterType;
 
     @FXML
-    Label waterCondition;
+    private Label waterCondition;
+
+    @FXML
+    private Button backButton;
 
     @FXML
     private void initialize() {
         locationColumn.getItems().addAll(database.getKeys());
-        System.out.println("fuck");
+        System.out.println("test");
         locationColumn.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -85,6 +95,27 @@ public class AllReportsScreenController {
         } else if (report instanceof WaterPurityReport) {
             waterCondition.setText(((WaterSourceReport) report).getCondition().toString());
             waterType.setText("--");
+        }
+    }
+
+    /**
+     * Called when user clicks on Back button.
+     *
+     * @param event Unused
+     */
+    @FXML
+    private void handleBackButtonAction(ActionEvent event) {
+        Stage thisStage = (Stage) backButton.getScene().getWindow();
+        thisStage.close();
+        thisStage.hide();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../view/WelcomeScreen.fxml"));
+            Stage reportStage = new Stage();
+            reportStage.setTitle("Welcome Screen");
+            reportStage.setScene(new Scene(root, 600, 400));
+            reportStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -35,6 +35,7 @@ public class WaterSourceReportScreenController {
 
     private Stage sourceStage;
 
+    @FXML
     private void initialize() {
         List<String> waterTypeList = new ArrayList<>();
         waterTypeList.add("Bottled");

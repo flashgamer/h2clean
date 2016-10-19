@@ -6,11 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static model.ReportDB.database;
 
 /**
  * Controller for landing page once user logs in successfully
@@ -28,7 +28,8 @@ public class LandingScreenController {
     @FXML
     private Button submitReport;
 
-    private String userKey;
+    @FXML
+    private Button viewReportButton;
 
 
     /**
@@ -93,6 +94,27 @@ public class LandingScreenController {
             submitReportStage.setTitle("Submit Report");
             submitReportStage.setScene(new Scene(root,400,250));
             submitReportStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Called when user clicks on View Report button.
+     *
+     * @param event Unused
+     */
+    @FXML
+    private void handleViewReportButtonAction(ActionEvent event) {
+        Stage thisStage = (Stage) viewReportButton.getScene().getWindow();
+        thisStage.close();
+        thisStage.hide();
+        try {
+            BorderPane root = FXMLLoader.load(getClass().getResource("../view/AllReportsScreen.fxml"));
+            Stage reportStage = new Stage();
+            reportStage.setTitle("All Reports");
+            reportStage.setScene(new Scene(root, 600, 400));
+            reportStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

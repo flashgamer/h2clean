@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="registrationScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LandingScreenController">
+<BorderPane fx:id="registrationScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllReportsScreenController">
     <top>
         <Label prefHeight="95.0" prefWidth="393.0" text="All Reports" BorderPane.alignment="CENTER">
             <font>
@@ -106,7 +106,7 @@
                         </Label>
                         <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                           <buttons>
-                              <Button fx:id="backButton" layoutX="196.0" layoutY="36.0" mnemonicParsing="false" text="Back" />
+                              <Button fx:id="backButton" layoutX="196.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleBackButtonAction" text="Back" />
                           </buttons>
                         </ButtonBar>
                         <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="142.0" text="Type of Water:" GridPane.rowIndex="5">
