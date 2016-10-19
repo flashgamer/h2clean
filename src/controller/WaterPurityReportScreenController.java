@@ -62,6 +62,8 @@ public class WaterPurityReportScreenController {
         myReport.setUserName(myReport.getSubmitAccount().getUsername());
         myReport.setLocation(locationField.getText());
         myReport.setCondition(PurityCondition.findByKey(conditionField.getValue()));
+        myReport.setContaminantPPM(new Double(contaminantField.getText()));
+        myReport.setVirusPPM(new Double(virusField.getText()));
         ReportDB.database.insert(myReport);
     }
 

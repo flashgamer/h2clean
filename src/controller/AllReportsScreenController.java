@@ -51,6 +51,15 @@ public class AllReportsScreenController {
     private Label waterCondition;
 
     @FXML
+    private Label virusPPM;
+
+    @FXML
+    private Label contaminantPPM;
+
+    @FXML
+    private Label reportType;
+
+    @FXML
     private Button backButton;
 
     private List<Report> currentReportList;
@@ -107,9 +116,15 @@ public class AllReportsScreenController {
         if (report instanceof WaterSourceReport) {
             waterType.setText(((WaterSourceReport) report).getType().toString());
             waterCondition.setText(((WaterSourceReport) report).getCondition().toString());
+            reportType.setText("Water Source Report");
+            virusPPM.setText("--");
+            contaminantPPM.setText("--");
         } else if (report instanceof WaterPurityReport) {
             waterCondition.setText(((WaterPurityReport) report).getCondition().toString());
             waterType.setText("--");
+            reportType.setText("Water Purity Report");
+            virusPPM.setText(Double.toString(((WaterPurityReport) report).getVirusPPM()));
+            contaminantPPM.setText(Double.toString(((WaterPurityReport) report).getContaminantPPM()));
         }
     }
 
