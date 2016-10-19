@@ -54,11 +54,13 @@ public class AllReportsScreenController {
     private Button backButton;
 
     private List<Report> currentReportList;
+    private List<Integer> currentReportNumberList;
 
     @FXML
     private void initialize() {
         locationColumn.getItems().addAll(database.getKeys());
         this.currentReportList = new LinkedList<Report>();
+        this.currentReportNumberList = new LinkedList<Integer>();
 
         locationColumn.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -79,12 +81,12 @@ public class AllReportsScreenController {
     private void onLocationSelect(String newValue) {
         currentReportList.clear();
         reportNumberColumn.getItems().clear();
+        currentReportNumberList.clear();
 
         List<Report> reportList = database.get(newValue);
-        Integer reportCount = 1;
         for (Report r : reportList) {
-            reportNumberColumn.getItems().add(reportCount.toString());
-            reportCount++;
+            reportNumberColumn.getItems().add(r.getReportNumber().toString());
+            currentReportNumberList.add(r.getReportNumber());
         }
 
         this.currentReportList = new LinkedList<>(reportList);
@@ -96,7 +98,7 @@ public class AllReportsScreenController {
             return;
         }
 
-        Report report = currentReportList.get(new Integer(newValue) - 1);
+        Report report = currentReportList.get(currentReportNumberList.indexOf(new Integer(newValue)));
         reportNumber.setText(newValue);
         dateTime.setText(report.getSubmitTime().toString());
         reporterName.setText(report.getSubmitAccount().getUser().getProfile().getFirstName()
@@ -106,7 +108,7 @@ public class AllReportsScreenController {
             waterType.setText(((WaterSourceReport) report).getType().toString());
             waterCondition.setText(((WaterSourceReport) report).getCondition().toString());
         } else if (report instanceof WaterPurityReport) {
-            waterCondition.setText(((WaterSourceReport) report).getCondition().toString());
+            waterCondition.setText(((WaterPurityReport) report).getCondition().toString());
             waterType.setText("--");
         }
     }

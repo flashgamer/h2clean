@@ -11,6 +11,7 @@ public class Report {
     private Account submitAccount;
     private LocalDateTime submitTime;
     private String location;
+    private Integer reportNumber;
 
     /**
      * Constructs a Report object. Sets submit time to current time as defined
@@ -38,5 +39,13 @@ public class Report {
 
     public void setSubmitAccount(Account submitAccount) {
         this.submitAccount = submitAccount;
+    }
+
+    public void setReportNumber(Integer number) {
+        this.reportNumber = number;
+    }
+
+    public Integer getReportNumber() {
+        return this.reportNumber;
     }
 }

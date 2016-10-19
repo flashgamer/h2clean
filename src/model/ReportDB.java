@@ -16,9 +16,11 @@ public class ReportDB {
 
     public static ReportDB database = new ReportDB();
     private Map<String, LinkedList<Report>> backingMap;
+    private int reportNumber;
 
     public ReportDB() {
         backingMap = new HashMap<String, LinkedList<Report>>();
+        this.reportNumber = 1;
     }
 
     /**
@@ -31,10 +33,14 @@ public class ReportDB {
             throw new IllegalArgumentException("Cannot submit null report");
         }
         if (backingMap.containsKey(report.getLocation())) {
+            report.setReportNumber(reportNumber);
             backingMap.get(report.getLocation()).add(report);
+            reportNumber++;
         } else {
+            report.setReportNumber(reportNumber);
             backingMap.put(report.getLocation(), new LinkedList<Report>());
             backingMap.get(report.getLocation()).add(report);
+            reportNumber++;
         }
 
     }
