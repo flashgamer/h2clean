@@ -36,10 +36,11 @@ public class ReportDB {
             backingMap.put(report.getLocation(), new LinkedList<Report>());
             backingMap.get(report.getLocation()).add(report);
         }
+
     }
 
     public LinkedList<Report> get(String location) {
-        if (!backingMap.containsValue(location)) {
+        if (!backingMap.containsKey(location)) {
             throw new IllegalArgumentException("Report does not exist in database");
         }
         return backingMap.get(location);
