@@ -120,7 +120,10 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="reportNumber" contentDisplay="CENTER" prefHeight="17.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="reportNumber" contentDisplay="CENTER" prefHeight="17.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
                         <Label fx:id="dateTime" prefHeight="17.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label fx:id="reporterName" prefHeight="17.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label fx:id="waterLocation" prefHeight="17.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -139,7 +142,7 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="dateTime1" prefHeight="17.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="reportType" prefHeight="17.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="virusPPM" prefHeight="17.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <Label fx:id="contaminantPPM" prefHeight="17.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" text="Virus PPM:" GridPane.rowIndex="8">
