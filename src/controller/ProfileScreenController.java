@@ -12,7 +12,7 @@ import model.Profile;
 
 import java.io.IOException;
 
-import static model.FakeDB.database;
+import static model.LoginDB.database;
 
 /**
  * Controller for Profile Screen
@@ -54,16 +54,16 @@ public class ProfileScreenController {
     @FXML
     private TextField changeAddress;
 
-    private String userKey;
+
 
     /**
      * Updates the profile information
      */
     protected void save() {
-        Account account = database.get(userKey);
-        Profile profile = account.getUser().getProfile();
-        userField.setText(account.getUsername());
-        accountTypeField.setText(account.getAccountType());
+        Profile profile = LoginScreenController.account.getUser().getProfile();
+        userField.setText(LoginScreenController.account.getUsername());
+        accountTypeField.setText(LoginScreenController.account.getAccountType
+                ());
         titleField.setText(profile.getTitle());
         nameField.setText(profile.getFirstName() + " " + profile.getLastName());
         emailField.setText(profile.getEmail());
@@ -75,8 +75,7 @@ public class ProfileScreenController {
      */
     @FXML
     private void handleEditPressed() {
-        Account account = database.get(userKey);
-        Profile profile = account.getUser().getProfile();
+        Profile profile = LoginScreenController.account.getUser().getProfile();
 
         if (!changeTitle.equals("")) {
             titleField.setText(changeTitle.getText());
@@ -105,6 +104,7 @@ public class ProfileScreenController {
         Stage thisStage = (Stage) userField.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreen.fxml"));
             Stage landingStage = new Stage();
@@ -116,7 +116,4 @@ public class ProfileScreenController {
         }
     }
 
-    protected void receiveUserKey(String userKey) {
-        this.userKey = userKey;
-    }
 }

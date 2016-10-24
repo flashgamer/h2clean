@@ -9,10 +9,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Account;
+import model.LoginDB;
 
 import java.io.IOException;
 
-import static model.FakeDB.database;
+import static model.LoginDB.database;
 
 /**
  * Controller for user login
@@ -33,6 +35,8 @@ public class LoginScreenController {
     private Stage _loginStage;
 
     private String userKey;
+
+    public static Account account; // Account that is logged in for reporting purposes.
 
     /** flag to signal if login clicked **/
     private boolean _loginClicked = false;
@@ -59,6 +63,7 @@ public class LoginScreenController {
      */
     public boolean isLoginClicked() { return _loginClicked; }
 
+
     /**
      * Called when user clicks Login
      */
@@ -66,6 +71,7 @@ public class LoginScreenController {
     private void handleSignInButtonAction(ActionEvent event) {
         if (isInputValid()) {
             _loginClicked = true;
+            account = LoginDB.database.get(userField.getText());
             Stage thisStage = (Stage) userField.getScene().getWindow();
             thisStage.close();
             thisStage.hide();
@@ -74,8 +80,6 @@ public class LoginScreenController {
                 Parent root = (Parent) fxmlLoader.load();
                 Stage landingStage = new Stage();
                 LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
-                //System.out.println(userField.getText());
-                lsc.receiveUserKey(userField.getText());
                 landingStage.setTitle("Landing Screen");
                 landingStage.setScene(new Scene(root,600,400));
                 landingStage.show();
