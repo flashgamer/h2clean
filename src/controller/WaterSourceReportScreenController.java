@@ -2,16 +2,15 @@ package controller;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
-import com.lynden.gmapsfx.javascript.object.*;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.Marker;
+import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
 import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -21,11 +20,8 @@ import model.WaterCondition;
 import model.WaterSourceReport;
 import model.WaterType;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * Controller for the submit water report screen.
@@ -71,7 +67,7 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
         GoogleMapView mapView = new GoogleMapView();
         mapView.addMapInializedListener(this);
         this.allowReport = false;
-        this.firstRun = true;
+        this.firstRun = false;
     }
 
     @Override
@@ -154,7 +150,7 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
             return true;
         } else {
 
-            if (!firstRun) {
+            if (firstRun) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.initOwner(sourceStage);
                 alert.setTitle("Invalid Login");
@@ -189,6 +185,7 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
     private Marker generateMarker(String location) {
         geocodingService = new GeocodingService();
         MarkerOptions myOptions = new MarkerOptions();
+        Marker marker = new Marker(myOptions);
 
         geocodingService.geocode(location, (GeocodingResult[] results, GeocoderStatus status) -> {
 
@@ -217,7 +214,6 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
 
         System.out.print("in lambda");
         System.out.println(allowReport);
-        Marker marker = new Marker(myOptions);
         return marker;
     }
 

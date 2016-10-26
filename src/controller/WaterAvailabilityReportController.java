@@ -1,36 +1,24 @@
 package controller;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
-import com.lynden.gmapsfx.javascript.event.UIEventHandler;
-import com.lynden.gmapsfx.javascript.event.UIEventType;
-import com.lynden.gmapsfx.javascript.object.GoogleMap;
-import com.lynden.gmapsfx.javascript.object.InfoWindow;
-import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
-import com.lynden.gmapsfx.javascript.object.LatLong;
-import com.lynden.gmapsfx.javascript.object.MapOptions;
-import com.lynden.gmapsfx.javascript.object.Marker;
-import com.lynden.gmapsfx.javascript.object.MarkerOptions;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.*;
-
+import com.lynden.gmapsfx.javascript.object.*;
 import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
 import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.Report;
 import model.ReportDB;
 import model.WaterPurityReport;
 import model.WaterSourceReport;
-import netscape.javascript.JSObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Controller for the Water Availability Report screen
@@ -61,7 +49,7 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
         MapOptions mapOptions = new MapOptions();
 
         mapOptions.center(new LatLong(33.7490, -84.3880))
-                .mapMaker(true)
+                .mapMarker(true)
                 .overviewMapControl(false)
                 .panControl(true)
                 .rotateControl(false)
@@ -72,17 +60,17 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
 
         map = mapView.createMap(mapOptions);
 
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(new LatLong(33.7490, -84.3880));
-        Marker mark = new Marker(markerOptions);
-        mark.setTitle("Check");
-        InfoWindow window = new InfoWindow(new InfoWindowOptions());
-        window.setContent("test");
-        window.open(map, mark);
-        map.addMarker(mark);
-        map.addUIEventHandler(UIEventType.click, (obj) -> {
-            System.out.println("HALP");
-        });
+//        MarkerOptions markerOptions = new MarkerOptions();
+//        markerOptions.position(new LatLong(33.7490, -84.3880));
+//        Marker mark = new Marker(markerOptions);
+//        mark.setTitle("Check");
+//        InfoWindow window = new InfoWindow(new InfoWindowOptions());
+//        window.setContent("test");
+//        window.open(map, mark);
+//        map.addMarker(mark);
+//        map.addUIEventHandler(UIEventType.click, (obj) -> {
+//            System.out.println("HALP");
+//        });
         updateMap();
     }
 
@@ -121,10 +109,11 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
             for (String l : locationSet) {
                 for (Report r : ReportDB.database.get(l)) {
                     Marker m = generateMarker(l);
+                    m.setVisible(true);
                     m.setTitle(Integer.toString(count));
                     InfoWindow window = new InfoWindow(
                             (new InfoWindowOptions()).content(generateInfoWindowContent(r)));
-                    window.setContent("test");
+                    window.setContent(generateInfoWindowContent(r));
                     window.open(map, m);
                     map.addMarker(m);
                 }
@@ -141,6 +130,7 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
     private Marker generateMarker(String location) {
         geocodingService = new GeocodingService();
         MarkerOptions myOptions = new MarkerOptions();
+        Marker marker = new Marker(myOptions);
         geocodingService.geocode(location, (GeocodingResult[] results, GeocoderStatus status) -> {
 
             LatLong latLong = null;
@@ -150,10 +140,9 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
             } else {
                 latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
             }
-            myOptions.position(latLong);
+            marker.setPosition(latLong);
         });
 
-        Marker marker = new Marker(myOptions);
         return marker;
     }
 
