@@ -1,6 +1,7 @@
 package controller;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
 import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
 import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
@@ -11,13 +12,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import model.Report;
-import model.ReportDB;
-import model.WaterPurityReport;
-import model.WaterSourceReport;
+import model.*;
+import netscape.javascript.JSObject;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -37,6 +37,8 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
     public HashMap<Marker, InfoWindow> markerMap = new HashMap<>();
 
     private GeocodingService geocodingService;
+
+    private Marker marker;
 
     @FXML
     private void initialize() {
@@ -59,18 +61,28 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
                 .zoom(10);
 
         map = mapView.createMap(mapOptions);
+        Facade fc = Facade.getInstance();
+        List<Location> locations = fc.getLocations();
 
-//        MarkerOptions markerOptions = new MarkerOptions();
-//        markerOptions.position(new LatLong(33.7490, -84.3880));
-//        Marker mark = new Marker(markerOptions);
-//        mark.setTitle("Check");
-//        InfoWindow window = new InfoWindow(new InfoWindowOptions());
-//        window.setContent("test");
-//        window.open(map, mark);
-//        map.addMarker(mark);
-//        map.addUIEventHandler(UIEventType.click, (obj) -> {
-//            System.out.println("HALP");
-//        });
+        for (Location l: locations) {
+            MarkerOptions markerOptions = new MarkerOptions();
+            LatLong loc = new LatLong(l.getLatitude(), l.getLongitude());
+
+            markerOptions.position( loc )
+                    .visible(Boolean.TRUE)
+                    .title(l.getTitle());
+
+            Marker marker = new Marker( markerOptions );
+
+            map.addUIEventHandler(marker,
+                    UIEventType.click,
+                    (JSObject obj) -> {
+                        InfoWindow window = markerMap.get(marker);
+                        window.open(map, marker);});
+
+            map.addMarker(marker);
+
+        }
         updateMap();
     }
 
@@ -96,9 +108,6 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
         }
     }
 
-    private void initMarkerMap() {
-        //this.markerMap =
-    }
 
     /**
      * Adds any markers that have been created into the map to be shown.
@@ -115,8 +124,14 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
                     InfoWindow window = new InfoWindow(
                             (new InfoWindowOptions()).content(generateInfoWindowContent(r)));
                     window.setContent(generateInfoWindowContent(r));
-                    window.open(map, m);
+                    //window.open(map, m);
                     map.addMarker(m);
+                    map.addUIEventHandler(m,
+                            UIEventType.click,
+                            (JSObject obj) -> {
+                                System.out.println("Hello");
+                                window.open(map, m);
+                            });
                 }
             }
         }
@@ -137,9 +152,11 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
             LatLong latLong = null;
 
             if( results.length > 1 ) {
-                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(),
+                        results[0].getGeometry().getLocation().getLongitude());
             } else {
-                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(),
+                        results[0].getGeometry().getLocation().getLongitude());
             }
             marker.setPosition(latLong);
         });
