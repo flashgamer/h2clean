@@ -1,5 +1,13 @@
 package controller;
 
+import com.lynden.gmapsfx.javascript.object.InfoWindow;
+import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.Marker;
+import com.lynden.gmapsfx.javascript.object.MarkerOptions;
+import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
+import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
+import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,6 +48,8 @@ public class WaterPurityReportScreenController {
 
     private Stage purityStage;
 
+    private GeocodingService geocodingService;
+
     @FXML
     private void initialize() {
         List<String> waterConditionList = new ArrayList<>();
@@ -47,12 +57,10 @@ public class WaterPurityReportScreenController {
         waterConditionList.add("Treatable");
         waterConditionList.add("Unsafe");
         conditionField.setItems(FXCollections.observableArrayList(waterConditionList));
-
     }
 
     /**
      * Method for storing a new report in the Report Database
-     * <p>
      * Generates a new report, stores the information from the fields in the
      * report, inserts the report into the database.
      */
@@ -65,7 +73,17 @@ public class WaterPurityReportScreenController {
         myReport.setContaminantPPM(new Double(contaminantField.getText()));
         myReport.setVirusPPM(new Double(virusField.getText()));
         ReportDB.database.insert(myReport);
+        if (WaterAvailabilityReportController.markerMap.containsKey(locationField.getText())) {
+            WaterAvailabilityReportController.markerMap.get(locationField.getText())
+                    .setContent(WaterAvailabilityReportController.markerMap.get(locationField.getText()) + generateInfoWindowContent());
+        } else {
+            InfoWindowOptions myOps = new InfoWindowOptions();
+            myOps.content(generateInfoWindowContent());
+            WaterAvailabilityReportController.markerMap.put(generateMarker(locationField.getText()), new InfoWindow(myOps));
+        }
+        WaterAvailabilityReportController.updateMap();
     }
+
 
     /**
      * Called when Confirm button is pressed.
@@ -145,5 +163,49 @@ public class WaterPurityReportScreenController {
         Stage thisStage = (Stage) locationField.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
+    }
+
+    /**
+     * Generates a Marker from a specified location(address) to be shown on the map
+     *
+     * @param location the Location to generate the marker at
+     * @return a Marker positioned at the specified location
+     */
+    private Marker generateMarker(String location) {
+        geocodingService = new GeocodingService();
+        MarkerOptions myOptions = new MarkerOptions();
+        geocodingService.geocode(location, (GeocodingResult[] results, GeocoderStatus status) -> {
+
+            LatLong latLong = null;
+
+            if (status == GeocoderStatus.ZERO_RESULTS) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "No matching address found");
+                alert.show();
+                return;
+            } else if (results.length > 1) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, showing the first one.");
+                alert.show();
+                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+            } else {
+                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+            }
+            myOptions.position(latLong);
+        });
+
+        return new Marker(myOptions);
+    }
+
+    /**
+     * Generates a String with the information from the report
+     *
+     * @return a String containing the information from the report.
+     */
+    private String generateInfoWindowContent() {
+        String content = "";
+        String waterCondition = "Condition: " + conditionField.getValue();
+        String virus = "Virus (PPM): " + virusField.getText();
+        String contaminant = "Contaminant (PPM): " + contaminantField.getText();
+        content = waterCondition + "\n" + virus + "\n" + contaminant + "\n";
+        return content;
     }
 }

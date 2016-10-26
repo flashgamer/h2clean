@@ -1,5 +1,7 @@
 package model;
 
+import com.lynden.gmapsfx.javascript.object.Marker;
+
 /**
  * Model of Water Purity Report as detailed on 2340 Wiki
  * Fields filled in by Controller
@@ -12,6 +14,7 @@ public class WaterPurityReport extends Report {
     private PurityCondition condition;
     private double virusPPM;
     private double contaminantPPM;
+    private Marker marker;
 
     public WaterPurityReport() {
 
@@ -55,5 +58,13 @@ public class WaterPurityReport extends Report {
 
     public void setContaminantPPM(double contaminantPPM) {
         this.contaminantPPM = contaminantPPM;
+    }
+
+    public Marker getMarker() {
+        return marker;
+    }
+
+    public void setMarker(Marker marker) {
+        this.marker = marker;
     }
 }

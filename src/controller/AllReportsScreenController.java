@@ -149,4 +149,20 @@ public class AllReportsScreenController {
         }
     }
 
+    @FXML
+    private void handleViewAvailabilityReportsAction() {
+        Stage thisStage = (Stage) backButton.getScene().getWindow();
+        thisStage.close();
+        thisStage.hide();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource
+                    ("../view/WaterAvailabilityReportScreen.fxml"));
+            Stage waterPurityReportStage = new Stage();
+            waterPurityReportStage.setTitle("Water Availability Report");
+            waterPurityReportStage.setScene(new Scene(root, 600, 400));
+            waterPurityReportStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

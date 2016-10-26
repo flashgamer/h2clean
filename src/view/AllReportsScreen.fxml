@@ -107,11 +107,6 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
-                        <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
-                          <buttons>
-                              <Button fx:id="backButton" layoutX="196.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleBackButtonAction" text="Back" />
-                          </buttons>
-                        </ButtonBar>
                         <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="142.0" text="Type of Water:" GridPane.rowIndex="6">
                            <font>
                               <Font size="14.0" />
@@ -161,6 +156,16 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
+                        <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="10">
+                           <buttons>
+                              <Button fx:id="availabilityButton" layoutX="196.0" layoutY="36.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleViewAvailabilityReportsAction" text="View Availability Reports" />
+                           </buttons>
+                        </ButtonBar>
+                        <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                           <buttons>
+                              <Button fx:id="backButton" layoutX="196.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleBackButtonAction" text="Back" />
+                           </buttons>
+                        </ButtonBar>
                      </children>
                      <padding>
                         <Insets right="40.0" />

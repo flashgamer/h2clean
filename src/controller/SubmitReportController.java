@@ -56,7 +56,6 @@ public class SubmitReportController {
      */
     @FXML
     private void handleSubmitNewReportPressed() {
-        // TODO: Add new report to database.
         Stage thisStage = (Stage) headingText.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
