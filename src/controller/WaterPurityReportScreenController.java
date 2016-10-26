@@ -50,6 +50,8 @@ public class WaterPurityReportScreenController {
 
     private GeocodingService geocodingService;
 
+    private boolean allowReport;
+
     @FXML
     private void initialize() {
         List<String> waterConditionList = new ArrayList<>();
@@ -73,7 +75,7 @@ public class WaterPurityReportScreenController {
         myReport.setContaminantPPM(new Double(contaminantField.getText()));
         myReport.setVirusPPM(new Double(virusField.getText()));
         ReportDB.database.insert(myReport);
-        if (WaterAvailabilityReportController.markerMap.containsKey(locationField.getText())) {
+        /*if (WaterAvailabilityReportController.markerMap.containsKey(locationField.getText())) {
             WaterAvailabilityReportController.markerMap.get(locationField.getText())
                     .setContent(WaterAvailabilityReportController.markerMap.get(locationField.getText()) + generateInfoWindowContent());
         } else {
@@ -81,7 +83,7 @@ public class WaterPurityReportScreenController {
             myOps.content(generateInfoWindowContent());
             WaterAvailabilityReportController.markerMap.put(generateMarker(locationField.getText()), new InfoWindow(myOps));
         }
-        WaterAvailabilityReportController.updateMap();
+        WaterAvailabilityReportController.updateMap();*/
     }
 
 
@@ -111,6 +113,12 @@ public class WaterPurityReportScreenController {
         String errorMessage = "";
         if (locationField.getText() == null) {
             errorMessage += "Location cannot be empty! \n";
+        }
+
+        generateMarker(locationField.getText());
+
+        if (!allowReport) {
+            errorMessage += "No location found! \n";
         }
         if (virusField.getText() == null) {
             errorMessage += "Virus amount cannot be empty! \n";
@@ -178,21 +186,27 @@ public class WaterPurityReportScreenController {
 
             LatLong latLong = null;
 
-            if (status == GeocoderStatus.ZERO_RESULTS) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "No matching address found");
-                alert.show();
+            if( status == GeocoderStatus.ZERO_RESULTS) {
+                //Alert alert = new Alert(Alert.AlertType.ERROR, "No matching address found");
+                //System.out.println("none found");
+                this.allowReport = false;
+                //alert.show();
                 return;
-            } else if (results.length > 1) {
-                Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, showing the first one.");
+            } else if( results.length > 1 ) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, using the first one.");
+                //System.out.println("some found");
+                this.allowReport = true;
                 alert.show();
                 latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
             } else {
+                this.allowReport = true;
+                //System.out.println("one found");
                 latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
             }
             myOptions.position(latLong);
         });
-
-        return new Marker(myOptions);
+        Marker marker = new Marker(myOptions);
+        return marker;
     }
 
     /**
@@ -202,10 +216,7 @@ public class WaterPurityReportScreenController {
      */
     private String generateInfoWindowContent() {
         String content = "";
-        String waterCondition = "Condition: " + conditionField.getValue();
-        String virus = "Virus (PPM): " + virusField.getText();
-        String contaminant = "Contaminant (PPM): " + contaminantField.getText();
-        content = waterCondition + "\n" + virus + "\n" + contaminant + "\n";
+
         return content;
     }
 }

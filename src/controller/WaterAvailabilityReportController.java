@@ -13,18 +13,23 @@ import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 
+import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
+import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
+import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.Report;
+import model.ReportDB;
+import model.WaterPurityReport;
+import model.WaterSourceReport;
 import netscape.javascript.JSObject;
 
 /**
@@ -32,19 +37,21 @@ import netscape.javascript.JSObject;
  * Shows a map as provided by the Google Map API and GMapsFX API
  * Created by Jonathan on 10/25/2016.
  */
-public class WaterAvailabilityReportController implements Initializable, MapComponentInitializedListener{
+public class WaterAvailabilityReportController implements MapComponentInitializedListener{
     @FXML
     private Button button;
 
     @FXML
     private GoogleMapView mapView;
 
-    private static GoogleMap map;
+    private GoogleMap map;
 
-    public static HashMap<Marker, InfoWindow> markerMap = new HashMap<>();
+    public HashMap<Marker, InfoWindow> markerMap = new HashMap<>();
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    private GeocodingService geocodingService;
+
+    @FXML
+    private void initialize() {
         mapView.addMapInializedListener(this);
     }
 
@@ -70,6 +77,7 @@ public class WaterAvailabilityReportController implements Initializable, MapComp
         Marker mark = new Marker(markerOptions);
         mark.setTitle("Check");
         InfoWindow window = new InfoWindow(new InfoWindowOptions());
+        window.setContent("test");
         window.open(map, mark);
         map.addMarker(mark);
         map.addUIEventHandler(UIEventType.click, (obj) -> {
@@ -99,16 +107,78 @@ public class WaterAvailabilityReportController implements Initializable, MapComp
         }
     }
 
+    private void initMarkerMap() {
+        //this.markerMap =
+    }
+
     /**
      * Adds any markers that have been created into the map to be shown.
      */
-    public static void updateMap() {
+    private void updateMap() {
+        int count = 0;
         if (map != null) {
-            Set<Marker> markerSet = markerMap.keySet();
-            for (Marker m : markerSet) {
-                map.addMarker(m);
+            Set<String> locationSet = ReportDB.database.getKeys();
+            for (String l : locationSet) {
+                for (Report r : ReportDB.database.get(l)) {
+                    Marker m = generateMarker(l);
+                    m.setTitle(Integer.toString(count));
+                    InfoWindow window = new InfoWindow(
+                            (new InfoWindowOptions()).content(generateInfoWindowContent(r)));
+                    window.setContent("test");
+                    window.open(map, m);
+                    map.addMarker(m);
+                }
             }
         }
         return;
+    }
+
+    /**
+     * Generates a Marker from a specified location(address) to be shown on the map
+     * @param location the Location to generate the marker at
+     * @return a Marker positioned at the specified location
+     */
+    private Marker generateMarker(String location) {
+        geocodingService = new GeocodingService();
+        MarkerOptions myOptions = new MarkerOptions();
+        geocodingService.geocode(location, (GeocodingResult[] results, GeocoderStatus status) -> {
+
+            LatLong latLong = null;
+
+            if( results.length > 1 ) {
+                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+            } else {
+                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+            }
+            myOptions.position(latLong);
+        });
+
+        Marker marker = new Marker(myOptions);
+        return marker;
+    }
+
+
+    /**
+     * Generates a String with the information from the report
+     * @return a String containing the information from the report.
+     */
+    private String generateInfoWindowContent(Report report) {
+        String content = "";
+
+        if (report instanceof WaterSourceReport) {
+            WaterSourceReport waterSourceReport = ((WaterSourceReport) report);
+            String waterType = "Type: " + waterSourceReport.getType();
+            String condition = "Condition: " + waterSourceReport.getCondition();
+            content = waterType + "\n" + condition + "\n";
+        } else if (report instanceof WaterPurityReport) {
+            WaterPurityReport waterPurityReport = ((WaterPurityReport) report);
+            String waterCondition = "Condition: " + waterPurityReport.getCondition();
+            String virus = "Virus (PPM): " + waterPurityReport.getVirusPPM();
+            String contaminant = "Contaminant (PPM): " + waterPurityReport.getContaminantPPM();
+            content = waterCondition + "\n" + virus + "\n" + contaminant + "\n";
+        }
+
+        return content;
+
     }
 }

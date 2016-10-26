@@ -165,4 +165,8 @@ public class AllReportsScreenController {
             e.printStackTrace();
         }
     }
+
+    private void refreshAvailabilityMap() {
+
+    }
 }

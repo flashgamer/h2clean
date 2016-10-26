@@ -1,16 +1,15 @@
 package controller;
 
-import com.lynden.gmapsfx.javascript.object.InfoWindow;
-import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
-import com.lynden.gmapsfx.javascript.object.LatLong;
-import com.lynden.gmapsfx.javascript.object.Marker;
-import com.lynden.gmapsfx.javascript.object.MarkerOptions;
+import com.lynden.gmapsfx.GoogleMapView;
+import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.object.*;
 import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
 import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -23,15 +22,17 @@ import model.WaterSourceReport;
 import model.WaterType;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Controller for the submit water report screen.
  *
  * @author Hotline String
  */
-public class WaterSourceReportScreenController {
+public class WaterSourceReportScreenController implements MapComponentInitializedListener {
     @FXML
     private TextField locationField;
 
@@ -44,6 +45,12 @@ public class WaterSourceReportScreenController {
     private Stage sourceStage;
 
     private GeocodingService geocodingService;
+
+    private GoogleMap map;
+
+    private boolean allowReport;
+
+    private boolean firstRun;
 
     @FXML
     private void initialize() {
@@ -61,8 +68,16 @@ public class WaterSourceReportScreenController {
         waterConditionList.add("Potable");
         waterTypeField.setItems(FXCollections.observableArrayList(waterTypeList));
         waterConditionField.setItems(FXCollections.observableArrayList(waterConditionList));
+        GoogleMapView mapView = new GoogleMapView();
+        mapView.addMapInializedListener(this);
+        this.allowReport = false;
+        this.firstRun = true;
     }
 
+    @Override
+    public void mapInitialized() {
+        map = new GoogleMap();
+    }
     /**
      * Method for storing a new report in the Report Database
      * <p>
@@ -76,8 +91,9 @@ public class WaterSourceReportScreenController {
         myReport.setLocation(locationField.getText());
         myReport.setType(WaterType.findByKey(waterTypeField.getValue()));
         myReport.setCondition(WaterCondition.findByKey(waterConditionField.getValue()));
+        myReport.setMarker(generateMarker(locationField.getText()));
         ReportDB.database.insert(myReport);
-        if (WaterAvailabilityReportController.markerMap.containsKey(locationField.getText())) {
+        /*if (WaterAvailabilityReportController.markerMap.containsKey(locationField.getText())) {
             WaterAvailabilityReportController.markerMap.get(locationField.getText())
                     .setContent(WaterAvailabilityReportController.markerMap.get(locationField.getText()) + generateInfoWindowContent());
         } else {
@@ -85,7 +101,7 @@ public class WaterSourceReportScreenController {
             myOps.content(generateInfoWindowContent());
             WaterAvailabilityReportController.markerMap.put(generateMarker(locationField.getText()), new InfoWindow(myOps));
         }
-        WaterAvailabilityReportController.updateMap();
+        WaterAvailabilityReportController.updateMap();*/
     }
 
     /**
@@ -97,6 +113,9 @@ public class WaterSourceReportScreenController {
      */
     @FXML
     private void handleConfirmButtonAction() {
+        validateData(); //DO NOT REMOVE THIS CALL!!!!
+        //weird stuff is going on, validation only works properly on SECOND run and onwards.
+        //DO NOT REMOVE THE ABOVE CALL!!!
         if (validateData()) {
             store();
             Stage thisStage = (Stage) locationField.getScene().getWindow();
@@ -113,9 +132,17 @@ public class WaterSourceReportScreenController {
     private boolean validateData() {
 
         String errorMessage = "";
+
         if (locationField.getText() == null) {
             errorMessage += "Location cannot be empty! \n";
         }
+
+        generateMarker(locationField.getText());
+
+        if (!allowReport) {
+            errorMessage += "No location found! \n";
+        }
+
         if (waterTypeField.getValue() == null) {
             errorMessage += "Water type must be chosen! \n";
         }
@@ -126,14 +153,17 @@ public class WaterSourceReportScreenController {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            //show error message
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(sourceStage);
-            alert.setTitle("Invalid Login");
-            alert.setHeaderText("Please try again with the correct values.");
-            alert.setContentText(errorMessage);
 
-            alert.showAndWait();
+            if (!firstRun) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initOwner(sourceStage);
+                alert.setTitle("Invalid Login");
+                alert.setHeaderText("Please try again with the correct values.");
+                alert.setContentText(errorMessage);
+                alert.showAndWait();
+            } else {
+                firstRun = false;
+            }
 
             return false;
         }
@@ -159,36 +189,36 @@ public class WaterSourceReportScreenController {
     private Marker generateMarker(String location) {
         geocodingService = new GeocodingService();
         MarkerOptions myOptions = new MarkerOptions();
+
         geocodingService.geocode(location, (GeocodingResult[] results, GeocoderStatus status) -> {
 
-            LatLong latLong = null;
+                LatLong latLong = null;
 
-            if( status == GeocoderStatus.ZERO_RESULTS) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "No matching address found");
-                alert.show();
-                return;
-            } else if( results.length > 1 ) {
-                Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, using the first one.");
-                alert.show();
-                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
-            } else {
-                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
-            }
-            myOptions.position(latLong);
-        });
+                if( status == GeocoderStatus.ZERO_RESULTS) {
+                    this.allowReport = false;
+                    return;
+                } else if( results.length > 1 ) {
 
-        return new Marker(myOptions);
+
+                    this.allowReport = true;
+                    if (!firstRun) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, using the first one.");
+                        alert.show();
+                    }
+                    latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+                } else {
+                    this.allowReport = true;
+                    latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+                }
+                myOptions.position(latLong);
+            });
+
+
+
+        System.out.print("in lambda");
+        System.out.println(allowReport);
+        Marker marker = new Marker(myOptions);
+        return marker;
     }
 
-    /**
-     * Generates a String with the information from the report
-     * @return a String containing the information from the report.
-     */
-    private String generateInfoWindowContent() {
-        String content = "";
-        String waterType = "Type: " + waterTypeField.getValue();
-        String condition = "Condition: " + waterConditionField.getValue();
-        content = waterType + "\n" + condition + "\n";
-        return content;
-    }
 }

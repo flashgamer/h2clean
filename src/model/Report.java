@@ -1,5 +1,7 @@
 package model;
 
+import com.lynden.gmapsfx.javascript.object.Marker;
+
 import java.time.LocalDateTime;
 
 /**
@@ -48,4 +50,5 @@ public class Report {
     public Integer getReportNumber() {
         return this.reportNumber;
     }
+
 }
