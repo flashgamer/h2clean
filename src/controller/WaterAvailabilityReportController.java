@@ -74,6 +74,7 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
         updateMap();
     }
 
+
     /**
      * Called when Back button is pressed.
      * Returns user to All Reports screen and closes out of current screen

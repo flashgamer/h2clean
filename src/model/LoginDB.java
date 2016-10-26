@@ -16,6 +16,9 @@ public class LoginDB {
     public static Account currentUser;
 
 
+    /**
+     * No args constructor for the login database.
+     */
     public LoginDB() {
         this.databaseBacking = new HashMap<String, Account>();
         this.populateDefaults();
@@ -76,10 +79,18 @@ public class LoginDB {
         return databaseBacking.containsKey(entryName);
     }
 
+    /**
+     * Returns the current user account logged in.
+     * @return Current account that is logged in.
+     */
     public static Account getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * Sets the current user of the account.
+     * @param currentUser Current user account logged in.
+     */
     public static void setCurrentUser(Account currentUser) {
         LoginDB.currentUser = currentUser;
     }

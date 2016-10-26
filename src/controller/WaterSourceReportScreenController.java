@@ -70,10 +70,16 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
         this.firstRun = false;
     }
 
+
+    /**
+     * Method for initializing a new GoogleMap object.
+     */
     @Override
     public void mapInitialized() {
         map = new GoogleMap();
     }
+
+
     /**
      * Method for storing a new report in the Report Database
      * <p>
