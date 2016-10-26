@@ -1,7 +1,6 @@
 package controller;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
-import com.lynden.gmapsfx.javascript.event.UIEventHandler;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
 import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
@@ -13,12 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import model.Facade;
-import model.Location;
-import model.Report;
-import model.ReportDB;
-import model.WaterPurityReport;
-import model.WaterSourceReport;
+import model.*;
 import netscape.javascript.JSObject;
 
 import java.io.IOException;
@@ -129,8 +123,14 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
                     InfoWindow window = new InfoWindow(
                             (new InfoWindowOptions()).content(generateInfoWindowContent(r)));
                     window.setContent(generateInfoWindowContent(r));
-                    window.open(map, m);
+                    //window.open(map, m);
                     map.addMarker(m);
+                    map.addUIEventHandler(m,
+                            UIEventType.click,
+                            (JSObject obj) -> {
+                                System.out.println("Hello");
+                                window.open(map, m);
+                            });
                 }
             }
         }
