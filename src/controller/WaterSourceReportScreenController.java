@@ -198,10 +198,10 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
 
 
                     this.allowReport = true;
-                    if (!firstRun) {
-                        Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, using the first one.");
-                        alert.show();
-                    }
+//                    if (!firstRun) {
+//                        Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, using the first one.");
+//                        alert.show();
+//                    }
                     latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
                 } else {
                     this.allowReport = true;
