@@ -89,7 +89,6 @@ public class WaterPurityReportScreenController {
 
     /**
      * Called when Confirm button is pressed.
-     * <p>
      * Checks if the report data is valid, then stores the new report in the
      * Report database, closes the current window and returns the user to the
      * Landing Screen
