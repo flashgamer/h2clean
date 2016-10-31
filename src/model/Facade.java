@@ -20,10 +20,7 @@ public class Facade {
 
     private Facade() {
         //make up some dummy data
-        for (int i = 0; i < 10; ++i) {
-            Location l = new Location(34.0 + (i/10.0), -88.0 - (i/10.0), "Marker " + i, "<h2>Test "  + i + "</h2> <br> some data");
-            locations.add(l);
-        }
+
     }
 
     public List<Location> getLocations() { return locations; }

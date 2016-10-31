@@ -1,5 +1,8 @@
 package controller;
 
+import com.lynden.gmapsfx.GoogleMapView;
+import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
 import com.lynden.gmapsfx.javascript.object.InfoWindow;
 import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
 import com.lynden.gmapsfx.javascript.object.LatLong;
@@ -33,7 +36,7 @@ import java.util.List;
  *
  * @author Hotline String
  */
-public class WaterPurityReportScreenController {
+public class WaterPurityReportScreenController implements MapComponentInitializedListener {
     @FXML
     private TextField locationField;
 
@@ -50,6 +53,8 @@ public class WaterPurityReportScreenController {
 
     private GeocodingService geocodingService;
 
+    private GoogleMap map;
+
     private boolean allowReport;
 
     @FXML
@@ -59,8 +64,14 @@ public class WaterPurityReportScreenController {
         waterConditionList.add("Treatable");
         waterConditionList.add("Unsafe");
         conditionField.setItems(FXCollections.observableArrayList(waterConditionList));
+        GoogleMapView mapView = new GoogleMapView();
+        mapView.addMapInializedListener(this);
     }
 
+    @Override
+    public void mapInitialized() {
+        map = new GoogleMap();
+    }
     /**
      * Method for storing a new report in the Report Database
      * Generates a new report, stores the information from the fields in the
@@ -75,15 +86,6 @@ public class WaterPurityReportScreenController {
         myReport.setContaminantPPM(new Double(contaminantField.getText()));
         myReport.setVirusPPM(new Double(virusField.getText()));
         ReportDB.database.insert(myReport);
-        /*if (WaterAvailabilityReportController.markerMap.containsKey(locationField.getText())) {
-            WaterAvailabilityReportController.markerMap.get(locationField.getText())
-                    .setContent(WaterAvailabilityReportController.markerMap.get(locationField.getText()) + generateInfoWindowContent());
-        } else {
-            InfoWindowOptions myOps = new InfoWindowOptions();
-            myOps.content(generateInfoWindowContent());
-            WaterAvailabilityReportController.markerMap.put(generateMarker(locationField.getText()), new InfoWindow(myOps));
-        }
-        WaterAvailabilityReportController.updateMap();*/
     }
 
 
@@ -95,6 +97,7 @@ public class WaterPurityReportScreenController {
      */
     @FXML
     private void handleConfirmButtonAction() {
+        validateData();
         if (validateData()) {
             store();
             Stage thisStage = (Stage) locationField.getScene().getWindow();
@@ -116,9 +119,6 @@ public class WaterPurityReportScreenController {
 
         generateMarker(locationField.getText());
 
-        if (!allowReport) {
-            errorMessage += "No location found! \n";
-        }
         if (virusField.getText() == null) {
             errorMessage += "Virus amount cannot be empty! \n";
         }
@@ -174,37 +174,30 @@ public class WaterPurityReportScreenController {
 
     /**
      * Generates a Marker from a specified location(address) to be shown on the map
-     *
      * @param location the Location to generate the marker at
      * @return a Marker positioned at the specified location
      */
     private Marker generateMarker(String location) {
         geocodingService = new GeocodingService();
         MarkerOptions myOptions = new MarkerOptions();
+        Marker marker = new Marker(myOptions);
+
         geocodingService.geocode(location, (GeocodingResult[] results, GeocoderStatus status) -> {
 
             LatLong latLong = null;
 
-            if( status == GeocoderStatus.ZERO_RESULTS) {
-                //Alert alert = new Alert(Alert.AlertType.ERROR, "No matching address found");
-                //System.out.println("none found");
+            if(status == GeocoderStatus.ZERO_RESULTS) {
                 this.allowReport = false;
-                //alert.show();
                 return;
-            } else if( results.length > 1 ) {
-                Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, using the first one.");
-                //System.out.println("some found");
+            } else if(results.length > 1 ) {
                 this.allowReport = true;
-                alert.show();
                 latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
             } else {
                 this.allowReport = true;
-                //System.out.println("one found");
                 latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
             }
             myOptions.position(latLong);
         });
-        Marker marker = new Marker(myOptions);
         return marker;
     }
 

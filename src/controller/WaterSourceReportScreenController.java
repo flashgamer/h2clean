@@ -74,6 +74,7 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
     public void mapInitialized() {
         map = new GoogleMap();
     }
+
     /**
      * Method for storing a new report in the Report Database
      * <p>
@@ -89,15 +90,6 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
         myReport.setCondition(WaterCondition.findByKey(waterConditionField.getValue()));
         myReport.setMarker(generateMarker(locationField.getText()));
         ReportDB.database.insert(myReport);
-        /*if (WaterAvailabilityReportController.markerMap.containsKey(locationField.getText())) {
-            WaterAvailabilityReportController.markerMap.get(locationField.getText())
-                    .setContent(WaterAvailabilityReportController.markerMap.get(locationField.getText()) + generateInfoWindowContent());
-        } else {
-            InfoWindowOptions myOps = new InfoWindowOptions();
-            myOps.content(generateInfoWindowContent());
-            WaterAvailabilityReportController.markerMap.put(generateMarker(locationField.getText()), new InfoWindow(myOps));
-        }
-        WaterAvailabilityReportController.updateMap();*/
     }
 
     /**
@@ -179,6 +171,7 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
 
     /**
      * Generates a Marker from a specified location(address) to be shown on the map
+     *
      * @param location the Location to generate the marker at
      * @return a Marker positioned at the specified location
      */
@@ -189,31 +182,22 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
 
         geocodingService.geocode(location, (GeocodingResult[] results, GeocoderStatus status) -> {
 
-                LatLong latLong = null;
+            LatLong latLong = null;
 
-                if( status == GeocoderStatus.ZERO_RESULTS) {
-                    this.allowReport = false;
-                    return;
-                } else if( results.length > 1 ) {
-
-
-                    this.allowReport = true;
-//                    if (!firstRun) {
-//                        Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, using the first one.");
-//                        alert.show();
-//                    }
-                    latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
-                } else {
-                    this.allowReport = true;
-                    latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
-                }
-                myOptions.position(latLong);
-            });
+            if (status == GeocoderStatus.ZERO_RESULTS) {
+                this.allowReport = false;
+                return;
+            } else if (results.length > 1) {
 
 
-
-        System.out.print("in lambda");
-        System.out.println(allowReport);
+                this.allowReport = true;
+                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+            } else {
+                this.allowReport = true;
+                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+            }
+            myOptions.position(latLong);
+        });
         return marker;
     }
 

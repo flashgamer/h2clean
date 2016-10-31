@@ -1,8 +1,15 @@
 package controller;
+
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
-import com.lynden.gmapsfx.javascript.object.*;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.InfoWindow;
+import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.MapOptions;
+import com.lynden.gmapsfx.javascript.object.Marker;
+import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
 import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
@@ -12,7 +19,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import model.*;
+import model.Facade;
+import model.Location;
+import model.Report;
+import model.ReportDB;
+import model.WaterPurityReport;
+import model.WaterSourceReport;
 import netscape.javascript.JSObject;
 
 import java.io.IOException;
@@ -123,12 +135,10 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
                     InfoWindow window = new InfoWindow(
                             (new InfoWindowOptions()).content(generateInfoWindowContent(r)));
                     window.setContent(generateInfoWindowContent(r));
-                    //window.open(map, m);
                     map.addMarker(m);
                     map.addUIEventHandler(m,
                             UIEventType.click,
                             (JSObject obj) -> {
-                                System.out.println("Hello");
                                 window.open(map, m);
                             });
                 }
@@ -150,7 +160,7 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
 
             LatLong latLong = null;
 
-            if( results.length > 1 ) {
+            if(results.length > 1 ) {
                 latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(),
                         results[0].getGeometry().getLocation().getLongitude());
             } else {
