@@ -28,10 +28,20 @@ public enum WaterCondition {
         myString = string;
     }
 
+    /**
+     * Gets the String representation of the water condition.
+     * @return String representation of water condition.
+     */
     public String getMyString() {
         return myString;
     }
 
+    /**
+     * Allows you to find a water condition for a given report if the key of
+     * the report is known.
+     * @param s Key for a particular report
+     * @return The water condition information from that report
+     */
     public static WaterCondition findByKey(String s) {
         return map.get(s);
     }

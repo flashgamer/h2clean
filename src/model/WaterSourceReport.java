@@ -1,5 +1,7 @@
 package model;
 
+import com.lynden.gmapsfx.javascript.object.Marker;
+
 /**
  * Model of a Water Source Report as detailed by 2340 Wiki
  * Fields are filled in from the controller
@@ -11,6 +13,7 @@ public class WaterSourceReport extends Report {
     private String location;
     private WaterType type;
     private WaterCondition condition;
+    private Marker marker;
 
     public WaterSourceReport() {
 
@@ -47,5 +50,13 @@ public class WaterSourceReport extends Report {
 
     public void setCondition(WaterCondition condition) {
         this.condition = condition;
+    }
+
+    public Marker getMarker() {
+        return marker;
+    }
+
+    public void setMarker(Marker marker) {
+        this.marker = marker;
     }
 }

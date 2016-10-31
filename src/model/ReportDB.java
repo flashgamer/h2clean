@@ -45,6 +45,11 @@ public class ReportDB {
 
     }
 
+    /**
+     * Returns a linked list with all the locations from reports.
+     * @param location Location from each report
+     * @return LinkedList with all locations from all reports in database.
+     */
     public LinkedList<Report> get(String location) {
         if (!backingMap.containsKey(location)) {
             throw new IllegalArgumentException("Report does not exist in database");
@@ -52,6 +57,11 @@ public class ReportDB {
         return backingMap.get(location);
     }
 
+    /**
+     * Returns a set with the keys for the backingMap holding the report
+     * information
+     * @return A set with the keys for backingMap of reports
+     */
     public Set<String> getKeys() {
         return backingMap.keySet();
     }

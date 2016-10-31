@@ -1,5 +1,16 @@
 package controller;
 
+import com.lynden.gmapsfx.GoogleMapView;
+import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.InfoWindow;
+import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.Marker;
+import com.lynden.gmapsfx.javascript.object.MarkerOptions;
+import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
+import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
+import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +36,7 @@ import java.util.List;
  *
  * @author Hotline String
  */
-public class WaterPurityReportScreenController {
+public class WaterPurityReportScreenController implements MapComponentInitializedListener {
     @FXML
     private TextField locationField;
 
@@ -40,6 +51,12 @@ public class WaterPurityReportScreenController {
 
     private Stage purityStage;
 
+    private GeocodingService geocodingService;
+
+    private GoogleMap map;
+
+    private boolean allowReport;
+
     @FXML
     private void initialize() {
         List<String> waterConditionList = new ArrayList<>();
@@ -47,12 +64,16 @@ public class WaterPurityReportScreenController {
         waterConditionList.add("Treatable");
         waterConditionList.add("Unsafe");
         conditionField.setItems(FXCollections.observableArrayList(waterConditionList));
-
+        GoogleMapView mapView = new GoogleMapView();
+        mapView.addMapInializedListener(this);
     }
 
+    @Override
+    public void mapInitialized() {
+        map = new GoogleMap();
+    }
     /**
      * Method for storing a new report in the Report Database
-     * <p>
      * Generates a new report, stores the information from the fields in the
      * report, inserts the report into the database.
      */
@@ -67,15 +88,16 @@ public class WaterPurityReportScreenController {
         ReportDB.database.insert(myReport);
     }
 
+
     /**
      * Called when Confirm button is pressed.
-     * <p>
      * Checks if the report data is valid, then stores the new report in the
      * Report database, closes the current window and returns the user to the
      * Landing Screen
      */
     @FXML
     private void handleConfirmButtonAction() {
+        validateData();
         if (validateData()) {
             store();
             Stage thisStage = (Stage) locationField.getScene().getWindow();
@@ -94,6 +116,9 @@ public class WaterPurityReportScreenController {
         if (locationField.getText() == null) {
             errorMessage += "Location cannot be empty! \n";
         }
+
+        generateMarker(locationField.getText());
+
         if (virusField.getText() == null) {
             errorMessage += "Virus amount cannot be empty! \n";
         }
@@ -145,5 +170,45 @@ public class WaterPurityReportScreenController {
         Stage thisStage = (Stage) locationField.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
+    }
+
+    /**
+     * Generates a Marker from a specified location(address) to be shown on the map
+     * @param location the Location to generate the marker at
+     * @return a Marker positioned at the specified location
+     */
+    private Marker generateMarker(String location) {
+        geocodingService = new GeocodingService();
+        MarkerOptions myOptions = new MarkerOptions();
+        Marker marker = new Marker(myOptions);
+
+        geocodingService.geocode(location, (GeocodingResult[] results, GeocoderStatus status) -> {
+
+            LatLong latLong = null;
+
+            if(status == GeocoderStatus.ZERO_RESULTS) {
+                this.allowReport = false;
+                return;
+            } else if(results.length > 1 ) {
+                this.allowReport = true;
+                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+            } else {
+                this.allowReport = true;
+                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+            }
+            myOptions.position(latLong);
+        });
+        return marker;
+    }
+
+    /**
+     * Generates a String with the information from the report
+     *
+     * @return a String containing the information from the report.
+     */
+    private String generateInfoWindowContent() {
+        String content = "";
+
+        return content;
     }
 }
