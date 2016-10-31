@@ -11,13 +11,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by robertwaters on 10/11/16.
+ * Created by jon on 10/11/16.
  */
 public class PersistenceManager {
     private static Logger LOGGER = Logger.getLogger("PersistenceManager");
 
     private List<Location> model;
 
+    /**
+     * Allows for persistence.
+     * @param m Model that is passed in
+     */
     public PersistenceManager(List<Location> m) {
         model = m;
     }
@@ -35,6 +39,10 @@ public class PersistenceManager {
 
     }
 
+    /**
+     * Takes text from file.
+     * @param file File to load text from.
+     */
     public void loadFromText(File file) {
         String ct = null;
         model.clear();
@@ -56,6 +64,10 @@ public class PersistenceManager {
         }
     }
 
+    /**
+     * Saves the file to a binary format.
+     * @param file File to be passed in.
+     */
     public void saveToBinary(File file) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))){
             oos.writeObject(model);
@@ -65,6 +77,10 @@ public class PersistenceManager {
         }
     }
 
+    /**
+     * Loads file from binary format.
+     * @param file File to be passed in
+     */
     public void loadFromBinary(File file) {
        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
            model = (ArrayList<Location>) ois.readObject();
@@ -76,6 +92,10 @@ public class PersistenceManager {
        }
     }
 
+    /**
+     * Saves file to Json
+     * @param file File to be saved
+     */
     public void saveToJson(File file) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
             Gson gson = new Gson();
@@ -87,6 +107,10 @@ public class PersistenceManager {
         }
     }
 
+    /**
+     * Loads from Json file
+     * @param file File to load from
+     */
     public void loadFromJsonfile(File file) {
         String ct = null;
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {

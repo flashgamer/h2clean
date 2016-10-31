@@ -4,7 +4,7 @@ package model;
  * Created by Lillian on 10/2/2016.
  */
 public class Administrator {
-    /*
+    /**
     * no args constructor
      */
     public Administrator() {

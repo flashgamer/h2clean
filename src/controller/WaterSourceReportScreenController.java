@@ -70,11 +70,14 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
         this.firstRun = false;
     }
 
+
+    /**
+     * Method for initializing a new GoogleMap object.
+     */
     @Override
     public void mapInitialized() {
         map = new GoogleMap();
     }
-
     /**
      * Method for storing a new report in the Report Database
      * <p>
@@ -171,7 +174,6 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
 
     /**
      * Generates a Marker from a specified location(address) to be shown on the map
-     *
      * @param location the Location to generate the marker at
      * @return a Marker positioned at the specified location
      */

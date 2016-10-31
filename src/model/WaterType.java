@@ -28,10 +28,20 @@ public enum WaterType {
         myString = string;
     }
 
+    /**
+     * Gets the string with the water type information
+     * @return String representation of water type
+     */
     public String getMyString() {
         return myString;
     }
 
+    /**
+     * Allows you to get the water type  of a report if you know the key of
+     * the report
+     * @param s Key for a certain report
+     * @return water type of a specific report with a known key
+     */
     public static WaterType findByKey(String s) {
         return map.get(s);
     }
