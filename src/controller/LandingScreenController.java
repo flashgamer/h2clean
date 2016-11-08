@@ -32,30 +32,30 @@ public class LandingScreenController {
     private Button viewReportButton;
 
 
-    /**
-     * Called when user clicks on Edit Profile button
-     *
-     * @param event Unused
-     */
-    @FXML
-    private void editProfile(ActionEvent event) {
-        Stage thisStage = (Stage) editProfileButton.getScene().getWindow();
-        thisStage.close();
-        thisStage.hide();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ProfileScreen.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage profileStage = new Stage();
-            ProfileScreenController psc = fxmlLoader.<ProfileScreenController>getController();
-            profileStage.setTitle("Profile Screen");
-            profileStage.setScene(new Scene(root, 600, 400));
-            psc.save();
-            profileStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
+//    /**
+//     * Called when user clicks on Edit Profile button
+//     *
+//     * @param event Unused
+//     */
+//    @FXML
+//    private void editProfile(ActionEvent event) {
+//        Stage thisStage = (Stage) editProfileButton.getScene().getWindow();
+//        thisStage.close();
+//        thisStage.hide();
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ProfileScreen.fxml"));
+//            Parent root = (Parent) fxmlLoader.load();
+//            Stage profileStage = new Stage();
+//            ProfileScreenController psc = fxmlLoader.<ProfileScreenController>getController();
+//            profileStage.setTitle("Profile Screen");
+//            profileStage.setScene(new Scene(root, 600, 400));
+//            psc.save();
+//            profileStage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
     /**
      * Called when user clicks on Edit Profile button

@@ -21,14 +21,28 @@ public enum PurityCondition {
         }
     }
 
+    /**
+     * Constructor for each PurityCondition.
+     * @param string String representation of each PurityCondition.
+     */
     PurityCondition(String string) {
         myString = string;
     }
 
+    /**
+     * Gets the String representation of each PurityCondition.
+     * @return the String representation fo each PurityCondition.
+     */
     public String getMyString() {
         return myString;
     }
 
+    /**
+     * Finds the String representation of each PurityCondition
+     * in the map.
+     * @param s the String key to find.
+     * @return A String representation of the PurityCondition.
+     */
     public static PurityCondition findByKey(String s) {
         return map.get(s);
     }

@@ -65,6 +65,9 @@ public class AllReportsScreenController {
     private List<Report> currentReportList;
     private List<Integer> currentReportNumberList;
 
+    /**
+     * Called automatically to initialize the screen.
+     */
     @FXML
     private void initialize() {
         locationColumn.getItems().addAll(database.getKeys());
@@ -87,6 +90,10 @@ public class AllReportsScreenController {
 
     }
 
+    /**
+     * Called when user clicks on the Location of the report they wish to view.
+     * @param newValue String representation of the Location.
+     */
     private void onLocationSelect(String newValue) {
         currentReportList.clear();
         reportNumberColumn.getItems().clear();
@@ -101,6 +108,11 @@ public class AllReportsScreenController {
         this.currentReportList = new LinkedList<>(reportList);
     }
 
+    /**
+     * Called when user clicks on the number of the report they wish to view.
+     * @param newValue String representation of the number of report they want
+     *                 to view.
+     */
     private void onNumberSelect(String newValue) {
 
         if (newValue == null) {
@@ -149,6 +161,9 @@ public class AllReportsScreenController {
         }
     }
 
+    /**
+     * Called when user clicks View Availability Reports.
+     */
     @FXML
     private void handleViewAvailabilityReportsAction() {
         Stage thisStage = (Stage) backButton.getScene().getWindow();
@@ -166,7 +181,4 @@ public class AllReportsScreenController {
         }
     }
 
-    private void refreshAvailabilityMap() {
-
-    }
 }

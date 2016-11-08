@@ -52,6 +52,9 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
 
     private Marker marker;
 
+    /**
+     * Automatically called to initialize the screen.
+     */
     @FXML
     private void initialize() {
         mapView.addMapInializedListener(this);

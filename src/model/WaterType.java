@@ -24,6 +24,10 @@ public enum WaterType {
         }
     }
 
+    /**
+     * Constructor for a WaterType.
+     * @param string String representation of a WaterType.
+     */
     WaterType(String string) {
         myString = string;
     }

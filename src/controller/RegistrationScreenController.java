@@ -100,6 +100,10 @@ public class RegistrationScreenController {
         }
     }
 
+    /**
+     * Checks that all inputs on the screen are valid.
+     * @return true if all inputs are valid.
+     */
     @FXML
     private boolean isInputValid() {
         String errorMessage = "";

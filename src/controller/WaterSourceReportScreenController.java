@@ -48,6 +48,9 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
 
     private boolean firstRun;
 
+    /**
+     * Automatically called to initialize the screen.
+     */
     @FXML
     private void initialize() {
         List<String> waterTypeList = new ArrayList<>();

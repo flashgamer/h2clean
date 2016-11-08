@@ -18,6 +18,9 @@ public class ReportDB {
     private Map<String, LinkedList<Report>> backingMap;
     private int reportNumber;
 
+    /**
+     * Default constructor of a ReportDB
+     */
     public ReportDB() {
         backingMap = new HashMap<String, LinkedList<Report>>();
         this.reportNumber = 1;

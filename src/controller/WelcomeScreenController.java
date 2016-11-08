@@ -47,6 +47,10 @@ public class WelcomeScreenController {
         }
     }
 
+    /**
+     * Called when user clicks on the Registration button.
+     * @param event unused.
+     */
     @FXML
     private void handleRegistrationButtonAction(ActionEvent event) {
         Stage thisStage = (Stage) welcome.getScene().getWindow();

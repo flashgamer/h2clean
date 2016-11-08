@@ -57,6 +57,9 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
 
     private boolean allowReport;
 
+    /**
+     * Automatically called to initialize the screen.
+     */
     @FXML
     private void initialize() {
         List<String> waterConditionList = new ArrayList<>();
@@ -68,6 +71,9 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
         mapView.addMapInializedListener(this);
     }
 
+    /**
+     * Initializes a Google Map for Markers
+     */
     @Override
     public void mapInitialized() {
         map = new GoogleMap();

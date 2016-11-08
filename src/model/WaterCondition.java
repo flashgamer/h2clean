@@ -24,6 +24,10 @@ public enum WaterCondition {
         }
     }
 
+    /**
+     * Constructor for a WaterCondition.
+     * @param string String representation of the WaterCondition.
+     */
     WaterCondition(String string) {
         myString = string;
     }
