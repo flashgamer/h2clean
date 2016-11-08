@@ -118,4 +118,19 @@ public class WaterPurityReport extends Report {
     public void setMarker(Marker marker) {
         this.marker = marker;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (null == other) { return false; }
+        else if (other == this) { return true; }
+        else if (!(other instanceof WaterPurityReport)) { return false; }
+        else {
+            WaterPurityReport another = (WaterPurityReport) other;
+            boolean reportCheck = super.equals(other);
+            boolean conditionCheck = another.getCondition().equals(this.getCondition());
+            boolean virusCheck = another.getVirusPPM() == this.getVirusPPM();
+            boolean contaminantCheck = another.getContaminantPPM() == this.getContaminantPPM();
+            return reportCheck && conditionCheck && virusCheck && contaminantCheck;
+        }
+    }
 }
