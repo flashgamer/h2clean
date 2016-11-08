@@ -95,6 +95,16 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
             map.addMarker(marker);
 
         }
+        map.addUIEventHandler(UIEventType.click, (JSObject e) -> {
+            JSObject clicked = (JSObject) e.getMember("latLng");
+            Double lat = (Double) clicked.call("lat");
+            Double lng = (Double) clicked.call("lng");
+            MarkerOptions myOps = new MarkerOptions();
+            myOps.position(new LatLong(lat, lng));
+            Marker clickMarker = new Marker(myOps);
+            markerMap.put(clickMarker, null);
+            map.addMarker(clickMarker);
+        });
         updateMap();
     }
 
