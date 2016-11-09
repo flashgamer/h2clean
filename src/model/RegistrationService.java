@@ -91,7 +91,22 @@ public class RegistrationService {
                 double virus = res.getInt("VIRUS");
                 double contaminant = res.getInt("CONTAMINANT");
 
-
+                if (reportType.equals("Water Source")) {
+                    WaterSourceReport source = new WaterSourceReport(username,
+                            location,
+                            WaterType.findByKey(waterType),
+                            WaterCondition.findByKey(condition));
+                    all.add(source);
+                } else if (reportType.equals("Water Purity")) {
+                    WaterPurityReport purityReport = new WaterPurityReport(
+                            username,
+                            location,
+                            PurityCondition.findByKey(purity),
+                            virus,
+                            contaminant
+                    );
+                    all.add(purityReport);
+                }
 
             }
             stmt.close();
