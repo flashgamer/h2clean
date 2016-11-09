@@ -2,6 +2,9 @@ package model;
 
 import javax.annotation.PostConstruct;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,5 +48,56 @@ public class RegistrationService {
             LOGGER.log(Level.SEVERE, "Exception in opening database", e);
         }
 
+    }
+
+    public List<Account> allAccounts() {
+        ArrayList<Account> all = new ArrayList<>();
+        try {
+            Statement stmt = connection.createStatement();
+            String sql = "SELECT * FROM ACCOUNTS";
+            ResultSet res = stmt.executeQuery(sql);
+
+            while (res.next()) {
+                User user = (User) res.getBlob("USER");
+                String userName = res.getString("USERNAME");
+                String password  = res.getString("PASSWORD");
+                String accountType = res.getString("ACCOUNTTYPE");
+
+                Account a = new Account(user, userName, password, accountType);
+                all.add(a);
+
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Exception in getting all accounts", e);
+        }
+        return all;
+    }
+
+    public List<Report> allReports() {
+        LinkedList<Report> all = new LinkedList<>();
+        try {
+            Statement stmt = connection.createStatement();
+            String sql = "SELECT * FROM STUDENT";
+            ResultSet res = stmt.executeQuery(sql);
+
+            while (res.next()) {
+                String reportType = res.getString("REPORT");
+                String username = res.getString("USERNAME");
+                String location  = res.getString("LOCATION");
+                String waterType = res.getString("WATERTYPE");
+                String condition = res.getString("CONDITION");
+                String purity = res.getString("PURITY");
+                double virus = res.getInt("VIRUS");
+                double contaminant = res.getInt("CONTAMINANT");
+
+
+
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Exception in getting all students", e);
+        }
+        return all;
     }
 }
