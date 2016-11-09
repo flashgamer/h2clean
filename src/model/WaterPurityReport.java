@@ -23,6 +23,23 @@ public class WaterPurityReport extends Report {
 
     }
 
+
+    /**
+     * Constructor for WaterPurityReport.
+     * @param userName username associated with the WaterPurityReport.
+     * @param location Location associated with the WaterPurityReport.
+     * @param condition WaterCondition associated with the WaterPurityReport.
+     * @param virusPPM Amount of Virus associated with the WaterPurityReport.
+     * @param contaminantPPM Amount of contaminant associated with the report.
+     */
+    public WaterPurityReport(String userName, String location, PurityCondition condition, double virusPPM, double contaminantPPM) {
+        this.userName = userName;
+        this.location = location;
+        this.condition = condition;
+        this.virusPPM = virusPPM;
+        this.contaminantPPM = contaminantPPM;
+    }
+
     /**
      * Gets the username of the user who submitted the report.
      * @return String representation of userName.

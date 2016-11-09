@@ -22,6 +22,20 @@ public class WaterSourceReport extends Report {
 
     }
 
+    /**
+     * Constructor for WaterSourceReport
+     * @param userName Username associated with the WaterSourceReport
+     * @param location Location associated with the WaterSourceReport
+     * @param type WaterType associated with the WaterSourceReport
+     * @param condition WaterCondition associated with the WaterSourceReport
+     */
+    public WaterSourceReport(String userName, String location, WaterType type,
+                             WaterCondition condition) {
+        this.userName = userName;
+        this.location = location;
+        this.type = type;
+        this.condition = condition;
+    }
 
     /**
      * Gets the Username of the Account that submitted this WaterSourceReport.
