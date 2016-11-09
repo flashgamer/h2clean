@@ -78,7 +78,7 @@ public class RegistrationService {
         LinkedList<Report> all = new LinkedList<>();
         try {
             Statement stmt = connection.createStatement();
-            String sql = "SELECT * FROM STUDENT";
+            String sql = "SELECT * FROM REPORTS";
             ResultSet res = stmt.executeQuery(sql);
 
             while (res.next()) {
@@ -99,5 +99,25 @@ public class RegistrationService {
             LOGGER.log(Level.SEVERE, "Exception in getting all students", e);
         }
         return all;
+    }
+
+    public void save(Account account) {
+        try {
+            Statement stmt = connection.createStatement();
+
+            String sql = "INSERT INTO ACCOUNTS (USER, USERNAME, PASSWORD, ACCOUNTTYPE) " +
+                    "VALUES (" +  "'" + account.getUser() + "', '" +
+                    account.getUsername() + "', '" + account.getPassword() + "'," +  account.getAccountType() + " );";
+
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            connection.commit();
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Exception in saving new student", e);
+        }
+
     }
 }
