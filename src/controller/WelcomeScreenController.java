@@ -38,6 +38,7 @@ public class WelcomeScreenController {
         thisStage.hide();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/LoginScreen.fxml"));
+            root.getStylesheets().add(getClass().getResource("../resources/css/jfoenix-design.css").toExternalForm());
             Stage loginStage = new Stage();
             loginStage.setTitle("Login Screen");
             loginStage.setScene(new Scene(root,600,400));
@@ -58,6 +59,7 @@ public class WelcomeScreenController {
         thisStage.hide();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/RegistrationScreen.fxml"));
+            root.getStylesheets().add(getClass().getResource("../resources/css/jfoenix-design.css").toExternalForm());
             Stage registerStage = new Stage();
             registerStage.setTitle("Registration Screen");
             registerStage.setScene(new Scene(root, 600, 400));

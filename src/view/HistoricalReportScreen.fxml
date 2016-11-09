@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="211.0" minHeight="0.0" prefHeight="65.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="159.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="59.0" prefWidth="600.0" text="Historical Report" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Walkway SemiBold" size="48.0" />
+         </font>
+         <GridPane.margin>
+            <Insets top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <JFXTextField fx:id="locationInput" alignment="CENTER" focusColor="#f4f4f5" labelFloat="true" maxWidth="157.0" minWidth="157.0" prefHeight="34.0" prefWidth="157.0" promptText="Location" unFocusColor="#42454d">
+               <HBox.margin>
+                  <Insets left="40.0" top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Quicksand-Regular" size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXCheckBox fx:id="virusCheck" text="Virus" textFill="WHITE" unCheckedColor="#606060">
+               <HBox.margin>
+                  <Insets left="15.0" top="20.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Quicksand-Regular" size="12.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="contaminantCheck" text="Contaminant" textFill="WHITE" unCheckedColor="#606060">
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Quicksand-Regular" size="12.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXDatePicker fx:id="datePick" prefHeight="31.0" prefWidth="171.0">
+               <HBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </HBox.margin>
+            </JFXDatePicker>
+         </children>
+      </HBox>
+      <VBox prefHeight="266.0" prefWidth="569.0" GridPane.rowIndex="3">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <JFXButton fx:id="confirmButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="108.0" style="-fx-background-color: #606060;" text="CONFIRM" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="86.0" style="-fx-background-color: #606060;" text="BACK" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="370.0" top="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Pane fx:id="chart" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+   </children>
+</GridPane>
