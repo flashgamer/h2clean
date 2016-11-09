@@ -3,27 +3,27 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.HistoricalLineGraph;
 
-import java.util.Calendar;
 
 /**
  * Created by Lillian on 11/9/2016.
  */
 public class HistoricalReportScreenController {
     @FXML
-    private TextField locationField;
+    private TextField locationInput;
 
     @FXML
-    private CheckBox virusBox;
+    private CheckBox virusCheck;
 
     @FXML
-    private CheckBox contaminantBox;
+    private CheckBox contaminantCheck;
 
     @FXML
-    private Calendar calendar;
+    private DatePicker datePick;
 
     private Stage historicalStage;
 
@@ -40,14 +40,14 @@ public class HistoricalReportScreenController {
             int[] virusData = {1, 2, 3, 4, 5};
             int[] contaminantData = {2, 3, 4, 5, 6};
             int[] timeData = {1, 2, 3, 4, 5};
-            if (virusBox.isSelected()) {
+            if (virusCheck.isSelected()) {
                 //set virusData int array to real data
             }
-            if (contaminantBox.isSelected()) {
+            if (contaminantCheck.isSelected()) {
                 //set contaminantData int array to real data
             }
             //set timeData int array to real time data points
-            historicalGraph = new HistoricalLineGraph(virusBox.isSelected(), contaminantBox.isSelected(), virusData, contaminantData, timeData);
+            historicalGraph = new HistoricalLineGraph(virusCheck.isSelected(), contaminantCheck.isSelected(), virusData, contaminantData, timeData);
             historicalGraph.showGraph();
         }
     }
@@ -58,13 +58,13 @@ public class HistoricalReportScreenController {
      */
     private boolean validateData() {
         String errorMessage = "";
-        if (locationField.getText() == null) {
+        if (locationInput.getText() == null) {
             errorMessage += "Location cannot be empty! \n";
         }
-        if (!virusBox.isSelected() && !contaminantBox.isSelected()) {
+        if (!virusCheck.isSelected() && !contaminantCheck.isSelected()) {
             errorMessage += "Please select at either to display virus or contaminant levels or both! \n";
         }
-        if (calendar.getTime() == null) {
+        if (datePick.getValue() == null) {
             errorMessage += "Please choose a time frame! \n";
         }
 
@@ -90,7 +90,7 @@ public class HistoricalReportScreenController {
      */
     @FXML
     private void handleCancelButtonAction() {
-        Stage thisStage = (Stage) locationField.getScene().getWindow();
+        Stage thisStage = (Stage) locationInput.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
     }
