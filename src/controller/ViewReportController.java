@@ -26,12 +26,20 @@ public class ViewReportController {
 
     private Stage _viewReportPopupStage;
 
+    /**
+     * inputs possible choices into the combo box list
+     * defaults option to "All reports"
+     */
     @FXML
     private void initialize() {
         viewReportType.getItems().addAll("All Reports", "Historical Reports");
         viewReportType.setValue("All Reports");
     }
 
+    /**
+     * called when the cancel button is clicked
+     * returns to the previous screen
+     */
     @FXML
     private void handleCancelButton() {
         Stage thisStage = (Stage) cancelButton.getScene().getWindow();
@@ -50,6 +58,10 @@ public class ViewReportController {
         }
     }
 
+    /**
+     * called when the proceed button is called
+     * will open up whatever option window is selected from the drop down list
+     */
     @FXML
     private void handleProceedButton() {
         String filePath;
