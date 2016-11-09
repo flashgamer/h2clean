@@ -115,4 +115,57 @@ public class RegistrationService {
         }
         return all;
     }
+
+    public void save(Report report) {
+        try {
+            Statement stmt = connection.createStatement();
+            String reportString = null;
+            String username = null;
+            String location = null;
+            String type = null;
+            String condition = null;
+            String purity = null;
+            double virus = 0;
+            double contaminant = 0;
+            if (report instanceof WaterSourceReport) {
+                WaterSourceReport source = (WaterSourceReport) report;
+                reportString = "Water Source";
+                username = source.getUserName();
+                location = source.getLocation();
+                type = source.getType().getMyString();
+                condition = source.getCondition().getMyString();
+            }
+            else if (report instanceof WaterPurityReport) {
+                WaterPurityReport purityReport = (WaterPurityReport) report;
+                reportString = "Water Purity";
+                username = purityReport.getUserName();
+                location = purityReport.getLocation();
+                purity = purityReport.getCondition().getMyString();
+                virus = purityReport.getVirusPPM();
+                contaminant = purityReport.getContaminantPPM();
+            }
+            String sql = "INSERT INTO STUDENT (REPORT, USERNAME, LOCATION, WATERTYPE, CONDITION, PURITY, VIRUS, CONTAMINANT) " +
+                    "VALUES (" +  "'" + reportString + "', '" +
+                    username + "', '" + location + "'," +  type + ", " +
+                    condition + ", " + purity + "'," + virus + "'," + contaminant + " );";
+
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            connection.commit();
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Exception in saving new student", e);
+        }
+
+    }
+
+    public void close() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Exception in closing database connection", e);
+        }
+    }
 }
