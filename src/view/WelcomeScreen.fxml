@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
@@ -53,7 +54,7 @@
                   <Insets right="50.0" />
                </HBox.margin>
             </JFXButton>
-            <JFXButton onAction="#handleRegistrationButtonAction" prefHeight="73.0" prefWidth="109.0" ripplerFill="#ffffffa9" style="-fx-background-color: #606060;" stylesheets="@../../../JFoenix-master/src/resources/css/jfoenix-design.css" text="REGISTER" textFill="WHITE">
+            <JFXButton onAction="#handleRegistrationButtonAction" prefHeight="73.0" prefWidth="118.0" ripplerFill="#ffffffa9" style="-fx-background-color: #606060;" stylesheets="@../../../JFoenix-master/src/resources/css/jfoenix-design.css" text="REGISTER" textFill="WHITE">
                <font>
                   <Font name="Roboto Regular" size="15.0" />
                </font>
@@ -72,4 +73,8 @@
          </GridPane.margin>
       </Text>
    </children>
+   <stylesheets>
+      <URL value="@../resources/css/jfoenix-design.css" />
+      <URL value="@../resources/css/jfoenix-fonts.css" />
+   </stylesheets>
 </GridPane>
