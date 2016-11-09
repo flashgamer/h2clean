@@ -131,7 +131,9 @@ public class LandingScreenController {
         thisStage.close();
         thisStage.hide();
         try {
-            BorderPane root = FXMLLoader.load(getClass().getResource("../view/AllReportsScreen.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource
+                    ("../view/ViewReportPopup.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
             Stage reportStage = new Stage();
             reportStage.setTitle("All Reports");
             reportStage.setScene(new Scene(root, 600, 400));
