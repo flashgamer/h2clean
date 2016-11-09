@@ -2,13 +2,14 @@ package model;
 
 import com.lynden.gmapsfx.javascript.object.Marker;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * Model for Report, used as an extension for all other reports
  * Created by Lillian on 10/2/2016.
  */
-public class Report {
+public class Report implements Serializable{
 
     private Account submitAccount;
     private LocalDateTime submitTime;

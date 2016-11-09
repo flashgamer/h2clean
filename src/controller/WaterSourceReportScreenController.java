@@ -15,11 +15,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Facade;
 import model.ReportDB;
 import model.WaterCondition;
 import model.WaterSourceReport;
 import model.WaterType;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,8 +98,25 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
         myReport.setLocation(locationField.getText());
         myReport.setType(WaterType.findByKey(waterTypeField.getValue()));
         myReport.setCondition(WaterCondition.findByKey(waterConditionField.getValue()));
-        myReport.setMarker(generateMarker(locationField.getText()));
+        // myReport.setMarker(generateMarker(locationField.getText()));
+        myReport.setReportNumber(LoginScreenController.reportNum++);
+        // Facade.getInstance().getReports().add(myReport);
+        // saveReportJson();
         ReportDB.database.insert(myReport);
+        try {
+            String fileName = myReport.getLocation() + ".ser";
+            FileOutputStream fileOut =
+                    new FileOutputStream(fileName);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(myReport);
+            out.close();
+            fileOut.close();
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
+        AllReportsScreenController.reportLocations.add(locationField.getText());
+        AllReportsScreenController.updateSerFile();
+        ReportDB.serialize();
     }
 
     /**
@@ -206,4 +227,7 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
         return marker;
     }
 
+//    private void saveReportJson() {
+//        Facade.getInstance().saveReportJson();
+//    }
 }

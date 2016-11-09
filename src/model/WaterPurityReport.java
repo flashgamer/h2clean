@@ -2,19 +2,22 @@ package model;
 
 import com.lynden.gmapsfx.javascript.object.Marker;
 
+import java.io.Serializable;
+
 /**
  * Model of Water Purity Report as detailed on 2340 Wiki
  * Fields filled in by Controller
  * Created by Jonathan on 10/14/2016.
  */
-public class WaterPurityReport extends Report {
+public class WaterPurityReport extends Report implements Serializable{
 
     private String userName;
     private String location;
     private PurityCondition condition;
     private double virusPPM;
     private double contaminantPPM;
-    private Marker marker;
+    private transient Marker marker;
+
 
     /**
      * No args constructor for a water purity report

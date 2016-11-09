@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.RegistrationService;
 
 import java.io.IOException;
 
@@ -25,6 +26,7 @@ private Stage mainScreen;
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // RegistrationService registrationService = new RegistrationService();
         mainScreen = primaryStage;
         welcomeScreen(mainScreen);
     }

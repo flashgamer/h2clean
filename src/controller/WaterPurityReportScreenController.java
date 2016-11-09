@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Facade;
 import model.PurityCondition;
 import model.ReportDB;
 import model.WaterCondition;
@@ -27,7 +28,9 @@ import model.WaterPurityReport;
 import model.WaterSourceReport;
 import model.WaterType;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,7 +94,24 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
         myReport.setCondition(PurityCondition.findByKey(conditionField.getValue()));
         myReport.setContaminantPPM(new Double(contaminantField.getText()));
         myReport.setVirusPPM(new Double(virusField.getText()));
+        myReport.setReportNumber(LoginScreenController.reportNum++);
         ReportDB.database.insert(myReport);
+        try {
+            String fileName = myReport.getLocation() + ".ser";
+            FileOutputStream fileOut =
+                    new FileOutputStream(fileName);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(myReport);
+            out.close();
+            fileOut.close();
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
+        AllReportsScreenController.reportLocations.add(locationField.getText());
+        AllReportsScreenController.updateSerFile();
+        ReportDB.serialize();
+        // Facade.getInstance().getReports().add(myReport);
+        // saveReportJson();
     }
 
 
@@ -146,7 +166,7 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
             //show error message
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(purityStage);
-            alert.setTitle("Invalid Login");
+            alert.setTitle("Invalid Data");
             alert.setHeaderText("Please try again with the correct values.");
             alert.setContentText(errorMessage);
 
@@ -207,14 +227,7 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
         return marker;
     }
 
-    /**
-     * Generates a String with the information from the report
-     *
-     * @return a String containing the information from the report.
-     */
-    private String generateInfoWindowContent() {
-        String content = "";
-
-        return content;
-    }
+//     private void saveReportJson() {
+//        Facade.getInstance().saveReportJson();
+//    }
 }

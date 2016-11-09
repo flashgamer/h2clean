@@ -11,8 +11,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Account;
+import model.Facade;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,8 +69,20 @@ public class RegistrationScreenController {
     private void handleRegisterButtonAction() {
         if (isInputValid()) {
             Account account = new Account(userField.getText(), passField.getText(), typeBox.getValue(), titleField.getText(), firstNameField.getText(), lastNameField.getText(), emailField.getText(), addressField.getText());
-            database.insert(userField.getText(), account);
-            System.out.println(database.containsKey(userField.getText()));
+            // Facade.getInstance().addAccount(account);
+            // saveAccountJson();
+            // System.out.println(database.containsKey(userField.getText()));
+            try {
+                String fileName = userField.getText() + ".ser";
+                FileOutputStream fileOut =
+                        new FileOutputStream(fileName);
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(account);
+                out.close();
+                fileOut.close();
+            }catch(IOException i) {
+                i.printStackTrace();
+            }
             Stage thisStage = (Stage) userField.getScene().getWindow();
             thisStage.close();
             thisStage.hide();
@@ -106,6 +123,7 @@ public class RegistrationScreenController {
      */
     @FXML
     private boolean isInputValid() {
+        //loadJson();
         String errorMessage = "";
 
         // Checks if username field has been filled in
@@ -116,9 +134,23 @@ public class RegistrationScreenController {
             errorMessage += "Password cannot be empty!\n";
         }
         // Checks if username has already been taken
-        if ((userField.getText() != null || userField.getText().length() != 0)
-                && database.containsKey(userField.getText())) {
-            errorMessage += "That username has already been taken!\n";
+        if ((userField.getText() != null || userField.getText().length() != 0)) {
+            Account a = null;
+            String username = userField.getText() + ".ser";
+            try {
+                FileInputStream fileIn = new FileInputStream(username);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                a = (Account) in.readObject();
+                in.close();
+                fileIn.close();
+            }catch(IOException i) {
+
+            }catch(ClassNotFoundException c) {
+                System.out.println("Employee class not found");
+                c.printStackTrace();
+                return false;
+            }
+            if (a != null){ errorMessage += "That username has already been taken!\n"; }
         }
 
         //successful login
@@ -136,4 +168,11 @@ public class RegistrationScreenController {
             return false;
         }
     }
+
+//    private void saveAccountJson() {
+//        Facade.getInstance().saveAccountJson();
+//    }
+//    private void loadJson() {
+//        Facade.getInstance().loadAccountJson();
+//    }
 }

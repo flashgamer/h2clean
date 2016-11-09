@@ -15,6 +15,9 @@ public class RegistrationService {
     private Logger LOGGER = Logger.getLogger("Registration Service");
     private Connection connection;
 
+    /**
+     * Initializes the database tables needed.
+     */
     @PostConstruct
     public void init() {
         try {
@@ -50,6 +53,10 @@ public class RegistrationService {
 
     }
 
+    /**
+     * Obtains a List of all accounts in the database
+     * @return A List of all accounts in the database.
+     */
     public List<Account> allAccounts() {
         ArrayList<Account> all = new ArrayList<>();
         try {
@@ -74,6 +81,10 @@ public class RegistrationService {
         return all;
     }
 
+    /**
+     * Obtains a List of all reports in the database.
+     * @return a List of all reports in the database.
+     */
     public List<Report> allReports() {
         LinkedList<Report> all = new LinkedList<>();
         try {
@@ -116,6 +127,10 @@ public class RegistrationService {
         return all;
     }
 
+    /**
+     * Saves the given report to the database.
+     * @param report the Report to save to the database.
+     */
     public void save(Report report) {
         try {
             Statement stmt = connection.createStatement();
@@ -161,6 +176,9 @@ public class RegistrationService {
 
     }
 
+    /**
+     * Closes the connection to the database.
+     */
     public void close() {
         try {
             connection.close();
@@ -169,6 +187,10 @@ public class RegistrationService {
         }
     }
 
+    /**
+     * Saves the given account to the database.
+     * @param account the account to be saved to the database.
+     */
     public void save(Account account) {
         try {
             Statement stmt = connection.createStatement();

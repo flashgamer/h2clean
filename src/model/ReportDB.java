@@ -1,5 +1,9 @@
 package model;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -12,7 +16,7 @@ import java.util.Set;
  *
  * @author Jon
  */
-public class ReportDB {
+public class ReportDB implements Serializable {
 
     public static ReportDB database = new ReportDB();
     private Map<String, LinkedList<Report>> backingMap;
@@ -69,4 +73,27 @@ public class ReportDB {
         return backingMap.keySet();
     }
 
+    /**
+     * Serializes this class
+     */
+    public static void serialize() {
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream("ReportDB.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(database);
+            out.close();
+            fileOut.close();
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
+    }
+
+    /**
+     * Returns the backingMap
+     * @return backingMap
+     */
+    public Map<String, LinkedList<Report>> getBackingMap() {
+        return backingMap;
+    }
 }

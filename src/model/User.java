@@ -1,10 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Created by Lillian on 9/29/2016.
  * Version 1.0
  */
-public class User {
+public class User implements Serializable{
 
     private Profile profile;
 

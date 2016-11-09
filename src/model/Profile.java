@@ -1,9 +1,11 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Created by lol on 10/3/16.
  */
-public class Profile {
+public class Profile implements Serializable {
     private String email;
     private String address;
     private String title;

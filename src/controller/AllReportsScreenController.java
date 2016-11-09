@@ -12,10 +12,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Report;
+import model.ReportDB;
 import model.WaterPurityReport;
 import model.WaterSourceReport;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -62,15 +68,65 @@ public class AllReportsScreenController {
     @FXML
     private Button backButton;
 
+    public static List<String> reportLocations = new ArrayList<>();
     private List<Report> currentReportList;
     private List<Integer> currentReportNumberList;
+    private List<String> locations;
+    private ReportDB myDB;
 
     /**
      * Called automatically to initialize the screen.
      */
     @FXML
     private void initialize() {
-        locationColumn.getItems().addAll(database.getKeys());
+        try {
+            FileInputStream fileIn = new FileInputStream("reportLocations.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            locations = (List<String>) in.readObject();
+            in.close();
+            fileIn.close();
+        }catch(IOException i) {
+            i.printStackTrace();
+            return;
+        }catch(ClassNotFoundException c) {
+            System.out.println("List class not found");
+            c.printStackTrace();
+            return;
+        }
+        try {
+            FileInputStream fileIn = new FileInputStream("ReportDB.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            myDB = (ReportDB) in.readObject();
+            in.close();
+            fileIn.close();
+        }catch(IOException i) {
+            i.printStackTrace();
+            return;
+        }catch(ClassNotFoundException c) {
+            System.out.println("ReportDB class not found");
+            c.printStackTrace();
+            return;
+        }
+        for (String s: locations) {
+            Report myReport;
+            try {
+                String fileName = s + ".ser";
+                FileInputStream fileIn = new FileInputStream(fileName);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                myReport = (Report) in.readObject();
+                in.close();
+                fileIn.close();
+            }catch(IOException i) {
+                i.printStackTrace();
+                return;
+            }catch(ClassNotFoundException c) {
+                System.out.println("Report class not found");
+                c.printStackTrace();
+                return;
+            }
+            myDB.database.insert(myReport);
+        }
+        locationColumn.getItems().addAll(myDB.database.getKeys());
         this.currentReportList = new LinkedList<Report>();
         this.currentReportNumberList = new LinkedList<Integer>();
 
@@ -99,7 +155,7 @@ public class AllReportsScreenController {
         reportNumberColumn.getItems().clear();
         currentReportNumberList.clear();
 
-        List<Report> reportList = database.get(newValue);
+        List<Report> reportList = myDB.database.get(newValue);
         for (Report r : reportList) {
             reportNumberColumn.getItems().add(r.getReportNumber().toString());
             currentReportNumberList.add(r.getReportNumber());
@@ -181,4 +237,20 @@ public class AllReportsScreenController {
         }
     }
 
+    /**
+     * Updates the reportLocations serialization file
+     */
+    public static void updateSerFile() {
+        try {
+            String fileName = "reportLocations.ser";
+            FileOutputStream fileOut =
+                    new FileOutputStream(fileName);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(reportLocations);
+            out.close();
+            fileOut.close();
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
+    }
 }

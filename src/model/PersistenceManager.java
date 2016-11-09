@@ -17,6 +17,8 @@ public class PersistenceManager {
     private static Logger LOGGER = Logger.getLogger("PersistenceManager");
 
     private List<Location> model;
+    private List<Account> modeled;
+    private List<Report> modeling;
 
     /**
      * Allows for persistence.
@@ -26,72 +28,14 @@ public class PersistenceManager {
         model = m;
     }
 
-    public void saveToText(File file) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
-            pw.println(model.size());
-            for (Location l : model) {
-                l.saveToText(pw);
-            }
-            pw.close();
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Exception working with Text Save File", e);
-        }
-
-    }
-
-    /**
-     * Takes text from file.
-     * @param file File to load text from.
-     */
-    public void loadFromText(File file) {
-        String ct = null;
-        model.clear();
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            ct = br.readLine();
-            int count = Integer.parseInt(ct);
-            for (int i = 0; i < count; ++i) {
-                ct = br.readLine();
-                Location loc = Location.makeFromFileString(ct);
-                model.add(loc);
-            }
-            br.close();
-        } catch(IOException ex) {
-            LOGGER.log(Level.SEVERE, "Exception working with Text Load File", ex);
-        } catch(NumberFormatException fe) {
-            LOGGER.log(Level.SEVERE, "File Format problem with count of elements: " + ct, fe);
-        } catch (FileFormatException e) {
-            LOGGER.log(Level.SEVERE, "Format problem with individual line: " + e.getOriginalLine(), e);
-        }
-    }
-
-    /**
-     * Saves the file to a binary format.
-     * @param file File to be passed in.
-     */
-    public void saveToBinary(File file) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))){
-            oos.writeObject(model);
-            oos.close();
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Failed to make an output stream for Binary", e);
-        }
-    }
-
-    /**
-     * Loads file from binary format.
-     * @param file File to be passed in
-     */
-    public void loadFromBinary(File file) {
-       try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-           model = (ArrayList<Location>) ois.readObject();
-           ois.close();
-       } catch (IOException ex) {
-           LOGGER.log(Level.SEVERE, "Failed to make an input stream for Binary", ex);
-       } catch (ClassNotFoundException ex) {
-           LOGGER.log(Level.SEVERE, "Failed to find appropriate class in Binary", ex);
-       }
-    }
-
+//    public PersistenceManager(List<Report> m) {
+//        modeling = m;
+//    }
+//
+//    public PersistenceManager(List<Account> m) {
+//        modeled = m;
+//    }
+//
     /**
      * Saves file to Json
      * @param file File to be saved

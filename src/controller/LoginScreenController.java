@@ -10,9 +10,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Account;
+import model.Facade;
 import model.LoginDB;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static model.LoginDB.database;
 
@@ -37,6 +42,7 @@ public class LoginScreenController {
     private String userKey;
 
     public static Account account; // Account that is logged in for reporting purposes.
+    public static int reportNum = 1;
 
     /** flag to signal if login clicked **/
     private boolean _loginClicked = false;
@@ -69,9 +75,8 @@ public class LoginScreenController {
      */
     @FXML
     private void handleSignInButtonAction(ActionEvent event) {
+        // loadJson();
         if (isInputValid()) {
-            _loginClicked = true;
-            account = LoginDB.database.get(userField.getText());
             Stage thisStage = (Stage) userField.getScene().getWindow();
             thisStage.close();
             thisStage.hide();
@@ -114,8 +119,11 @@ public class LoginScreenController {
      * @return true if input is valid
      */
     private boolean isInputValid() {
+        // loadJson();
         String errorMessage = "";
-
+        boolean userMatch = false;
+        boolean passMatch = false;
+        Account a = null;
         // Checks if username field has been filled in
         if (userField.getText() == null || userField.getText().length() == 0) {
             errorMessage += "Username cannot be empty!\n";
@@ -125,23 +133,48 @@ public class LoginScreenController {
             errorMessage += "Password cannot be empty!\n";
         }
         // Checks if username is in database
-        if ((userField.getText() != null || userField.getText().length() != 0)
-                && !database.containsKey(userField.getText())) {
-            errorMessage += "Username is invalid!\n";
+        if ((userField.getText() != null || userField.getText().length() != 0)) {
+            String fileName = userField.getText() + ".ser";
+            try {
+                FileInputStream fileIn = new FileInputStream(fileName);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                a = (Account) in.readObject();
+                in.close();
+                fileIn.close();
+            }catch(IOException i) {
+
+            }catch(ClassNotFoundException c) {
+                System.out.println("Deserialized class not found");
+                c.printStackTrace();
+                return false;
+            }
+            if (a == null) { errorMessage += "That username doesn't exist!\n"; }
+            else { userMatch = true; }
         }
         // Checks if password matches to the user.
-        if ((userField.getText() != null || userField.getText().length() != 0)
-                && database.containsKey(userField.getText())) {
-            String pass = database.get(userField.getText()).getPassword();
-            if ((passField.getText() != null || passField.getText().length() != 0)
-                    && !passField.getText().equals(pass)) {
-                errorMessage += "Password is invalid!\n";
+        if ((passField.getText() != null || passField.getText().length() != 0)
+                && userMatch) {
+            String fileName = userField.getText() + ".ser";
+            try {
+                FileInputStream fileIn = new FileInputStream(fileName);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                a = (Account) in.readObject();
+                in.close();
+                fileIn.close();
+            }catch(IOException i) {
+
+            }catch(ClassNotFoundException c) {
+                System.out.println("Deserialized class not found");
+                c.printStackTrace();
+                return false;
             }
+            if (passField.equals(a.getPassword())) { errorMessage += "The password is invalid!\n"; }
         }
 
 
         //successful login
         if (errorMessage.length() == 0) {
+            account = a;
             return true;
         } else {
             //show error message
@@ -156,4 +189,8 @@ public class LoginScreenController {
             return false;
         }
     }
+
+//    private void loadJson() {
+//        Facade.getInstance().loadAccountJson();
+//    }
 }

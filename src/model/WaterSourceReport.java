@@ -2,18 +2,21 @@ package model;
 
 import com.lynden.gmapsfx.javascript.object.Marker;
 
+import java.io.Serializable;
+
 /**
  * Model of a Water Source Report as detailed by 2340 Wiki
  * Fields are filled in from the controller
  * Created by Jonathan on 10/14/2016.
  */
-public class WaterSourceReport extends Report {
+public class WaterSourceReport extends Report implements Serializable {
 
     private String userName;
     private String location;
     private WaterType type;
     private WaterCondition condition;
-    private Marker marker;
+    private transient Marker marker;
+
 
     /**
      * Default no-args constructor
