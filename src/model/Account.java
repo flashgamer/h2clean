@@ -28,6 +28,19 @@ public class Account {
     }
 
     /**
+     * Constructor for an Account
+     * @param user User associated with this account
+     * @param username Username associated with this account
+     * @param password Password associated with this account
+     * @param accountType String representation of the type of account this is.
+     */
+    public Account (User user, String username, String password, String accountType) {
+        this.user = user;
+        this.username = username;
+        this.password = password;
+        this.accountType = accountType;
+    }
+    /**
      * gets username
      * @return username
      */
