@@ -53,8 +53,8 @@ public class HistoricalReportScreenController {
     }
 
     /**
-     *
-     * @return
+     * checks that user entered valid data for the historical report
+     * @return whether data is valid or not
      */
     private boolean validateData() {
         String errorMessage = "";

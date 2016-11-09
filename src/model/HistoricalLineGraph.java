@@ -42,6 +42,7 @@ public class HistoricalLineGraph {
     public void showGraph() {
         Stage stage = new Stage();
         stage.setTitle("Historical Line Graph");
+
         //defining the axes
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
