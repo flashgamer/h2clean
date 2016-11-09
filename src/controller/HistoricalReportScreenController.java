@@ -10,8 +10,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.HistoricalLineGraph;
+import model.Report;
+import model.WaterPurityReport;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 
 
 /**
@@ -34,6 +38,8 @@ public class HistoricalReportScreenController {
 
     private HistoricalLineGraph historicalGraph;
 
+    private WaterPurityReport myReport;
+
     /**
      * called when the confirm button is pressed
      * checks if the entered data is valid then generates a historical line graph
@@ -42,11 +48,26 @@ public class HistoricalReportScreenController {
     private void handleConfirmButtonAction() {
         validateData();
         if (validateData()) {
-            int[] virusData = {1, 2, 3, 4, 5};
-            int[] contaminantData = {2, 3, 4, 5, 6};
+            double[] virusData = {1, 2, 3, 4, 5};
+            double[] contaminantData = {2, 3, 4, 5, 6};
             int[] timeData = {1, 2, 3, 4, 5};
             if (virusCheck.isSelected()) {
-                //set virusData int array to real data
+                try {
+                    String fileName = locationInput.getText() + ".ser";
+                    FileInputStream fileIn = new FileInputStream(fileName);
+                    ObjectInputStream in = new ObjectInputStream(fileIn);
+                    myReport = (WaterPurityReport) in.readObject();
+                    in.close();
+                    fileIn.close();
+                }catch(IOException i) {
+                    i.printStackTrace();
+                    return;
+                }catch(ClassNotFoundException c) {
+                    System.out.println("Report class not found");
+                    c.printStackTrace();
+                    return;
+                }
+                virusData[0] = myReport.getVirusPPM();
             }
             if (contaminantCheck.isSelected()) {
                 //set contaminantData int array to real data

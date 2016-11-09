@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 public class HistoricalLineGraph {
     private boolean virusButton;
     private boolean contaminantButton;
-    private int[] virusData;
-    private int[] contaminantData;
+    private double[] virusData;
+    private double[] contaminantData;
     private int[] timeData;
 
     /**
@@ -28,7 +28,7 @@ public class HistoricalLineGraph {
      * @param contaminantData data for contaminant levels
      * @param timeData data for years
      */
-    public HistoricalLineGraph(boolean virusButton, boolean contaminantButton, int[] virusData, int[] contaminantData, int[] timeData) {
+    public HistoricalLineGraph(boolean virusButton, boolean contaminantButton, double[] virusData, double[] contaminantData, int[] timeData) {
         this.virusButton = virusButton;
         this.contaminantButton = contaminantButton;
         this.virusData = virusData;
