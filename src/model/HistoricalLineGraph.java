@@ -59,20 +59,20 @@ public class HistoricalLineGraph {
         //populating the series with data
         Scene scene = new Scene(lineChart, 800, 600);
         if (virusButton) {
+            XYChart.Series virusSeries = new XYChart.Series();
+            virusSeries.setName("History of Virus Levels");
             for (int i = 0; i < virusData.length; i++) {
-                XYChart.Series virusSeries = new XYChart.Series();
-                virusSeries.setName("History of Virus Levels");
-                virusSeries.getData().add(timeData[i], virusData[i]);
-                lineChart.getData().add(virusSeries);
+                virusSeries.getData().add(new XYChart.Data(timeData[i], virusData[i]));
             }
+            lineChart.getData().add(virusSeries);
         }
         if (contaminantButton) {
+            XYChart.Series contaminantSeries = new XYChart.Series();
+            contaminantSeries.setName("History of Contaminant Levels");
             for (int i = 0; i < contaminantData.length; i++) {
-                XYChart.Series contaminantSeries = new XYChart.Series();
-                contaminantSeries.setName("History of Contaminant Levels");
-                contaminantSeries.getData().add(timeData[i], contaminantData[i]);
-                lineChart.getData().add(contaminantSeries);
+                contaminantSeries.getData().add(new XYChart.Data(timeData[i], contaminantData[i]));
             }
+            lineChart.getData().add(contaminantSeries);
         }
         stage.setScene(scene);
         stage.show();

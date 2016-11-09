@@ -1,12 +1,17 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.HistoricalLineGraph;
+
+import java.io.IOException;
 
 
 /**
@@ -89,10 +94,19 @@ public class HistoricalReportScreenController {
      * returns to previous screen
      */
     @FXML
-    private void handleCancelButtonAction() {
+    private void handleCancelPressed() {
         Stage thisStage = (Stage) locationInput.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../view/LandingScreen.fxml"));
+            Stage landingStage = new Stage();
+            landingStage.setTitle("Landing Screen");
+            landingStage.setScene(new Scene(root,600,400));
+            landingStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

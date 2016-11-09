@@ -75,7 +75,7 @@
                         <Insets left="20.0" top="10.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="86.0" style="-fx-background-color: #606060;" text="BACK" textFill="WHITE" onAction="#handleCancelButtonAction">
+                  <JFXButton fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="86.0" style="-fx-background-color: #606060;" text="BACK" textFill="WHITE" onAction="#handleCancelPressed">
                      <HBox.margin>
                         <Insets left="370.0" top="10.0" />
                      </HBox.margin>
