@@ -1,5 +1,8 @@
 package controller;
 
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,16 +23,16 @@ import java.io.IOException;
  */
 public class HistoricalReportScreenController {
     @FXML
-    private TextField locationInput;
+    private JFXTextField locationInput;
 
     @FXML
-    private CheckBox virusCheck;
+    private JFXCheckBox virusCheck;
 
     @FXML
-    private CheckBox contaminantCheck;
+    private JFXCheckBox contaminantCheck;
 
     @FXML
-    private DatePicker datePick;
+    private JFXDatePicker datePick;
 
     private Stage historicalStage;
 

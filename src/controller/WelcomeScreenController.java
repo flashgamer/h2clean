@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -37,8 +38,8 @@ public class WelcomeScreenController {
         thisStage.close();
         thisStage.hide();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/LoginScreen.fxml"));
-            root.getStylesheets().add(getClass().getResource("../resources/css/jfoenix-design.css").toExternalForm());
+            FXMLLoader fxmlLoader = new FXMLLoader (getClass().getResource("../view/LoginScreen.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
             Stage loginStage = new Stage();
             loginStage.setTitle("Login Screen");
             loginStage.setScene(new Scene(root,600,400));
@@ -58,8 +59,8 @@ public class WelcomeScreenController {
         thisStage.close();
         thisStage.hide();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/RegistrationScreen.fxml"));
-            root.getStylesheets().add(getClass().getResource("../resources/css/jfoenix-design.css").toExternalForm());
+            FXMLLoader fxmlLoader = new FXMLLoader (getClass().getResource("../view/RegistrationScreen.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
             Stage registerStage = new Stage();
             registerStage.setTitle("Registration Screen");
             registerStage.setScene(new Scene(root, 600, 400));

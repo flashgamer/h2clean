@@ -1,5 +1,8 @@
 package controller;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,28 +32,28 @@ import static model.LoginDB.database;
  */
 public class RegistrationScreenController {
     @FXML
-    private TextField userField;
+    private JFXTextField userField;
 
     @FXML
-    private PasswordField passField;
+    private JFXPasswordField passField;
 
     @FXML
-    private TextField titleField;
+    private JFXTextField titleField;
 
     @FXML
-    private TextField firstNameField;
+    private JFXTextField firstNameField;
 
     @FXML
-    private TextField lastNameField;
+    private JFXTextField lastNameField;
 
     @FXML
-    private TextField emailField;
+    private JFXTextField emailField;
 
     @FXML
-    private TextField addressField;
+    private JFXTextField addressField;
 
     @FXML
-    private ComboBox<String> typeBox;
+    private JFXComboBox<String> typeBox;
 
     @FXML
     private void initialize() {

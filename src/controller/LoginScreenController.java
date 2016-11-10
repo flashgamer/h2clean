@@ -1,5 +1,7 @@
 package controller;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,10 +34,10 @@ public class LoginScreenController {
         References to the FXML widgets in .fxml files
      */
     @FXML
-    private TextField userField;
+    private JFXTextField userField;
 
     @FXML
-    private PasswordField passField;
+    private JFXPasswordField passField;
 
     private Stage _loginStage;
 

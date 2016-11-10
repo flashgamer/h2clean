@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<?import javafx.scene.control.PasswordField?>
-<BorderPane fx:id="loginScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
+<BorderPane fx:id="loginScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
    <top>
-      <Label prefHeight="95.0" prefWidth="256.0" text="User Login" textAlignment="CENTER" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" prefHeight="100.0" prefWidth="256.0" text="User Login" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
-            <Font name="Arial Bold" size="48.0" />
+            <Font name="Walkway SemiBold" size="48.0" />
          </font>
+         <BorderPane.margin>
+            <Insets top="30.0" />
+         </BorderPane.margin>
       </Label>
    </top>
    <center>
@@ -28,35 +30,32 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="83.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" text="Username:   ">
+            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" text="Username:   " textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Quicksand-Regular" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="245.0" text="Password:   " GridPane.rowIndex="1">
+            <JFXTextField fx:id="userField" promptText="Username" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #ffffff;" GridPane.columnIndex="1" />
+            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="245.0" text="Password:   " textFill="WHITE" GridPane.rowIndex="1">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Quicksand-Regular" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="userField" promptText="Username" GridPane.columnIndex="1" />
-            <PasswordField fx:id="passField" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Password"/>
-            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="Sign In" GridPane.halignment="RIGHT" GridPane.rowIndex="2" onAction="#handleSignInButtonAction">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" onAction="#handleCancelPressed">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
+            <JFXPasswordField fx:id="passField" promptText="Password" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" defaultButton="true" onAction="#handleSignInButtonAction" prefHeight="49.0" prefWidth="105.0" ripplerFill="WHITE" style="-fx-background-color: #606060;" text="SIGN IN" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="130.0" />
+               </GridPane.margin>
+            </JFXButton>
+            <JFXButton alignment="CENTER" cancelButton="true" contentDisplay="CENTER" onAction="#handleCancelPressed" prefHeight="49.0" prefWidth="105.0" style="-fx-background-color: #606060;" text="CANCEL" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="60.0" />
+               </GridPane.margin>
+            </JFXButton>
          </children>
          <BorderPane.margin>
             <Insets />

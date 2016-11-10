@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -46,7 +45,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
-            <JFXButton onAction="#handleLoginButtonAction" prefHeight="73.0" prefWidth="109.0" ripplerFill="#ffffffa9" style="-fx-background-color: #606060;" stylesheets="@../../../JFoenix-master/src/resources/css/jfoenix-design.css" text="LOGIN" textFill="WHITE">
+            <JFXButton onAction="#handleLoginButtonAction" prefHeight="73.0" prefWidth="109.0" ripplerFill="#ffffffa9" style="-fx-background-color: #606060;" stylesheets="@../resources/css/jfoenix-design.css" text="LOGIN" textFill="WHITE">
                <font>
                   <Font name="Roboto Regular" size="15.0" />
                </font>
@@ -54,7 +53,7 @@
                   <Insets right="50.0" />
                </HBox.margin>
             </JFXButton>
-            <JFXButton onAction="#handleRegistrationButtonAction" prefHeight="73.0" prefWidth="118.0" ripplerFill="#ffffffa9" style="-fx-background-color: #606060;" stylesheets="@../../../JFoenix-master/src/resources/css/jfoenix-design.css" text="REGISTER" textFill="WHITE">
+            <JFXButton onAction="#handleRegistrationButtonAction" prefHeight="73.0" prefWidth="118.0" ripplerFill="#ffffffa9" style="-fx-background-color: #606060;" stylesheets="@../resources/css/jfoenix-design.css" text="REGISTER" textFill="WHITE">
                <font>
                   <Font name="Roboto Regular" size="15.0" />
                </font>
@@ -73,8 +72,4 @@
          </GridPane.margin>
       </Text>
    </children>
-   <stylesheets>
-      <URL value="@../resources/css/jfoenix-design.css" />
-      <URL value="@../resources/css/jfoenix-fonts.css" />
-   </stylesheets>
 </GridPane>
