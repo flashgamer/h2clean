@@ -3,6 +3,7 @@ package model;
 import com.lynden.gmapsfx.javascript.object.Marker;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 public class Report implements Serializable{
 
     private Account submitAccount;
-    private LocalDateTime submitTime;
+    private LocalDate submitTime;
     private String location;
     private Integer reportNumber;
 
@@ -21,14 +22,14 @@ public class Report implements Serializable{
      * by the machine.
      */
     public Report() {
-        submitTime = LocalDateTime.now();
+        submitTime = LocalDate.now();
     }
 
     /**
      * Gets the LocalDateTime when this Report was submitted
      * @return the LocalDateTime when this Report was submitted.
      */
-    public LocalDateTime getSubmitTime() {
+    public LocalDate getSubmitTime() {
         return submitTime;
     }
 
@@ -89,5 +90,24 @@ public class Report implements Serializable{
             Report another = (Report) other;
             return another.getLocation().equals(this.getLocation());
         }
+    }
+
+    /**
+     * Sets the Submit time to the specified LocalDate
+     * @param date the LocalDate that this report was submitted.
+     */
+    public void setSubmitTime(LocalDate date) {
+        this.submitTime = date;
+    }
+
+    /**
+     * Sets the Submit time to a LocalDate specified by the year, month and day
+     * specified by the user.
+     * @param year the year of the report
+     * @param month the month of the report
+     * @param day the day of the report.
+     */
+    public void setSubmitTime(int year, int month, int day) {
+        this.submitTime = LocalDate.of(year, month, day);
     }
 }

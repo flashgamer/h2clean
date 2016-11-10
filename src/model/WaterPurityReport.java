@@ -3,6 +3,7 @@ package model;
 import com.lynden.gmapsfx.javascript.object.Marker;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * Model of Water Purity Report as detailed on 2340 Wiki
@@ -41,6 +42,30 @@ public class WaterPurityReport extends Report implements Serializable{
         this.condition = condition;
         this.virusPPM = virusPPM;
         this.contaminantPPM = contaminantPPM;
+    }
+
+    /**
+     * Constructor for a WaterPurityReport
+     * @param userName username associated with the WaterPurityReport.
+     * @param location Location associated with the WaterPurityReport.
+     * @param condition WaterCondition associated with the WaterPurityReport.
+     * @param virusPPM Amount of Virus associated with the WaterPurityReport.
+     * @param contaminantPPM Amount of contaminant associated with the report.
+     * @param year The year this report was recorded.
+     * @param month The month that this report was recorded.
+     * @param day The day that this report was recorded.
+     */
+    public WaterPurityReport(String userName, String location,
+                             PurityCondition condition, double virusPPM,
+                             double contaminantPPM,
+                             int year, int month, int day) {
+        this.userName = userName;
+        this.location = location;
+        this.condition = condition;
+        this.virusPPM = virusPPM;
+        this.contaminantPPM = contaminantPPM;
+        LocalDate myDate = LocalDate.of(year, month, day);
+        this.setSubmitTime(myDate);
     }
 
     /**
