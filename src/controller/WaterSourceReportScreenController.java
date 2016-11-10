@@ -15,7 +15,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Facade;
 import model.ReportDB;
 import model.WaterCondition;
 import model.WaterSourceReport;
@@ -73,8 +72,8 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
         waterConditionField.setItems(FXCollections.observableArrayList(waterConditionList));
         GoogleMapView mapView = new GoogleMapView();
         mapView.addMapInializedListener(this);
-        this.allowReport = false;
-        this.firstRun = false;
+//        this.allowReport = false;
+//        this.firstRun = false;
     }
 
 
@@ -145,18 +144,16 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
      * @return true if none of the fields are null (i.e. not filled out)
      */
     private boolean validateData() {
-
         String errorMessage = "";
-
         if (locationField.getText() == null) {
             errorMessage += "Location cannot be empty! \n";
         }
 
         generateMarker(locationField.getText());
 
-        if (!allowReport) {
-            errorMessage += "No location found! \n";
-        }
+//        if (!allowReport) {
+//            errorMessage += "No location found! \n";
+//        }
 
         if (waterTypeField.getValue() == null) {
             errorMessage += "Water type must be chosen! \n";
@@ -169,16 +166,16 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
             return true;
         } else {
 
-            if (firstRun) {
+//            if (firstRun) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.initOwner(sourceStage);
                 alert.setTitle("Invalid Login");
                 alert.setHeaderText("Please try again with the correct values.");
                 alert.setContentText(errorMessage);
                 alert.showAndWait();
-            } else {
-                firstRun = false;
-            }
+//            } else {
+//                firstRun = false;
+//            }
 
             return false;
         }
@@ -214,8 +211,6 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
                 this.allowReport = false;
                 return;
             } else if (results.length > 1) {
-
-
                 this.allowReport = true;
                 latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
             } else {
