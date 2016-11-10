@@ -10,12 +10,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.HistoricalLineGraph;
-import model.Report;
 import model.WaterPurityReport;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 
 
 /**
@@ -52,22 +49,22 @@ public class HistoricalReportScreenController {
             double[] contaminantData = {2, 3, 4, 5, 6};
             int[] timeData = {1, 2, 3, 4, 5};
             if (virusCheck.isSelected()) {
-                try {
-                    String fileName = locationInput.getText() + ".ser";
-                    FileInputStream fileIn = new FileInputStream(fileName);
-                    ObjectInputStream in = new ObjectInputStream(fileIn);
-                    myReport = (WaterPurityReport) in.readObject();
-                    in.close();
-                    fileIn.close();
-                }catch(IOException i) {
-                    i.printStackTrace();
-                    return;
-                }catch(ClassNotFoundException c) {
-                    System.out.println("Report class not found");
-                    c.printStackTrace();
-                    return;
-                }
-                virusData[0] = myReport.getVirusPPM();
+//                try {
+//                    String fileName = locationInput.getText() + ".ser";
+//                    FileInputStream fileIn = new FileInputStream(fileName);
+//                    ObjectInputStream in = new ObjectInputStream(fileIn);
+//                    myReport = (WaterPurityReport) in.readObject();
+//                    in.close();
+//                    fileIn.close();
+//                }catch(IOException i) {
+//                    i.printStackTrace();
+//                    return;
+//                }catch(ClassNotFoundException c) {
+//                    System.out.println("Report class not found");
+//                    c.printStackTrace();
+//                    return;
+//                }
+//                virusData[0] = myReport.getVirusPPM();
             }
             if (contaminantCheck.isSelected()) {
                 //set contaminantData int array to real data
