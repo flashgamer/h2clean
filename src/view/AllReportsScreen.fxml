@@ -2,10 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="registrationScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllReportsScreenController">
+<BorderPane fx:id="registrationScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../../../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllReportsScreenController">
     <top>
         <Label prefHeight="95.0" prefWidth="393.0" text="All Reports" textFill="WHITE" BorderPane.alignment="CENTER">
             <font>
@@ -32,29 +30,63 @@
    <left>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="303.0" prefWidth="186.0" BorderPane.alignment="CENTER">
          <children>
-            <ListView fx:id="reportNumber" layoutX="22.0" layoutY="-1.0" prefHeight="277.0" prefWidth="217.0" />
+            <HBox prefHeight="281.0" prefWidth="211.0">
+               <children>
+                  <ListView fx:id="locationColumn" prefHeight="261.0" prefWidth="205.0" />
+                  <ListView fx:id="reportNumberColumn" prefHeight="277.0" prefWidth="217.0" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
+            <Label text="Location" textFill="WHITE">
+               <font>
+                  <Font name="Walkway SemiBold" size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="22.0" />
+               </padding>
+            </Label>
+            <Label text="Report Number" textFill="WHITE">
+               <font>
+                  <Font name="Walkway SemiBold" size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="103.0" />
+               </padding>
+            </Label>
          </children>
+         <BorderPane.margin>
+            <Insets left="20.0" />
+         </BorderPane.margin>
       </AnchorPane>
    </left>
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <SplitPane dividerPositions="0.5" maxWidth="340.0" prefHeight="73.0" style="-fx-background-color: #3fa9f5;">
-               <VBox.margin>
-                  <Insets left="-250.0" />
-               </VBox.margin>
-               <items>
-                  <Label text="Report Number:" textFill="WHITE">
-                     <padding>
-                        <Insets bottom="20.0" />
-                     </padding>
+            <GridPane prefHeight="45.0" prefWidth="350.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="70.0" prefWidth="177.0" text="Report Number:" textFill="WHITE">
                      <font>
                         <Font name="Walkway SemiBold" size="24.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets bottom="15.0" top="30.0" />
+                     </GridPane.margin>
                   </Label>
-                  <Label text="Label" />
-               </items>
-            </SplitPane>
+                  <Label fx:id="reportNumber" GridPane.columnIndex="1" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="-250.0" />
+               </VBox.margin>
+            </GridPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="303.0" prefWidth="488.0">
                <children>
                   <GridPane alignment="TOP_CENTER" layoutX="10.0" layoutY="-11.0" maxHeight="200.0" prefHeight="313.0" prefWidth="336.0" style="-fx-background-color: #ffffff;">
@@ -154,12 +186,22 @@
             </AnchorPane>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <JFXButton text="VIEW ">
+                  <JFXButton fx:id="availabilityButton" onAction="#handleViewAvailabilityReportsAction" style="-fx-background-color: #606060;" text="VIEW" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="-275.0" />
+                        <Insets bottom="15.0" left="-50.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Roboto Bold" size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton onAction="#handleCancelPressed" style="-fx-background-color: #606060;" text="CANCEL" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Bold" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <Button fx:id="availabilityButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleViewAvailabilityReportsAction" text="View Availability Reports" />
                </children>
             </HBox>
          </children>
