@@ -16,16 +16,10 @@ import model.ReportDB;
 import model.WaterPurityReport;
 import model.WaterSourceReport;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import static model.ReportDB.database;
 
 /**
  * Created by lol on 10/16/16.
@@ -151,11 +145,7 @@ public class AllReportsScreenController {
      * @param newValue String representation of the Location.
      */
     private void onLocationSelect(String newValue) {
-        currentReportList.clear();
-        reportNumberColumn.getItems().clear();
-        currentReportNumberList.clear();
-
-        List<Report> reportList = myDB.database.get(newValue);
+        List<Report> reportList = myDB.get(newValue);
         for (Report r : reportList) {
             reportNumberColumn.getItems().add(r.getReportNumber().toString());
             currentReportNumberList.add(r.getReportNumber());
