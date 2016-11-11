@@ -2,67 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/GMapsFX-2.0.9.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/gson-2.7.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/AllReportsScreenController$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/AllReportsScreenController$2.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/AllReportsScreenController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/LandingScreenController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/LoginScreenController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/ProfileScreenController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/RegistrationScreenController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/SubmitReportController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/WaterAvailabilityReportController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/WaterPurityReportScreenController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/WaterSourceReportScreenController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/controller/WelcomeScreenController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/fxapp/MainFXApplication.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/Account.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/Administrator.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/Facade.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/FileFormatException.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/HistoricalReport.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/Location.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/LoginDB.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/Manager.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/PersistenceManager$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/PersistenceManager.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/Profile.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/PurityCondition.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/Report.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/ReportDB.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/User.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/WaterCondition.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/WaterPurityReport.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/WaterSourceReport.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/WaterType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/model/Worker.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/description.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_7.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_lynden_GMapsFX_2_0_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/h2clean.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/AllReportsScreen.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/LandingScreen.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/LoginScreen.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/ProfileScreen.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/RegistrationScreen.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/SubmitReportPopup.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/ViewReportPopup.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/WaterAvailabilityReportScreen.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/WaterPurityReportScreen.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/WaterSourceReportScreen.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/h2clean/view/WelcomeScreen.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/WaterPurityReportScreen.fxml" afterPath="$PROJECT_DIR$/src/view/WaterPurityReportScreen.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -156,8 +96,8 @@
       <file leaf-file-name="WelcomeScreenController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controller/WelcomeScreenController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
+            <state relative-caret-position="66">
+              <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
               <folding>
                 <element signature="e#566#567#0" expanded="true" />
                 <element signature="e#602#603#0" expanded="true" />
@@ -960,7 +900,28 @@
       <option name="project" value="LOCAL" />
       <updated>1477503122289</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Fixed UI on the Purity Report page, and also added UI for selecting date.">
+      <created>1478763793571</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1478763793571</updated>
+    </task>
+    <task id="LOCAL-00018" summary="UI for purity report screen and water source report screen updated.">
+      <created>1478837648321</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1478837648322</updated>
+    </task>
+    <task id="LOCAL-00019" summary="profile ui updated and working on all report screen">
+      <created>1478850195533</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1478850195533</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1062,7 +1023,10 @@
     <MESSAGE value="Fixed a few issues with it opening a new landing screen every time.&#10;" />
     <MESSAGE value="Lots of JD" />
     <MESSAGE value="Finished up JD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished up JD" />
+    <MESSAGE value="Fixed UI on the Purity Report page, and also added UI for selecting date." />
+    <MESSAGE value="UI for purity report screen and water source report screen updated." />
+    <MESSAGE value="profile ui updated and working on all report screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="profile ui updated and working on all report screen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1391,8 +1355,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/WelcomeScreenController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
+        <state relative-caret-position="66">
+          <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
           <folding>
             <element signature="e#566#567#0" expanded="true" />
             <element signature="e#602#603#0" expanded="true" />
