@@ -51,12 +51,12 @@
          <children>
             <Label text="Location: " textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Walkway SemiBold" size="24.0" />
                </font>
             </Label>
             <Label text="Overall Condition:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Walkway SemiBold" size="24.0" />
                </font>
                <GridPane.margin>
                   <Insets right="5.0" />
@@ -64,7 +64,7 @@
             </Label>
             <Label text="Contaminant PPM:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <font>
-                  <Font name="Quicksand-Regular" size="18.0" />
+                  <Font name="Walkway SemiBold" size="24.0" />
                </font>
                <GridPane.margin>
                   <Insets right="5.0" />
@@ -72,18 +72,18 @@
             </Label>
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Date:" textFill="WHITE" GridPane.halignment="RIGHT">
                <font>
-                  <Font name="Quicksand-Regular" size="18.0" />
+                  <Font name="Walkway SemiBold" size="24.0" />
                </font>
             </Label>
 
-            <Label prefHeight="23.0" prefWidth="98.0" text="Virus PPM:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Label prefHeight="26.0" prefWidth="121.0" text="Virus PPM:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Walkway SemiBold" size="24.0" />
                </font>
             </Label>
-            <JFXDatePicker fx:id="datePicker" style="-fx-text-fill: #ffffff;" GridPane.columnIndex="1" />
+            <JFXDatePicker fx:id="datePicker" style="-fx-text-fill: #ffffff; -fx-text-base-color: #ffffff; -fx-prompt-text-fill: #ffffff;" GridPane.columnIndex="1" />
             <JFXTextField fx:id="locationField" promptText="e.g. 123 Main St." style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <JFXComboBox fx:id="conditionField" prefWidth="150.0" style="-fx-text-fill: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <JFXComboBox fx:id="conditionField" prefWidth="150.0" style="-fx-text-base-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="8.5" />
                </GridPane.margin>
