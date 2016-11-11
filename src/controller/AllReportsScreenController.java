@@ -62,6 +62,9 @@ public class AllReportsScreenController {
     @FXML
     private Button backButton;
 
+    @FXML
+    private Button availabilityButton;
+
     public static List<String> reportLocations = new ArrayList<>();
     private List<Report> currentReportList;
     private List<Integer> currentReportNumberList;
@@ -212,7 +215,7 @@ public class AllReportsScreenController {
      */
     @FXML
     private void handleViewAvailabilityReportsAction() {
-        Stage thisStage = (Stage) backButton.getScene().getWindow();
+        Stage thisStage = (Stage) availabilityButton.getScene().getWindow();
         thisStage.close();
         thisStage.hide();
         try {
