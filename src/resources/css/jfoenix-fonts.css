@@ -18,33 +18,38 @@
  */
 
 @font-face {
-  font-family: Roboto;
+  -fx-font-family: Roboto;
   src: url("../font/roboto/Roboto-Regular.ttf");
 }
 
 @font-face {
-  font-family: "Roboto Medium";
+  -fx-font-family: "Roboto Medium";
   src: url("../font/roboto/Roboto-Medium.ttf");
 }
 
 @font-face {
-  font-family: "Roboto Light";
+  -fx-font-family: "Roboto Light";
   src: url("../font/roboto/Roboto-Light.ttf");
 }
 
 @font-face {
-  font-family: "Roboto Bold";
+  -fx-font-family: "Roboto Bold";
   src: url("../font/roboto/Roboto-Bold.ttf");
 }
 
 @font-face {
-    font-family: "Walkway SemiBold";
-    src: url("../font/walkway/Walkway SemiBold.ttf");
+  -fx-font-family: "Walkway SemiBold";
+  src: url("../font/walkway/Walkway-SemiBold.ttf");
 }
 
 @font-face {
-    font-family: "Quicksand-Regular";
-    src: url("../font/quicksand/Quicksand-Regular.otf");
+  -fx-font-family: "Quicksand-Regular";
+  src: url("../font/quicksand/Quicksand-Regular.otf");
+}
+
+@font-face {
+  -fx-font-family: "Quicksand-Bold";
+  src: url("../font/quicksand/Quicksand-Bold.otf");
 }
 
 

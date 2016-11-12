@@ -14,7 +14,7 @@
 
 <BorderPane fx:id="registrationScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistrationScreenController">
     <top>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="76.0" prefWidth="283.0" text="Registration" textFill="WHITE" BorderPane.alignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="76.0" prefWidth="283.0" style="-fx-font-size: 46;" styleClass="title" text="Registration" textFill="WHITE" BorderPane.alignment="CENTER">
             <font>
                 <Font name="Walkway SemiBold" size="48.0" />
             </font>
@@ -37,7 +37,7 @@
             <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" text="Title: " textFill="WHITE">
+            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" styleClass="base" text="Title: " textFill="WHITE">
                <font>
                   <Font name="Quicksand-Regular" size="24.0" />
                </font>
@@ -49,7 +49,7 @@
                </padding>
             </Label>
             <JFXTextField fx:id="titleField" promptText="e.g. Mr./Ms." style="-fx-text-fill: #ffffff; -fx-prompt-text-fill: #cccccc;" GridPane.columnIndex="1" />
-            <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="84.0" prefHeight="30.0" prefWidth="301.0" text="Full Name: " textFill="WHITE" GridPane.rowIndex="1">
+            <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="84.0" prefHeight="30.0" prefWidth="301.0" styleClass="base" text="Full Name: " textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="Quicksand-Regular" size="24.0" />
                </font>
@@ -63,7 +63,7 @@
                   <Insets left="115.0" />
                </GridPane.margin>
             </JFXTextField>
-            <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="18.0" prefHeight="30.0" prefWidth="301.0" text="Email: " textFill="WHITE" GridPane.rowIndex="2">
+            <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="18.0" prefHeight="30.0" prefWidth="301.0" styleClass="base" text="Email: " textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="Quicksand-Regular" size="24.0" />
                </font>
@@ -72,7 +72,7 @@
                </padding>
             </Label>
             <JFXTextField fx:id="emailField" promptText="e.g. john@gmail.com" style="-fx-text-fill: #ffffff; -fx-prompt-text-fill: #cccccc;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="89.0" prefHeight="30.0" prefWidth="301.0" text="Address: " textFill="WHITE" GridPane.rowIndex="3">
+                <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="89.0" prefHeight="30.0" prefWidth="301.0" styleClass="base" text="Address: " textFill="WHITE" GridPane.rowIndex="3">
                     <font>
                    <Font name="Quicksand-Regular" size="24.0" />
                </font>
@@ -81,26 +81,26 @@
                </padding>
                 </Label>
             <JFXTextField fx:id="addressField" promptText="Street Name, City, State, Zip" style="-fx-text-fill: #ffffff; -fx-prompt-text-fill: #cccccc;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" text="Username:   " textFill="WHITE" GridPane.rowIndex="4">
+                <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" styleClass="base" text="Username:   " textFill="WHITE" GridPane.rowIndex="4">
                     <font>
                         <Font name="Quicksand-Regular" size="24.0" />
                     </font>
                 </Label>
             <JFXTextField fx:id="userField" promptText="Username" style="-fx-text-fill: #ffffff; -fx-prompt-text-fill: #cccccc;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="245.0" text="Password:   " textFill="WHITE" GridPane.rowIndex="5">
+                <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="245.0" styleClass="base" text="Password:   " textFill="WHITE" GridPane.rowIndex="5">
                     <font>
                         <Font name="Quicksand-Regular" size="24.0" />
                     </font>
                 </Label>
             <JFXPasswordField fx:id="passField" promptText="Password" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                <Label alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="192.0" text="Type:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                <Label alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="192.0" styleClass="base" text="Type:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                 <font>
                    <Font name="Quicksand-Regular" size="24.0" />
                </font>
             </Label>
             <JFXComboBox fx:id="typeBox" prefHeight="25.0" prefWidth="160.0" promptText="Choose Type" style="-fx-inner-color: #cccccc;" styleClass=".combobox" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <JFXButton fx:id="registerButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleRegisterButtonAction" prefHeight="45.0" prefWidth="125.0" style="-fx-background-color: #606060;" text="REGISTER" textFill="WHITE" GridPane.rowIndex="7">
+            <JFXButton fx:id="registerButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleRegisterButtonAction" prefHeight="45.0" prefWidth="125.0" styleClass="button1" text="REGISTER" textFill="WHITE" GridPane.rowIndex="7">
                <font>
                   <Font name="Roboto Light" size="15.0" />
                </font>
@@ -108,7 +108,7 @@
                   <Insets left="110.0" />
                </GridPane.margin>
             </JFXButton>
-            <JFXButton fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleCancelPressed" prefHeight="45.0" prefWidth="106.0" style="-fx-background-color: #606060;" text="CANCEL" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <JFXButton fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleCancelPressed" prefHeight="45.0" prefWidth="106.0" styleClass="button1" text="CANCEL" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font name="Roboto Light" size="15.0" />
                </font>

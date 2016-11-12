@@ -12,22 +12,22 @@
    <right>
       <VBox prefHeight="364.0" prefWidth="140.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton fx:id="editProfileButton" onAction="#editProfile" prefHeight="73.0" prefWidth="117.0" style="-fx-background-color: #606060;" text="EDIT PROFILE" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <JFXButton fx:id="editProfileButton" onAction="#editProfile" prefHeight="73.0" prefWidth="117.0" style="-fx-background-color: #606060;" styleClass="button1" text="EDIT PROFILE" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <VBox.margin>
                   <Insets left="10.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton fx:id="submitReport" onAction="#handleSubmitReportButtonAction" prefHeight="73.0" prefWidth="117.0" style="-fx-background-color: #606060;" text="SUBMIT REPORT" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <JFXButton fx:id="submitReport" onAction="#handleSubmitReportButtonAction" prefHeight="73.0" prefWidth="117.0" style="-fx-background-color: #606060;" styleClass="button1" text="SUBMIT REPORT" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton fx:id="viewReportButton" onAction="#handleViewReportButtonAction" prefHeight="73.0" prefWidth="117.0" style="-fx-background-color: #606060;" text="VIEW REPORT" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <JFXButton fx:id="viewReportButton" onAction="#handleViewReportButtonAction" prefHeight="73.0" prefWidth="117.0" style="-fx-background-color: #606060;" styleClass="button1" text="VIEW REPORT" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton fx:id="logoutButton" onAction="#handleLogoutButtonAction" prefHeight="47.0" prefWidth="117.0" style="-fx-background-color: #b2b2b2;" text="LOGOUT" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <JFXButton fx:id="logoutButton" onAction="#handleLogoutButtonAction" prefHeight="47.0" prefWidth="117.0" style="-fx-background-color: #b2b2b2;" styleClass="button1" text="LOGOUT" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <VBox.margin>
                   <Insets left="10.0" top="15.0" />
                </VBox.margin>
@@ -36,7 +36,7 @@
       </VBox>
    </right>
    <top>
-      <Label alignment="CENTER" prefHeight="86.0" prefWidth="262.0" text="Welcome" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Label alignment="CENTER" prefHeight="86.0" prefWidth="262.0" styleClass="title" text="Welcome" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font name="Walkway SemiBold" size="50.0" />
          </font>

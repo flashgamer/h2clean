@@ -621,8 +621,28 @@
 	-fx-font-family: "Roboto";
 	-fx-font-size: 12.0;
 }
-.button{
-	-fx-font-family: "Roboto Light";
-	-fx-font-size: 18.0;
+/* for popup boxes */
+.button2{
+	-fx-font-family: "Roboto";
+	-fx-background-color: "#606060";
+	-fx-text-fill: "ffffff";
+	-fx-font-size: 13.0;
 	-fx-background-radius: 10.0;
+}
+.button1{
+	-fx-font-family: "Roboto Light";
+	-fx-background-color: "#606060";
+	-fx-font-size: 16.0;
+	-fx-background-radius: 10.0;
+}
+/* for main title of screens */
+.title {
+	-fx-font-family: "Walkway SemiBold";
+	-fx-text-fill: "#ffffff";
+	-fx-font-size: 48.0;
+}
+
+/* for general titles in body */
+.base{
+	-fx-font-family: "Quicksand";
 }

@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="registrationScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllReportsScreenController">
+<BorderPane fx:id="registrationScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllReportsScreenController">
     <top>
-        <Label prefHeight="95.0" prefWidth="393.0" text="All Reports" textFill="WHITE" BorderPane.alignment="CENTER">
+        <Label prefHeight="95.0" prefWidth="393.0" styleClass="title" text="All Reports" textFill="WHITE" BorderPane.alignment="CENTER">
             <font>
                 <Font name="Walkway SemiBold" size="48.0" />
             </font>
@@ -39,15 +39,15 @@
                   <Insets top="20.0" />
                </padding>
             </HBox>
-            <Label text="Location" textFill="WHITE">
+            <Label prefHeight="19.0" prefWidth="97.0" styleClass="base" text="Location" textFill="WHITE">
                <font>
                   <Font name="Walkway SemiBold" size="16.0" />
                </font>
                <padding>
-                  <Insets left="22.0" />
+                  <Insets left="16.0" />
                </padding>
             </Label>
-            <Label text="Report Number" textFill="WHITE">
+            <Label style="-fx-font-size: 14;" styleClass="base" text="Report Number" textFill="WHITE">
                <font>
                   <Font name="Walkway SemiBold" size="16.0" />
                </font>
@@ -66,7 +66,7 @@
          <children>
             <HBox prefHeight="27.0" prefWidth="347.0">
                <children>
-                  <Label prefHeight="32.0" prefWidth="175.0" text="Report Number:" textFill="WHITE">
+                  <Label prefHeight="29.0" prefWidth="217.0" styleClass="base" text="Report Number:" textFill="WHITE">
                      <font>
                         <Font name="Walkway SemiBold" size="24.0" />
                      </font>
@@ -85,8 +85,8 @@
                <children>
                   <GridPane alignment="TOP_CENTER" layoutX="10.0" layoutY="-11.0" maxHeight="200.0" prefHeight="313.0" prefWidth="336.0" style="-fx-background-color: #ffffff;">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="151.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="145.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="164.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="132.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints maxHeight="24.0" minHeight="0.0" prefHeight="0.0" />
@@ -100,7 +100,7 @@
                         <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label prefHeight="27.0" prefWidth="151.0" text="Date/Time:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                        <Label prefHeight="27.0" prefWidth="151.0" styleClass="base" text="Date/Time:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                            <font>
                               <Font name="Walkway SemiBold" size="16.0" />
                            </font>
@@ -108,7 +108,7 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="24.0" prefWidth="151.0" text="Report Type:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                        <Label prefHeight="24.0" prefWidth="151.0" styleClass="base" text="Report Type:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                            <font>
                               <Font name="Walkway SemiBold" size="16.0" />
                            </font>
@@ -119,7 +119,7 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
-                        <Label layoutX="40.0" layoutY="84.0" prefHeight="24.0" prefWidth="151.0" text="Name of Reporter:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+                        <Label layoutX="40.0" layoutY="84.0" prefHeight="23.0" prefWidth="169.0" styleClass="base" text="Name of Reporter:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                            <font>
                               <Font name="Walkway SemiBold" size="16.0" />
                            </font>
@@ -127,7 +127,7 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
-                        <Label layoutX="40.0" layoutY="18.0" prefHeight="30.0" prefWidth="301.0" text="Location:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+                        <Label layoutX="40.0" layoutY="18.0" prefHeight="30.0" prefWidth="301.0" styleClass="base" text="Location:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                            <font>
                               <Font name="Walkway SemiBold" size="16.0" />
                            </font>
@@ -135,7 +135,7 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="80.0" prefWidth="142.0" text="Type of Water:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+                        <Label prefHeight="80.0" prefWidth="142.0" styleClass="base" text="Type of Water:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="5">
                            <font>
                               <Font name="Walkway SemiBold" size="16.0" />
                            </font>
@@ -143,7 +143,7 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
-                        <Label layoutX="40.0" layoutY="89.0" prefHeight="24.0" prefWidth="151.0" text="Condition of Water:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+                        <Label layoutX="40.0" layoutY="89.0" prefHeight="23.0" prefWidth="163.0" style="-fx-font-size: 14;" styleClass="base" text="Condition of Water:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="6">
                            <font>
                               <Font name="Walkway SemiBold" size="16.0" />
                            </font>
@@ -151,7 +151,7 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="30.0" prefWidth="301.0" text="Contaminant PPM:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="7">
+                        <Label prefHeight="30.0" prefWidth="301.0" style="-fx-font-size: 14;" styleClass="base" text="Contaminant PPM:" textFill="#606060" GridPane.halignment="LEFT" GridPane.rowIndex="7">
                            <font>
                               <Font name="Walkway SemiBold" size="16.0" />
                            </font>
@@ -159,7 +159,7 @@
                               <Insets right="13.0" />
                            </padding>
                         </Label>
-                        <Label text="Virus PPM:" textFill="#606060" GridPane.rowIndex="8">
+                        <Label styleClass="base" text="Virus PPM:" textFill="#606060" GridPane.rowIndex="8">
                            <font>
                               <Font name="Walkway SemiBold" size="16.0" />
                            </font>
@@ -211,7 +211,7 @@
             </AnchorPane>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <JFXButton fx:id="availabilityButton" onAction="#handleViewAvailabilityReportsAction" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #606060;" text="VIEW" textFill="WHITE">
+                  <JFXButton fx:id="availabilityButton" onAction="#handleViewAvailabilityReportsAction" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #606060;" styleClass="button1" text="VIEW" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="10.0" left="-85.0" top="-10.0" />
                      </HBox.margin>
@@ -219,7 +219,7 @@
                         <Font name="Roboto Bold" size="13.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="backButton" onAction="#handleBackButtonAction" prefHeight="37.0" prefWidth="76.0" style="-fx-background-color: #606060;" text="BACK" textFill="WHITE">
+                  <JFXButton fx:id="backButton" onAction="#handleBackButtonAction" prefHeight="29.0" prefWidth="76.0" style="-fx-background-color: #606060;" styleClass="button1" text="BACK" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="13.0" />
                      </font>

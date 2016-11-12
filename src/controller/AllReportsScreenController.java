@@ -74,7 +74,7 @@ public class AllReportsScreenController {
     /**
      * Called automatically to initialize the screen.
      */
-    @FXML
+    //@FXML
     private void initialize() {
         try {
             FileInputStream fileIn = new FileInputStream("reportLocations.ser");

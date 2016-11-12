@@ -13,7 +13,7 @@
 
 <BorderPane fx:id="loginScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
    <top>
-      <Label alignment="CENTER" prefHeight="100.0" prefWidth="256.0" text="User Login" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" prefHeight="100.0" prefWidth="256.0" styleClass="title" text="User Login" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
             <Font name="Walkway SemiBold" size="48.0" />
          </font>
@@ -34,24 +34,24 @@
           <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" text="Username:   " textFill="WHITE">
+            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="301.0" styleClass="base" text="Username:   " textFill="WHITE">
                <font>
                   <Font name="Quicksand-Regular" size="24.0" />
                </font>
             </Label>
             <JFXTextField fx:id="userField" promptText="Username" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #ffffff;" GridPane.columnIndex="1" />
-            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="245.0" text="Password:   " textFill="WHITE" GridPane.rowIndex="1">
+            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="245.0" styleClass="base" text="Password:   " textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="Quicksand-Regular" size="24.0" />
                </font>
             </Label>
             <JFXPasswordField fx:id="passField" promptText="Password" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" defaultButton="true" onAction="#handleSignInButtonAction" prefHeight="49.0" prefWidth="105.0" ripplerFill="WHITE" style="-fx-background-color: #606060;" text="SIGN IN" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" defaultButton="true" onAction="#handleSignInButtonAction" prefHeight="49.0" prefWidth="105.0" ripplerFill="WHITE" style="-fx-background-color: #606060;" styleClass="button1" text="SIGN IN" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="130.0" />
                </GridPane.margin>
             </JFXButton>
-            <JFXButton alignment="CENTER" cancelButton="true" contentDisplay="CENTER" onAction="#handleCancelPressed" prefHeight="49.0" prefWidth="105.0" style="-fx-background-color: #606060;" text="CANCEL" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <JFXButton alignment="CENTER" cancelButton="true" contentDisplay="CENTER" onAction="#handleCancelPressed" prefHeight="49.0" prefWidth="105.0" style="-fx-background-color: #606060;" styleClass="button1" text="CANCEL" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="60.0" />
                </GridPane.margin>

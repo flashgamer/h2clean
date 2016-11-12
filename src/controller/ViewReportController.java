@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +20,10 @@ public class ViewReportController {
     JFXComboBox<String> viewReportType;
 
     @FXML
-    Button proceedButton;
+    JFXButton proceedButton;
 
     @FXML
-    Button cancelButton;
+    JFXButton cancelButton;
 
     private Stage _viewReportPopupStage;
 

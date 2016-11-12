@@ -3,8 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
@@ -25,27 +23,19 @@
    <children>
       <VBox prefHeight="318.0" prefWidth="600.0">
          <children>
-            <ImageView fitHeight="85.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resources/cloud.png" />
-               </image>
-               <VBox.margin>
-                  <Insets left="220.0" top="30.0" />
-               </VBox.margin>
-            </ImageView>
-            <Label fx:id="welcome" alignment="CENTER" prefHeight="17.0" prefWidth="671.0" text="h2clean" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="welcome" alignment="CENTER" prefHeight="17.0" prefWidth="671.0" style="-fx-font-size: 50;" styleClass="title" text="h2clean" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Walkway SemiBold" size="55.0" />
                </font>
                <VBox.margin>
-                  <Insets left="50.0" right="50.0" />
+                  <Insets left="50.0" right="50.0" top="110.0" />
                </VBox.margin>
             </Label>
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
-            <JFXButton onAction="#handleLoginButtonAction" prefHeight="73.0" prefWidth="109.0" ripplerFill="#ffffffa9" style="-fx-background-color: #606060;" stylesheets="@../resources/css/jfoenix-design.css" text="LOGIN" textFill="WHITE">
+            <JFXButton onAction="#handleLoginButtonAction" prefHeight="73.0" prefWidth="109.0" ripplerFill="#ffffffa9" styleClass="button1" text="LOGIN" textFill="WHITE">
                <font>
                   <Font name="Roboto Regular" size="15.0" />
                </font>
@@ -53,7 +43,7 @@
                   <Insets right="50.0" />
                </HBox.margin>
             </JFXButton>
-            <JFXButton onAction="#handleRegistrationButtonAction" prefHeight="73.0" prefWidth="118.0" ripplerFill="#ffffffa9" style="-fx-background-color: #606060;" stylesheets="@../resources/css/jfoenix-design.css" text="REGISTER" textFill="WHITE">
+            <JFXButton onAction="#handleRegistrationButtonAction" prefHeight="73.0" prefWidth="118.0" ripplerFill="#ffffffa9" styleClass="button1" text="REGISTER" textFill="WHITE">
                <font>
                   <Font name="Roboto Regular" size="15.0" />
                </font>
@@ -63,7 +53,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Find and view water sources to benefit your community." textAlignment="CENTER" textOrigin="TOP" wrappingWidth="500.60009765625" GridPane.rowIndex="1">
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="base" text="Find and view water sources to benefit your community." textAlignment="CENTER" textOrigin="TOP" wrappingWidth="500.60009765625" GridPane.rowIndex="1">
          <font>
             <Font name="Quicksand-Regular" size="21.0" />
          </font>

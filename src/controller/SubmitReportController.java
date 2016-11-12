@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +29,7 @@ public class SubmitReportController {
     Label headingText;
 
     @FXML
-    ComboBox typeReport;
+    JFXComboBox typeReport;
 
     private Stage _submitReportPopupStage;
 

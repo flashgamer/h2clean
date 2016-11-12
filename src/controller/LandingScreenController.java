@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,16 +21,16 @@ import java.io.IOException;
  */
 public class LandingScreenController {
     @FXML
-    private Button editProfileButton;
+    private JFXButton editProfileButton;
 
     @FXML
-    private Button logoutButton;
+    private JFXButton logoutButton;
 
     @FXML
-    private Button submitReport;
+    private JFXButton submitReport;
 
     @FXML
-    private Button viewReportButton;
+    private JFXButton viewReportButton;
 
 
 //    /**
