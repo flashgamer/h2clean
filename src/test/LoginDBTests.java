@@ -2,6 +2,7 @@ package test;
 
 import model.LoginDB;
 import model.Account;
+import model.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -71,7 +72,7 @@ public class LoginDBTests {
     @Test
     public void testInsert() {
         String entryName = "anEntry";
-        Account a = new Account("A User", "User1" "123", "Worker");
+        Account a = new Account(new User(), "User1", "123", "Worker");
 
         //Case 1
         try {
