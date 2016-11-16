@@ -57,7 +57,7 @@ public class ReportDB implements Serializable {
      * @return LinkedList with all locations from all reports in database.
      */
     public LinkedList<Report> get(String location) {
-        if (!backingMap.containsKey(location)) {
+        if (null == location || !backingMap.containsKey(location)) {
             throw new IllegalArgumentException("Report does not exist in database");
         }
         return backingMap.get(location);
