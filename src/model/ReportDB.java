@@ -49,7 +49,6 @@ public class ReportDB implements Serializable {
             backingMap.get(report.getLocation()).add(report);
             reportNumber++;
         }
-
     }
 
     /**

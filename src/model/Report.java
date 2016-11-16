@@ -88,7 +88,8 @@ public class Report implements Serializable{
         else if (!(other instanceof Report)) { return false; }
         else {
             Report another = (Report) other;
-            return another.getLocation().equals(this.getLocation());
+            return another.getLocation().equals(this.getLocation())
+                    && another.getSubmitTime().equals(this.getSubmitTime());
         }
     }
 
