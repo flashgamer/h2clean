@@ -29,7 +29,7 @@ public class LoginDBTests {
      * Tests the get method of LoginDB
      * Case 1: gets null
      * Case 2: Gets account that does not exist in database
-     * Case 3: Gets accoutn that does exist in database
+     * Case 3: Gets account that does exist in database
      */
     @Test
     public void testGet() {
@@ -59,5 +59,58 @@ public class LoginDBTests {
         } catch (IllegalArgumentException e) {
             Assert.fail("An accounts exists for Lillian.");
         }
+    }
+
+    /**
+     * tests the insert method of LoginDB.
+     * Case 1: entryName null but value not
+     * Case 2: value null but entryName not
+     * Case 3: both parameters are null
+     * Case 4: both parameters are valid
+     */
+    @Test
+    public void testInsert() {
+        String entryName = "anEntry";
+        Account a = new Account("A User", "User1" "123", "Worker");
+
+        //Case 1
+        try {
+            db.insert(null,a);
+            Assert.fail();
+        }
+        catch (IllegalArgumentException i) {
+            //intentionally left empty
+        }
+
+        //Case 2
+        try {
+            db.insert(entryName, null);
+            Assert.fail();
+        }
+        catch (IllegalArgumentException i) {
+            //intentionally left empty
+        }
+
+        Assert.assertFalse(db.containsKey(entryName));
+
+        //Case 3
+        try {
+            db.insert(null, null);
+            Assert.fail();
+        }
+        catch (IllegalArgumentException i) {
+            //intentionally left empty
+        }
+
+
+        //Case 4
+        try {
+            db.insert(entryName,a);
+        }
+        catch(Exception e) {
+            Assert.fail();
+        }
+
+        Assert.assertEquals(db.get(entryName), a);
     }
 }

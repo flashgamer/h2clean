@@ -61,7 +61,7 @@ public class ReportDBTests {
         try {
             db.insert(another); // should work
         } catch (Exception e) {
-            Assert.fail(); //fails if throws an exception
+            Assert.fail(); //fails if it throws an exception
         }
 
         Assert.assertEquals(db.get(location).get(1), another); //assert that another is added into db
