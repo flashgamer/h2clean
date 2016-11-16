@@ -37,7 +37,9 @@ public class LoginDB {
      * @return value for given key
      */
     public Account get(String entryName) {
-        if (databaseBacking.containsKey(entryName)) {
+        if (entryName == null) {
+            throw new IllegalArgumentException("Cannot get null from database.")
+        } else if (databaseBacking.containsKey(entryName)) {
             return databaseBacking.get(entryName);
         } else {
             throw new NoSuchElementException("Entry does not exist");
@@ -93,5 +95,13 @@ public class LoginDB {
      */
     public static void setCurrentUser(Account currentUser) {
         LoginDB.currentUser = currentUser;
+    }
+
+    /**
+     * Returns the database backing
+     * @return database backing
+     */
+    public Map<String, Account> getDatabaseBacking() {
+        return databaseBacking;
     }
 }
