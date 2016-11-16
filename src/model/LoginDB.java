@@ -38,7 +38,7 @@ public class LoginDB {
      */
     public Account get(String entryName) {
         if (entryName == null) {
-            throw new IllegalArgumentException("Cannot get null from database.")
+            throw new IllegalArgumentException("Cannot get null from database.");
         } else if (databaseBacking.containsKey(entryName)) {
             return databaseBacking.get(entryName);
         } else {

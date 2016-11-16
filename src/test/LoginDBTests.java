@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 /**
  * Created by Lillian on 11/16/16.
