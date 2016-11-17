@@ -12,8 +12,8 @@ import java.util.NoSuchElementException;
 public class LoginDB {
 
     public final static LoginDB database = new LoginDB();
-    private Map<String, Account> databaseBacking;
-    public static Account currentUser;
+    private final Map<String, Account> databaseBacking;
+    // --Commented out by Inspection (11/16/16, 3:09 PM):private static Account currentUser;
 
 
     /**
@@ -21,14 +21,6 @@ public class LoginDB {
      */
     public LoginDB() {
         this.databaseBacking = new HashMap<String, Account>();
-        this.populateDefaults();
-    }
-
-    /**
-     * default entries in database go here
-     */
-    private void populateDefaults() {
-        //this.insert("ACCOUNTLIST", FXCollections.observableArrayList());
     }
 
     /**
@@ -81,21 +73,25 @@ public class LoginDB {
         return databaseBacking.containsKey(entryName);
     }
 
-    /**
-     * Returns the current user account logged in.
-     * @return Current account that is logged in.
-     */
-    public static Account getCurrentUser() {
-        return currentUser;
-    }
+// --Commented out by Inspection START (11/16/16, 3:07 PM):
+//    /**
+//     * Returns the current user account logged in.
+//     * @return Current account that is logged in.
+//     */
+//    public static Account getCurrentUser() {
+//        return currentUser;
+//    }
+// --Commented out by Inspection STOP (11/16/16, 3:07 PM)
 
-    /**
-     * Sets the current user of the account.
-     * @param currentUser Current user account logged in.
-     */
-    public static void setCurrentUser(Account currentUser) {
-        LoginDB.currentUser = currentUser;
-    }
+// --Commented out by Inspection START (11/16/16, 3:07 PM):
+//    /**
+//     * Sets the current user of the account.
+//     * @param currentUser Current user account logged in.
+//     */
+//    public static void setCurrentUser(Account currentUser) {
+//        LoginDB.currentUser = currentUser;
+//    }
+// --Commented out by Inspection STOP (11/16/16, 3:07 PM)
 
     /**
      * Returns the database backing

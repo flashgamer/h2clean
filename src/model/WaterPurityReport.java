@@ -45,7 +45,7 @@ public class WaterPurityReport extends Report implements Serializable{
     }
 
     /**
-     * Constructor for a WaterPurityReport
+     * Constructor for a WaterPurityReport, sets time at construction.
      * @param userName username associated with the WaterPurityReport.
      * @param location Location associated with the WaterPurityReport.
      * @param condition WaterCondition associated with the WaterPurityReport.

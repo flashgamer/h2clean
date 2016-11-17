@@ -7,23 +7,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 /**
- * Created by lol on 11/9/16.
+ * Created by Vaishak on 11/9/16.
  */
 public class ViewReportController {
-    @FXML
-    JFXComboBox<String> viewReportType;
+    @FXML JFXComboBox<String> viewReportType;
 
-    @FXML
-    JFXButton proceedButton;
+    @FXML JFXButton proceedButton;
 
-    @FXML
-    JFXButton cancelButton;
+    @FXML JFXButton cancelButton;
 
     private Stage _viewReportPopupStage;
 
@@ -49,7 +45,7 @@ public class ViewReportController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource
                     ("../view/LandingScreen.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
+            Parent root = fxmlLoader.load();
             Stage reportStage = new Stage();
             reportStage.setTitle("Landing Screen");
             reportStage.setScene(new Scene(root, 600, 400));
@@ -88,7 +84,7 @@ public class ViewReportController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource
                     (filePath));
-            Parent root = (Parent) fxmlLoader.load();
+            Parent root = fxmlLoader.load();
             Stage reportStage = new Stage();
             reportStage.setTitle("Landing Screen");
             reportStage.setScene(new Scene(root, 600, 400));

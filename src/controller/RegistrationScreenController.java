@@ -9,12 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Account;
-import model.Facade;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,8 +19,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import static model.LoginDB.database;
 
 /**
  * Controller for the registration screen.
@@ -138,7 +132,7 @@ public class RegistrationScreenController {
         }
         // Checks if username has already been taken
         if ((userField.getText() != null || userField.getText().length() != 0)) {
-            Account a = null;
+            Account a;
             String username = userField.getText() + ".ser";
             try {
                 FileInputStream fileIn = new FileInputStream(username);
@@ -147,7 +141,7 @@ public class RegistrationScreenController {
                 in.close();
                 fileIn.close();
             }catch(IOException i) {
-
+                throw new NullPointerException("Unable to find serial file");
             }catch(ClassNotFoundException c) {
                 System.out.println("Employee class not found");
                 c.printStackTrace();

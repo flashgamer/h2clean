@@ -3,7 +3,7 @@ package model;
 /**
  * Created by Lillian on 10/2/2016.
  */
-public class Administrator {
+class Administrator {
     /**
     * no args constructor
      */
@@ -16,6 +16,7 @@ public class Administrator {
      */
     public void deleteAccount(Account account) {
         System.out.println("account deleted");
+        //TODO: implement
     }
 
     /**
@@ -24,6 +25,7 @@ public class Administrator {
      */
     public void banUserSubmission(User user) {
         System.out.println("user banned from submitting reports");
+        //TODO: implement
     }
 
     /**
@@ -32,6 +34,7 @@ public class Administrator {
      */
     public void unblockAccount(Account account) {
         System.out.println("account unblocked");
+        //TODO: implement
     }
 
     /**
@@ -39,5 +42,6 @@ public class Administrator {
      */
     public void viewSecurityLog() {
         System.out.println("viewing security log");
+        //TODO:implement
     }
 }

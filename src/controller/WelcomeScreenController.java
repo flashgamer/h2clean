@@ -3,7 +3,6 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -18,7 +17,7 @@ import java.io.IOException;
  * @author Hotline String
  */
 public class WelcomeScreenController {
-    public Stage primaryStage;
+    private Stage primaryStage;
 
     @FXML
     private Label welcome;
@@ -39,7 +38,7 @@ public class WelcomeScreenController {
         thisStage.hide();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader (getClass().getResource("../view/LoginScreen.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
+            Parent root = fxmlLoader.load();
             Stage loginStage = new Stage();
             loginStage.setTitle("Login Screen");
             loginStage.setScene(new Scene(root,600,400));
@@ -60,7 +59,7 @@ public class WelcomeScreenController {
         thisStage.hide();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader (getClass().getResource("../view/RegistrationScreen.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
+            Parent root = fxmlLoader.load();
             Stage registerStage = new Stage();
             registerStage.setTitle("Registration Screen");
             registerStage.setScene(new Scene(root, 600, 400));

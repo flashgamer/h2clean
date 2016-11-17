@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -7,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by lol on 10/16/16.
+ * Created by Vaishak on 10/16/16.
  */
 public class AllReportsScreenController {
 
@@ -60,15 +60,14 @@ public class AllReportsScreenController {
     private Label reportType;
 
     @FXML
-    private Button backButton;
+    private JFXButton backButton;
 
     @FXML
-    private Button availabilityButton;
+    private JFXButton availabilityButton;
 
-    public static List<String> reportLocations = new ArrayList<>();
+    public static final List<String> reportLocations = new ArrayList<>();
     private List<Report> currentReportList;
     private List<Integer> currentReportNumberList;
-    private List<String> locations;
     private ReportDB myDB;
 
     /**
@@ -76,6 +75,7 @@ public class AllReportsScreenController {
      */
     //@FXML
     private void initialize() {
+        List<String> locations;
         try {
             FileInputStream fileIn = new FileInputStream("reportLocations.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -121,9 +121,9 @@ public class AllReportsScreenController {
                 c.printStackTrace();
                 return;
             }
-            myDB.database.insert(myReport);
+            ReportDB.database.insert(myReport);
         }
-        locationColumn.getItems().addAll(myDB.database.getKeys());
+        locationColumn.getItems().addAll(ReportDB.database.getKeys());
         this.currentReportList = new LinkedList<Report>();
         this.currentReportNumberList = new LinkedList<Integer>();
 

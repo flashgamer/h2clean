@@ -5,28 +5,29 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by jon on 10/11/16.
+ * Created by Jon on 10/11/16.
  */
-public class PersistenceManager {
-    private static Logger LOGGER = Logger.getLogger("PersistenceManager");
+class PersistenceManager {
+    private static final Logger LOGGER = Logger.getLogger("PersistenceManager");
 
     private List<Location> model;
-    private List<Account> modeled;
-    private List<Report> modeling;
+    // --Commented out by Inspection (11/16/16, 3:09 PM):private List<Account> modeled;
+    // --Commented out by Inspection (11/16/16, 3:09 PM):private List<Report> modeling;
 
-    /**
-     * Allows for persistence.
-     * @param m Model that is passed in
-     */
-    public PersistenceManager(List<Location> m) {
-        model = m;
-    }
+// --Commented out by Inspection START (11/16/16, 3:09 PM):
+//    /**
+//     * Allows for persistence.
+//     * @param m Model that is passed in
+//     */
+//    public PersistenceManager(List<Location> m) {
+//        model = m;
+//    }
+// --Commented out by Inspection STOP (11/16/16, 3:09 PM)
 
 //    public PersistenceManager(List<Report> m) {
 //        modeling = m;
@@ -56,7 +57,7 @@ public class PersistenceManager {
      * @param file File to load from
      */
     public void loadFromJsonfile(File file) {
-        String ct = null;
+        String ct;
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             Type collectionType = new TypeToken<List<Location>>(){}.getType();
             Gson gson = new Gson();

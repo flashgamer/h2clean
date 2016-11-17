@@ -6,8 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -110,9 +108,9 @@ public class LandingScreenController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource
                     ("../view/SubmitReportPopup.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
+            Parent root = fxmlLoader.load();
             Stage submitReportStage = new Stage();
-            SubmitReportController src = fxmlLoader.<SubmitReportController>getController();
+            //SubmitReportController src = fxmlLoader.<SubmitReportController>getController();
             submitReportStage.setTitle("Submit Report");
             submitReportStage.setScene(new Scene(root,400,250));
             submitReportStage.show();
@@ -134,7 +132,7 @@ public class LandingScreenController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource
                     ("../view/ViewReportPopup.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
+            Parent root = fxmlLoader.load();
             Stage reportStage = new Stage();
             reportStage.setTitle("All Reports");
             reportStage.setScene(new Scene(root, 600, 400));

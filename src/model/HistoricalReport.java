@@ -14,26 +14,6 @@ public class HistoricalReport extends Report {
     private Year year;
 
     /**
-     * No args constructor for a historical report
-     */
-    public HistoricalReport() {
-
-    }
-
-    /**
-     * constructor for HistoricalReport.
-     * @param location the location of the water source
-     * @param virus the level of viruses in the water source
-     * @param contaminant level of contamination in the water source
-     * @param year year of water report creation
-     */
-    public HistoricalReport(String location, double virus, double contaminant, Year year) {
-        this.location = location;
-        this.virus = virus;
-        this.contaminant = contaminant;
-        this.year = year;
-    }
-    /**
      * Returns the location of where the data was pulled from for the report.
      * @return String representation of the location
      */

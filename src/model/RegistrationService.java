@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 /**
  * Created by Jonathan on 11/8/2016.
  */
-public class RegistrationService {
-    private Logger LOGGER = Logger.getLogger("Registration Service");
+class RegistrationService {
+    private final Logger LOGGER = Logger.getLogger("Registration Service");
     private Connection connection;
 
     /**

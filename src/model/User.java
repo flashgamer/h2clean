@@ -30,19 +30,23 @@ public class User implements Serializable{
         this.profile = new Profile(title, firstName, lastName, email, address);
     }
 
-    /**
-     * submit a report on water availability
-     */
-    public void submitWaterReport(){
-        System.out.println("water report submitted");
-    }
+// --Commented out by Inspection START (11/16/16, 3:12 PM):
+//    /**
+//     * submit a report on water availability
+//     */
+//    public void submitWaterReport(){
+//        System.out.println("water report submitted");
+//    }
+// --Commented out by Inspection STOP (11/16/16, 3:12 PM)
 
-    /**
-     * view available water sources
-     */
-    public void viewWaterSources() {
-        System.out.println("viewing water report");
-    }
+// --Commented out by Inspection START (11/16/16, 3:12 PM):
+//    /**
+//     * view available water sources
+//     */
+//    public void viewWaterSources() {
+//        System.out.println("viewing water report");
+//    }
+// --Commented out by Inspection STOP (11/16/16, 3:12 PM)
 
     /**
      * Returns the profile for a user.

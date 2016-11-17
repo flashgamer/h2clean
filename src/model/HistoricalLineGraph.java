@@ -7,18 +7,11 @@ import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 
 public class HistoricalLineGraph {
-    private boolean virusButton;
-    private boolean contaminantButton;
-    private double[] virusData;
-    private double[] contaminantData;
-    private int[] timeData;
-
-    /**
-     * No args constructor for Historical Line Graph
-     */
-    public HistoricalLineGraph() {
-
-    }
+    private final boolean virusButton;
+    private final boolean contaminantButton;
+    private final double[] virusData;
+    private final double[] contaminantData;
+    private final int[] timeData;
 
     /**
      * Constructor for HistoricalLineGraph

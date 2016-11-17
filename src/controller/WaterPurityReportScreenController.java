@@ -3,8 +3,6 @@ package controller;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.object.GoogleMap;
-import com.lynden.gmapsfx.javascript.object.InfoWindow;
-import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
@@ -13,20 +11,13 @@ import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Facade;
 import model.PurityCondition;
 import model.ReportDB;
-import model.WaterCondition;
 import model.WaterPurityReport;
-import model.WaterSourceReport;
-import model.WaterType;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -54,10 +45,6 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
 
     private Stage purityStage;
 
-    private GeocodingService geocodingService;
-
-    private GoogleMap map;
-
     private boolean allowReport;
 
     /**
@@ -79,7 +66,7 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
      */
     @Override
     public void mapInitialized() {
-        map = new GoogleMap();
+        GoogleMap map = new GoogleMap();
     }
     /**
      * Method for storing a new report in the Report Database
@@ -201,10 +188,9 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
     /**
      * Generates a Marker from a specified location(address) to be shown on the map
      * @param location the Location to generate the marker at
-     * @return a Marker positioned at the specified location
      */
-    private Marker generateMarker(String location) {
-        geocodingService = new GeocodingService();
+    private void generateMarker(String location) {
+        GeocodingService geocodingService = new GeocodingService();
         MarkerOptions myOptions = new MarkerOptions();
         Marker marker = new Marker(myOptions);
 
@@ -224,7 +210,6 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
             }
             myOptions.position(latLong);
         });
-        return marker;
     }
 
 //     private void saveReportJson() {

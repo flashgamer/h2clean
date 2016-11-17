@@ -8,20 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Account;
-import model.Facade;
-import model.LoginDB;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import static model.LoginDB.database;
 
 /**
  * Controller for user login
@@ -41,13 +33,10 @@ public class LoginScreenController {
 
     private Stage _loginStage;
 
-    private String userKey;
+    // --Commented out by Inspection (11/16/16, 3:07 PM):private String userKey;
 
     public static Account account; // Account that is logged in for reporting purposes.
-    public static int reportNum = 1;
-
-    /** flag to signal if login clicked **/
-    private boolean _loginClicked = false;
+    static int reportNum = 1;
 
     /**
      * called automatically after load
@@ -57,19 +46,15 @@ public class LoginScreenController {
 
     }
 
-    /**
-     * Sets the stage of the dialog.
-     *
-     * @param loginStage the stage of the login
-     */
-    public void setLoginStage(Stage loginStage) { _loginStage = loginStage; }
+// --Commented out by Inspection START (11/16/16, 3:08 PM):
+//    /**
+//     * Sets the stage of the dialog.
+//     *
+//     * @param loginStage the stage of the login
+//     */
+//    public void setLoginStage(Stage loginStage) { _loginStage = loginStage; }
+// --Commented out by Inspection STOP (11/16/16, 3:08 PM)
 
-    /**
-     * Returns true if the user clicked Login, false otherwise.
-     *
-     * @return true if the user clicked the Login button
-     */
-    public boolean isLoginClicked() { return _loginClicked; }
 
 
     /**
@@ -84,9 +69,9 @@ public class LoginScreenController {
             thisStage.hide();
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LandingScreen.fxml"));
-                Parent root = (Parent) fxmlLoader.load();
+                Parent root = fxmlLoader.load();
                 Stage landingStage = new Stage();
-                LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
+                //LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
                 landingStage.setTitle("Landing Screen");
                 landingStage.setScene(new Scene(root,600,400));
                 landingStage.show();
@@ -124,7 +109,7 @@ public class LoginScreenController {
         // loadJson();
         String errorMessage = "";
         boolean userMatch = false;
-        boolean passMatch = false;
+        //boolean passMatch = false;
         Account a = null;
         // Checks if username field has been filled in
         if (userField.getText() == null || userField.getText().length() == 0) {
@@ -144,7 +129,7 @@ public class LoginScreenController {
                 in.close();
                 fileIn.close();
             }catch(IOException i) {
-
+                throw new NullPointerException("Unable to find serial file");
             }catch(ClassNotFoundException c) {
                 System.out.println("Deserialized class not found");
                 c.printStackTrace();
@@ -164,13 +149,13 @@ public class LoginScreenController {
                 in.close();
                 fileIn.close();
             }catch(IOException i) {
-
+                throw new NullPointerException("Unable to find serial file");
             }catch(ClassNotFoundException c) {
                 System.out.println("Deserialized class not found");
                 c.printStackTrace();
                 return false;
             }
-            if (passField.equals(a.getPassword())) { errorMessage += "The password is invalid!\n"; }
+            if (passField.getText().equals(a.getPassword())) { errorMessage += "The password is invalid!\n"; }
         }
 
 

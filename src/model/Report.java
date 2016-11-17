@@ -1,10 +1,7 @@
 package model;
 
-import com.lynden.gmapsfx.javascript.object.Marker;
-
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Model for Report, used as an extension for all other reports
@@ -97,13 +94,13 @@ public class Report implements Serializable{
      * Sets the Submit time to the specified LocalDate
      * @param date the LocalDate that this report was submitted.
      */
-    public void setSubmitTime(LocalDate date) {
+    void setSubmitTime(LocalDate date) {
         this.submitTime = date;
     }
 
     /**
      * Sets the Submit time to a LocalDate specified by the year, month and day
-     * specified by the user.
+     * specified by the user. FOR TESTING
      * @param year the year of the report
      * @param month the month of the report
      * @param day the day of the report.

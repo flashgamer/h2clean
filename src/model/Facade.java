@@ -31,10 +31,10 @@ import java.util.List;
 // * @author robertwaters
 // */
 public class Facade {
-    private static  Facade instance = new Facade();
+    private static final Facade instance = new Facade();
 //    private List<Account> accounts = new ArrayList<>();
 //    private List<Report> reports = new ArrayList<>();
-    private List<Location> locations = new ArrayList<>();
+    private final List<Location> locations = new ArrayList<>();
 //
     public static Facade getInstance() { return instance; }
 //

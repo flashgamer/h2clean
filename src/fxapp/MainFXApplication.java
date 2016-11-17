@@ -12,12 +12,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.RegistrationService;
 
 import java.io.IOException;
 
 public class MainFXApplication extends Application {
-private Stage mainScreen;
 
     /**
      * Called when program launched.
@@ -27,8 +25,7 @@ private Stage mainScreen;
     @Override
     public void start(Stage primaryStage) throws Exception {
         // RegistrationService registrationService = new RegistrationService();
-        mainScreen = primaryStage;
-        welcomeScreen(mainScreen);
+        welcomeScreen(primaryStage);
     }
 
     /**
@@ -49,7 +46,7 @@ private Stage mainScreen;
 
     /**
      * Called to launch the JavaFX application.
-     * @param args
+     * @param args launchargs
      */
     public static void main(String[] args) {
         launch(args);

@@ -30,12 +30,6 @@ public class Profile implements Serializable {
     }
 
     /**
-     * Default no-arg constructor for Profile
-     */
-    public Profile() {
-    }
-
-    /**
      * Gets the email of the owner of this Profile.
      * @return the email of the owner of this Profile.
      */

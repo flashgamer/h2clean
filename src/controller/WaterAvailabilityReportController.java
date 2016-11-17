@@ -42,15 +42,13 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
     private Button button;
 
     @FXML
-    private GoogleMapView mapView;
+    private  GoogleMapView mapView;
 
     private GoogleMap map;
 
-    public HashMap<Marker, InfoWindow> markerMap = new HashMap<>();
+    private final HashMap<Marker, InfoWindow> markerMap = new HashMap<>();
 
-    private GeocodingService geocodingService;
-
-    private Marker marker;
+    //private Marker marker;
 
     /**
      * Automatically called to initialize the screen.
@@ -158,7 +156,6 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
                 }
             }
         }
-        return;
     }
 
     /**
@@ -167,7 +164,7 @@ public class WaterAvailabilityReportController implements MapComponentInitialize
      * @return a Marker positioned at the specified location
      */
     private Marker generateMarker(String location) {
-        geocodingService = new GeocodingService();
+        GeocodingService geocodingService = new GeocodingService();
         MarkerOptions myOptions = new MarkerOptions();
         Marker marker = new Marker(myOptions);
         geocodingService.geocode(location, (GeocodingResult[] results, GeocoderStatus status) -> {

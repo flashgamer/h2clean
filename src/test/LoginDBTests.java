@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -16,7 +15,7 @@ import java.util.NoSuchElementException;
  */
 public class LoginDBTests {
     
-    LoginDB db;
+    private LoginDB db;
 
     /**
      * sets up LoginDB test with an empty database.
@@ -113,5 +112,48 @@ public class LoginDBTests {
         }
 
         Assert.assertEquals(db.get(entryName), a);
+    }
+
+    /**
+     * Tests the contains method of LoginDB
+     *
+     * Case 1: Value is null
+     * Case 2: Key is null
+     * Case 3: Key and value does not exist
+     * Case 4: Key and value does exist
+     *
+     * Written by Minju
+     */
+    @Test
+    public void testContains() {
+        User dummy = new User();
+        Account a = new Account(dummy, "Dum", "my", "User");
+
+        //value is null
+        try {
+            db.insert("dummy", null);
+            Assert.fail("You cannot get a null value");
+            //fails if null key
+        } catch (IllegalArgumentException i) {
+            //SHOULD work here
+        }
+
+        //key is null
+        try {
+            db.insert(null, a);
+            Assert.fail("You cannot get a null key");
+        } catch (IllegalArgumentException i) {
+            //SHOULD work here
+        }
+
+        //key and value does not exist
+        Assert.assertFalse(db.contains("dummy", a));
+        Assert.assertFalse(db.contains("dummy2", a));
+
+        //key and value does exist
+        db.insert("dummy", a);
+        Assert.assertTrue(db.contains("dummy", a));
+
+
     }
 }

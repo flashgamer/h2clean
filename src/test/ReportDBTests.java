@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class ReportDBTests {
 
-    ReportDB db;
+    private ReportDB db;
 
     /**
      * sets up ReportDB tests with an empty database.
@@ -33,9 +33,8 @@ public class ReportDBTests {
      */
     @Test
     public void testInsert() {
-        Report nullReport = null;
         try {
-            db.insert(nullReport);
+            db.insert(null);
             Assert.fail(); //fails if inserting a null report works
         } catch (IllegalArgumentException i) {
             //SHOULD transition here

@@ -3,12 +3,7 @@ package model;
 /**
  * Created by Lillian on 10/2/2016.
  */
-public class Worker extends User {
-    /*
-    * no args constructor
-     */
-    public Worker() {
-    }
+class Worker extends User {
 
     /**
      * submit report on water purity levels

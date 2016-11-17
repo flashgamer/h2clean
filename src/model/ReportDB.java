@@ -18,8 +18,8 @@ import java.util.Set;
  */
 public class ReportDB implements Serializable {
 
-    public static ReportDB database = new ReportDB();
-    private Map<String, LinkedList<Report>> backingMap;
+    public static final ReportDB database = new ReportDB();
+    private final Map<String, LinkedList<Report>> backingMap;
     private int reportNumber;
 
     /**

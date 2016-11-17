@@ -6,10 +6,10 @@ import java.io.Serializable;
  * Created by Lillian on 10/2/2016.
  */
 public class Account implements Serializable {
-    private User user;
-    private String username;
-    private String password;
-    private String accountType;
+    private final User user;
+    private final String username;
+    private final String password;
+    private final String accountType;
 
     /**
      * Constructor for an Account.
@@ -56,14 +56,6 @@ public class Account implements Serializable {
      */
     public String getPassword() {
         return password;
-    }
-
-    /**
-     * sets password
-     * @param password to be set
-     */
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     /**

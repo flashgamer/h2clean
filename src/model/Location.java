@@ -1,7 +1,6 @@
 package model;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -13,12 +12,12 @@ import java.util.logging.Logger;
  */
 public class Location implements Serializable {
 
-    private static Logger LOGGER = Logger.getLogger("Location");
-    private static FileHandler logFileHandler;
+    private static final Logger LOGGER = Logger.getLogger("Location");
+
     static {
         LOGGER.setLevel(Level.FINER);
         try {
-            logFileHandler = new FileHandler("LogFile");
+            FileHandler logFileHandler = new FileHandler("LogFile");
             logFileHandler.setLevel(Level.ALL);
             LOGGER.addHandler(logFileHandler);
         } catch (IOException ex) {
@@ -31,7 +30,7 @@ public class Location implements Serializable {
     private final String description;
     private final String title;
 
-    public Location(double lat, double lg, String ti, String desc) {
+    private Location(double lat, double lg, String ti, String desc) {
         LOGGER.entering("Location", "Constructor");
         longitude = lg;
         latitude = lat;
@@ -42,35 +41,17 @@ public class Location implements Serializable {
 
     public double getLongitude() { return longitude; }
     public double getLatitude() {return latitude; }
-    public String getDescription() {return description;}
+    // --Commented out by Inspection (11/16/16, 3:07 PM):public String getDescription() {return description;}
     public String getTitle() { return title; }
 
 
-    public void saveToText(PrintWriter pw) {
-        LOGGER.setLevel(Level.FINEST);
-        LOGGER.entering("Location", "saveToText");
-        pw.println(longitude + "\t" + latitude + "\t" +  description + "\t" + title);
-        LOGGER.exiting("Location", "saveToText");
-    }
+// --Commented out by Inspection START (11/16/16, 3:07 PM):
+//    public void saveToText(PrintWriter pw) {
+//        LOGGER.setLevel(Level.FINEST);
+//        LOGGER.entering("Location", "saveToText");
+//        pw.println(longitude + "\t" + latitude + "\t" +  description + "\t" + title);
+//        LOGGER.exiting("Location", "saveToText");
+//    }
+// --Commented out by Inspection STOP (11/16/16, 3:07 PM)
 
-    public static Location makeFromFileString(String str) throws FileFormatException {
-        String[] tokens = str.split("\t");
-
-
-        if (tokens.length < 3) {
-            throw(new FileFormatException(str));
-        }
-
-        double longit;
-        double lat;
-        try {
-            longit = Double.parseDouble(tokens[0]);
-            lat = Double.parseDouble(tokens[1]);
-        } catch (NumberFormatException e) {
-            throw(new FileFormatException(str));
-        }
-
-       return new Location(lat, longit, tokens[3], tokens[2]);
-
-    }
 }

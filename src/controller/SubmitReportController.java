@@ -8,17 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import model.Account;
-import model.Profile;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static model.LoginDB.database;
 
 /**
  * Created by Jonathan on 10/3/2016.
@@ -26,10 +22,10 @@ import static model.LoginDB.database;
 public class SubmitReportController {
 
     @FXML
-    Label headingText;
+    private Label headingText;
 
     @FXML
-    JFXComboBox typeReport;
+    private JFXComboBox<String> typeReport;
 
     private Stage _submitReportPopupStage;
 

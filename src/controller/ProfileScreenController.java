@@ -7,12 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Account;
 import model.Profile;
 
 import java.io.IOException;
-
-import static model.LoginDB.database;
 
 /**
  * Controller for Profile Screen
@@ -56,19 +53,21 @@ public class ProfileScreenController {
 
 
 
-    /**
-     * Updates the profile information
-     */
-    protected void save() {
-        Profile profile = LoginScreenController.account.getUser().getProfile();
-        userField.setText(LoginScreenController.account.getUsername());
-        accountTypeField.setText(LoginScreenController.account.getAccountType
-                ());
-        titleField.setText(profile.getTitle());
-        nameField.setText(profile.getFirstName() + " " + profile.getLastName());
-        emailField.setText(profile.getEmail());
-        addressField.setText(profile.getAddress());
-    }
+// --Commented out by Inspection START (11/16/16, 3:11 PM):
+//    /**
+//     * Updates the profile information
+//     */
+//    protected void save() {
+//        Profile profile = LoginScreenController.account.getUser().getProfile();
+//        userField.setText(LoginScreenController.account.getUsername());
+//        accountTypeField.setText(LoginScreenController.account.getAccountType
+//                ());
+//        titleField.setText(profile.getTitle());
+//        nameField.setText(profile.getFirstName() + " " + profile.getLastName());
+//        emailField.setText(profile.getEmail());
+//        addressField.setText(profile.getAddress());
+//    }
+// --Commented out by Inspection STOP (11/16/16, 3:11 PM)
 
     /**
      * Called when user clicks Edit and alters profile information
@@ -77,20 +76,20 @@ public class ProfileScreenController {
     private void handleEditPressed() {
         Profile profile = LoginScreenController.account.getUser().getProfile();
 
-        if (!changeTitle.equals("")) {
+        if (!changeTitle.getText().equals("")) {
             titleField.setText(changeTitle.getText());
             profile.setTitle(changeTitle.getText());
         }
-        if (!(changeFirst.equals("") || changeLast.equals(""))) {
+        if (!(changeFirst.getText().equals("") || changeLast.getText().equals(""))) {
             nameField.setText(changeFirst.getText() + " " + changeLast.getText());
             profile.setFirstName(changeFirst.getText());
             profile.setLastName(changeLast.getText());
         }
-        if (!changeEmail.equals("")) {
+        if (!changeEmail.getText().equals("")) {
             emailField.setText(changeEmail.getText());
             profile.setEmail(changeEmail.getText());
         }
-        if (!changeAddress.equals("")) {
+        if (!changeAddress.getText().equals("")) {
             addressField.setText(changeAddress.getText());
             profile.setAddress(changeAddress.getText());
         }

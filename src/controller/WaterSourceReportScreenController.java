@@ -43,13 +43,9 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
 
     private Stage sourceStage;
 
-    private GeocodingService geocodingService;
-
-    private GoogleMap map;
-
     private boolean allowReport;
 
-    private boolean firstRun;
+    //private boolean firstRun;
 
     /**
      * Automatically called to initialize the screen.
@@ -82,7 +78,7 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
      */
     @Override
     public void mapInitialized() {
-        map = new GoogleMap();
+        GoogleMap map = new GoogleMap();
     }
     /**
      * Method for storing a new report in the Report Database
@@ -196,10 +192,9 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
     /**
      * Generates a Marker from a specified location(address) to be shown on the map
      * @param location the Location to generate the marker at
-     * @return a Marker positioned at the specified location
      */
-    private Marker generateMarker(String location) {
-        geocodingService = new GeocodingService();
+    private void generateMarker(String location) {
+        GeocodingService geocodingService = new GeocodingService();
         MarkerOptions myOptions = new MarkerOptions();
         Marker marker = new Marker(myOptions);
 
@@ -219,7 +214,6 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
             }
             myOptions.position(latLong);
         });
-        return marker;
     }
 
 //    private void saveReportJson() {
