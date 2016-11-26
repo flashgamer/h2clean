@@ -112,7 +112,7 @@ public class LandingScreenController {
             Stage submitReportStage = new Stage();
             //SubmitReportController src = fxmlLoader.<SubmitReportController>getController();
             submitReportStage.setTitle("Submit Report");
-            submitReportStage.setScene(new Scene(root,400,250));
+            submitReportStage.setScene(new Scene(root,390,250));
             submitReportStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -135,7 +135,7 @@ public class LandingScreenController {
             Parent root = fxmlLoader.load();
             Stage reportStage = new Stage();
             reportStage.setTitle("All Reports");
-            reportStage.setScene(new Scene(root, 600, 400));
+            reportStage.setScene(new Scene(root, 390, 250));
             reportStage.show();
         } catch (IOException e) {
             e.printStackTrace();
