@@ -2,4 +2,4 @@
 h2clean.iml
 out/
 lib/
-.ser
+*.ser
