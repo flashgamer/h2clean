@@ -132,7 +132,7 @@ public class RegistrationScreenController {
         }
         // Checks if username has already been taken
         if ((userField.getText() != null || userField.getText().length() != 0)) {
-            Account a;
+            Account a = null;
             String username = userField.getText() + ".ser";
             try {
                 FileInputStream fileIn = new FileInputStream(username);
@@ -141,7 +141,7 @@ public class RegistrationScreenController {
                 in.close();
                 fileIn.close();
             }catch(IOException i) {
-                throw new NullPointerException("Unable to find serial file");
+                //throw new NullPointerException("Unable to find serial file");
             }catch(ClassNotFoundException c) {
                 System.out.println("Employee class not found");
                 c.printStackTrace();
