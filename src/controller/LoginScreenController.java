@@ -155,7 +155,7 @@ public class LoginScreenController {
                 c.printStackTrace();
                 return false;
             }
-            if (passField.getText().equals(a.getPassword())) { errorMessage += "The password is invalid!\n"; }
+            if (!passField.getText().equals(a.getPassword())) { errorMessage += "The password is invalid!\n"; }
         }
 
 
