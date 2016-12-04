@@ -11,9 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.Account;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.sql.*;
 
 /**
  * Controller for user login
@@ -34,7 +33,7 @@ public class LoginScreenController {
     private Stage _loginStage;
 
     // --Commented out by Inspection (11/16/16, 3:07 PM):private String userKey;
-
+    public static String userType;
     public static Account account; // Account that is logged in for reporting purposes.
     static int reportNum = 1;
 
@@ -110,6 +109,7 @@ public class LoginScreenController {
         String errorMessage = "";
         boolean userMatch = false;
         //boolean passMatch = false;
+        userType = null;
         Account a = null;
         // Checks if username field has been filled in
         if (userField.getText() == null || userField.getText().length() == 0) {
@@ -120,42 +120,63 @@ public class LoginScreenController {
             errorMessage += "Password cannot be empty!\n";
         }
         // Checks if username is in database
-        if ((userField.getText() != null || userField.getText().length() != 0)) {
-            String fileName = userField.getText() + ".ser";
+        if (userField.getText().length() != 0) {
+//            String fileName = userField.getText() + ".ser";
+            Connection connection;
             try {
-                FileInputStream fileIn = new FileInputStream(fileName);
-                ObjectInputStream in = new ObjectInputStream(fileIn);
-                a = (Account) in.readObject();
-                in.close();
-                fileIn.close();
-            }catch(IOException i) {
-                throw new NullPointerException("Unable to find serial file");
-            }catch(ClassNotFoundException c) {
-                System.out.println("Deserialized class not found");
-                c.printStackTrace();
-                return false;
+                connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery("select * from accountsDB where username = '" + userField
+                        .getText() + "'");
+                if (!rs.next()) {
+                    errorMessage += "That username doesn't exist!\n";
+                } else {
+                    userMatch = true;
+                    userType = rs.getString("accountType");
+                }
+//                FileInputStream fileIn = new FileInputStream(fileName);
+//                ObjectInputStream in = new ObjectInputStream(fileIn);
+//                a = (Account) in.readObject();
+//                in.close();
+//                fileIn.close();
+            }catch(SQLException e) {
+                e.printStackTrace();
+//            }catch(ClassNotFoundException c) {
+//                System.out.println("Deserialized class not found");
+//                c.printStackTrace();
+//                return false;
             }
-            if (a == null) { errorMessage += "That username doesn't exist!\n"; }
-            else { userMatch = true; }
         }
         // Checks if password matches to the user.
         if ((passField.getText() != null || passField.getText().length() != 0)
                 && userMatch) {
-            String fileName = userField.getText() + ".ser";
+//            String fileName = userField.getText() + ".ser";
+            Connection connection;
             try {
-                FileInputStream fileIn = new FileInputStream(fileName);
-                ObjectInputStream in = new ObjectInputStream(fileIn);
-                a = (Account) in.readObject();
-                in.close();
-                fileIn.close();
-            }catch(IOException i) {
-                throw new NullPointerException("Unable to find serial file");
-            }catch(ClassNotFoundException c) {
-                System.out.println("Deserialized class not found");
-                c.printStackTrace();
-                return false;
+                connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery("select * from accountsDB where username = '" + userField
+                        .getText() + "'");
+                if (!rs.getString("password").equals(passField.getText())) {
+                    errorMessage += "The password is invalid!\n";
+                } else {
+                    a = new Account(rs.getString("username"), rs.getString("password"), rs.getString("accountType"),
+                            rs.getString("title"), rs.getString("firstName"), rs.getString("lastName"), rs.getString
+                            ("email"), rs.getString("address"));
+                }
+//                FileInputStream fileIn = new FileInputStream(fileName);
+//                ObjectInputStream in = new ObjectInputStream(fileIn);
+//                a = (Account) in.readObject();
+//                in.close();
+//                fileIn.close();
+            }catch(SQLException e) {
+                e.printStackTrace();
+//            }catch(ClassNotFoundException c) {
+//                System.out.println("Deserialized class not found");
+//                c.printStackTrace();
+//                return false;
             }
-            if (!passField.getText().equals(a.getPassword())) { errorMessage += "The password is invalid!\n"; }
+//            if (!passField.getText().equals(a.getPassword())) { errorMessage += "The password is invalid!\n"; }
         }
 
 

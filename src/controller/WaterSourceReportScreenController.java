@@ -16,13 +16,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.ReportDB;
-import model.WaterCondition;
-import model.WaterSourceReport;
-import model.WaterType;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,28 +85,45 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
      * report, inserts the report into the database.
      */
     private void store() {
-        WaterSourceReport myReport = new WaterSourceReport();
-        myReport.setSubmitAccount(LoginScreenController.account);
-        myReport.setUserName(myReport.getSubmitAccount().getUsername());
-        myReport.setLocation(locationField.getText());
-        myReport.setType(WaterType.findByKey(waterTypeField.getValue()));
-        myReport.setCondition(WaterCondition.findByKey(waterConditionField.getValue()));
-        // myReport.setMarker(generateMarker(locationField.getText()));
-        myReport.setReportNumber(LoginScreenController.reportNum++);
-        // Facade.getInstance().getReports().add(myReport);
-        // saveReportJson();
-        ReportDB.database.insert(myReport);
+        Connection connection;
         try {
-            String fileName = myReport.getLocation() + ".ser";
-            FileOutputStream fileOut =
-                    new FileOutputStream(fileName);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(myReport);
-            out.close();
-            fileOut.close();
-        }catch(IOException i) {
-            i.printStackTrace();
+            connection = DriverManager.getConnection("jdbc:sqlite:waterReportsDB.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            statement.executeUpdate("create table if not exists waterReportsDB (id integer, username " +
+                    "string, location " +
+                    "string, waterType string, condition string, reportNum integer)");
+            String sqlStatement = "insert into waterReportsDB (username, location, waterType, condition, " +
+                    "reportNum) values" +
+                    " ('" + LoginScreenController.account.getUsername() + "', '" + locationField.getText
+                    () + "', '" + waterTypeField.getValue() + "', '" + waterConditionField.getValue() + "', " +
+                    LoginScreenController.reportNum++ + ")";
+            statement.executeUpdate(sqlStatement);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+//        WaterSourceReport myReport = new WaterSourceReport();
+//        myReport.setSubmitAccount(LoginScreenController.account);
+//        myReport.setUserName(myReport.getSubmitAccount().getUsername());
+//        myReport.setLocation(locationField.getText());
+//        myReport.setType(WaterType.findByKey(waterTypeField.getValue()));
+//        myReport.setCondition(WaterCondition.findByKey(waterConditionField.getValue()));
+//        // myReport.setMarker(generateMarker(locationField.getText()));
+//        myReport.setReportNumber(LoginScreenController.reportNum++);
+//        // Facade.getInstance().getReports().add(myReport);
+//        // saveReportJson();
+//        ReportDB.database.insert(myReport);
+//        try {
+//            String fileName = myReport.getLocation() + ".ser";
+//            FileOutputStream fileOut =
+//                    new FileOutputStream(fileName);
+//            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+//            out.writeObject(myReport);
+//            out.close();
+//            fileOut.close();
+//        }catch(IOException i) {
+//            i.printStackTrace();
+//        }
         AllReportsScreenController.reportLocations.add(locationField.getText());
         AllReportsScreenController.updateSerFile();
         ReportDB.serialize();

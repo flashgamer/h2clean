@@ -12,11 +12,12 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.Account;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,16 +70,29 @@ public class RegistrationScreenController {
             // Facade.getInstance().addAccount(account);
             // saveAccountJson();
             // System.out.println(database.containsKey(userField.getText()));
+            Connection connection = null;
             try {
-                String fileName = userField.getText() + ".ser";
-                FileOutputStream fileOut =
-                        new FileOutputStream(fileName);
-                ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                out.writeObject(account);
-                out.close();
-                fileOut.close();
-            }catch(IOException i) {
-                i.printStackTrace();
+                connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
+                Statement statement = connection.createStatement();
+                statement.setQueryTimeout(30);
+                statement.executeUpdate("create table if not exists accountsDB (id integer, username string, password" +
+                        " string, " + "accountType string, title string, firstName string, lastName string, email " +
+                        "string, address string)");
+                String sqlStatement = "insert into accountsDB (username, password, accountType, title, " +
+                        "firstName, lastName, email, address) values('" + userField.getText() +
+                        "', '" + passField.getText() + "', '" + typeBox.getValue() + "', '" + titleField.getText() + "', '" + firstNameField
+                        .getText() + "', '" + lastNameField.getText() + "', '" + emailField.getText() + "', '" +
+                        addressField.getText() + "')";
+                statement.executeUpdate(sqlStatement);
+//                String fileName = userField.getText() + ".ser";
+//                FileOutputStream fileOut =
+//                        new FileOutputStream(fileName);
+//                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+//                out.writeObject(account);
+//                out.close();
+//                fileOut.close();
+            }catch(SQLException e) {
+                e.printStackTrace();
             }
             Stage thisStage = (Stage) userField.getScene().getWindow();
             thisStage.close();
@@ -133,21 +147,28 @@ public class RegistrationScreenController {
         // Checks if username has already been taken
         if ((userField.getText() != null || userField.getText().length() != 0)) {
             Account a = null;
-            String username = userField.getText() + ".ser";
+//            String username = userField.getText() + ".ser";
+            Connection connection;
+            boolean userNameExists = false;
             try {
-                FileInputStream fileIn = new FileInputStream(username);
-                ObjectInputStream in = new ObjectInputStream(fileIn);
-                a = (Account) in.readObject();
-                in.close();
-                fileIn.close();
-            }catch(IOException i) {
-                //throw new NullPointerException("Unable to find serial file");
-            }catch(ClassNotFoundException c) {
-                System.out.println("Employee class not found");
-                c.printStackTrace();
-                return false;
+                connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery("select * from accountsDB where username = '" + userField.getText
+                        () + "'");
+                while (rs.next()) {
+                    if (rs.getString("username").equals(userField.getText())) {
+                        userNameExists = true;
+                    }
+                }
+//                FileInputStream fileIn = new FileInputStream(username);
+//                ObjectInputStream in = new ObjectInputStream(fileIn);
+//                a = (Account) in.readObject();
+//                in.close();
+//                fileIn.close();
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
             }
-            if (a != null){ errorMessage += "That username has already been taken!\n"; }
+            if (userNameExists){ errorMessage += "That username has already been taken!\n"; }
         }
 
         //successful login

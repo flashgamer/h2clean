@@ -15,13 +15,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.PurityCondition;
 import model.ReportDB;
-import model.WaterPurityReport;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,26 +73,41 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
      * report, inserts the report into the database.
      */
     private void store() {
-        WaterPurityReport myReport = new WaterPurityReport();
-        myReport.setSubmitAccount(LoginScreenController.account);
-        myReport.setUserName(myReport.getSubmitAccount().getUsername());
-        myReport.setLocation(locationField.getText());
-        myReport.setCondition(PurityCondition.findByKey(conditionField.getValue()));
-        myReport.setContaminantPPM(new Double(contaminantField.getText()));
-        myReport.setVirusPPM(new Double(virusField.getText()));
-        myReport.setReportNumber(LoginScreenController.reportNum++);
-        ReportDB.database.insert(myReport);
+        Connection connection;
         try {
-            String fileName = myReport.getLocation() + ".ser";
-            FileOutputStream fileOut =
-                    new FileOutputStream(fileName);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(myReport);
-            out.close();
-            fileOut.close();
-        }catch(IOException i) {
-            i.printStackTrace();
+            connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            statement.executeUpdate("create table if not exists purityReportsDB (id integer, username string, " +
+                    "location string, condition string, contaminantPPM double, virusPPM double, reportNum integer)");
+            String sqlStatement = "insert into purityReportsDB (username, location, condition, contaminantPPM, " +
+                    "virusPPM, reportNum) values ('" + LoginScreenController.account.getUsername() + "', '" +
+                    locationField.getText() + "', '" + conditionField.getValue() + "', " + new Double(contaminantField.getText()) + ", " + new Double(virusField.getText()) + ", " + LoginScreenController.reportNum++
+                    + ")";
+            statement. executeUpdate(sqlStatement);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+//        WaterPurityReport myReport = new WaterPurityReport();
+//        myReport.setSubmitAccount(LoginScreenController.account);
+//        myReport.setUserName(myReport.getSubmitAccount().getUsername());
+//        myReport.setLocation(locationField.getText());
+//        myReport.setCondition(PurityCondition.findByKey(conditionField.getValue()));
+//        myReport.setContaminantPPM(new Double(contaminantField.getText()));
+//        myReport.setVirusPPM(new Double(virusField.getText()));
+//        myReport.setReportNumber(LoginScreenController.reportNum++);
+//        ReportDB.database.insert(myReport);
+//        try {
+//            String fileName = myReport.getLocation() + ".ser";
+//            FileOutputStream fileOut =
+//                    new FileOutputStream(fileName);
+//            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+//            out.writeObject(myReport);
+//            out.close();
+//            fileOut.close();
+//        }catch(IOException i) {
+//            i.printStackTrace();
+//        }
         AllReportsScreenController.reportLocations.add(locationField.getText());
         AllReportsScreenController.updateSerFile();
         ReportDB.serialize();

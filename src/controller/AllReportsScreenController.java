@@ -75,7 +75,7 @@ public class AllReportsScreenController {
      */
     //@FXML
     private void initialize() {
-        List<String> locations;
+        List<String> locations = null;
         try {
             FileInputStream fileIn = new FileInputStream("reportLocations.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -98,14 +98,14 @@ public class AllReportsScreenController {
             fileIn.close();
         }catch(IOException i) {
             i.printStackTrace();
-            return;
+//            return;
         }catch(ClassNotFoundException c) {
             System.out.println("ReportDB class not found");
             c.printStackTrace();
-            return;
+//            return;
         }
         for (String s: locations) {
-            Report myReport;
+            Report myReport = null;
             try {
                 String fileName = s + ".ser";
                 FileInputStream fileIn = new FileInputStream(fileName);
@@ -115,11 +115,11 @@ public class AllReportsScreenController {
                 fileIn.close();
             }catch(IOException i) {
                 i.printStackTrace();
-                return;
+//                return;
             }catch(ClassNotFoundException c) {
                 System.out.println("Report class not found");
                 c.printStackTrace();
-                return;
+//                return;
             }
             ReportDB.database.insert(myReport);
         }

@@ -67,7 +67,7 @@ public class SubmitReportController {
 
     /**
      * Called when user clicks the Proceed button after selecting the report
-     * they want to view.
+     * they want to submit.
      *
      * @param event Unused
      */
@@ -75,7 +75,7 @@ public class SubmitReportController {
     private void handleProceedPressed(ActionEvent event) {
         if (isUserValid().equals("error")) {
             //show error message
-            String errorMessage = "You are not authorized to view this report" +
+            String errorMessage = "You are not authorized to submit this report" +
                     ".\n";
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(_submitReportPopupStage);
