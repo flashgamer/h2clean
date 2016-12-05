@@ -5,12 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LandingScreenController">
    <right>
-      <VBox prefHeight="364.0" prefWidth="140.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="363.0" prefWidth="140.0" BorderPane.alignment="CENTER">
          <children>
             <JFXButton fx:id="editProfileButton" onAction="#editProfile" prefHeight="73.0" prefWidth="117.0" style="-fx-background-color: #606060;" styleClass="button1" text="EDIT PROFILE" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <VBox.margin>
@@ -35,14 +36,23 @@
          </children>
       </VBox>
    </right>
-   <top>
-      <Label alignment="CENTER" prefHeight="86.0" prefWidth="262.0" styleClass="title" text="Welcome" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
-         <font>
-            <Font name="Walkway SemiBold" size="50.0" />
-         </font>
-      </Label>
-   </top>
    <center>
       <AnchorPane fx:id="mapField" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
+   <top>
+      <HBox prefHeight="88.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="86.0" prefWidth="262.0" styleClass="title" text="Welcome" textFill="WHITE">
+               <font>
+                  <Font name="Walkway SemiBold" size="50.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="controlPanel" prefHeight="47.0" prefWidth="117.0" style="-fx-background-color: #b2b2b2;" styleClass="button1" text="ADMIN" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <HBox.margin>
+                  <Insets left="207.0" top="20.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>
