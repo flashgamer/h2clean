@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.ReportDB;
@@ -31,6 +32,9 @@ import java.util.List;
  * @author Hotline String
  */
 public class WaterPurityReportScreenController implements MapComponentInitializedListener {
+    @FXML
+    private DatePicker datePicker;
+
     @FXML
     private TextField locationField;
 
@@ -80,11 +84,13 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             statement.executeUpdate("create table if not exists purityReportsDB (id integer, username string, " +
-                    "location string, condition string, contaminantPPM double, virusPPM double, reportNum integer, " +
+                    "date string, location string, condition string, contaminantPPM double, virusPPM double, " +
+                    "reportNum " +
+                    "integer, " +
                     "submitDate datetime)");
-            String sqlStatement = "insert into purityReportsDB (username, location, condition, contaminantPPM, " +
+            String sqlStatement = "insert into purityReportsDB (username, date, location, condition, contaminantPPM, " +
                     "virusPPM, reportNum, submitDate) values ('" + LoginScreenController.account.getUsername() + "', " +
-                    "'" +
+                    "'" + datePicker.getValue() + "', '" +
                     locationField.getText() + "', '" + conditionField.getValue() + "', " + new Double(contaminantField.getText()) + ", " + new Double(virusField.getText()) + ", " + LoginScreenController.reportNum++
                     + ", " + LocalDate.now() + ")";
             statement. executeUpdate(sqlStatement);

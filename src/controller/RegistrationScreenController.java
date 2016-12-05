@@ -77,12 +77,12 @@ public class RegistrationScreenController {
                 statement.setQueryTimeout(30);
                 statement.executeUpdate("create table if not exists accountsDB (id integer, username string, password" +
                         " string, " + "accountType string, title string, firstName string, lastName string, email " +
-                        "string, address string)");
+                        "string, address string, canSubmit boolean)");
                 String sqlStatement = "insert into accountsDB (username, password, accountType, title, " +
-                        "firstName, lastName, email, address) values('" + userField.getText() +
+                        "firstName, lastName, email, address, canSubmit) values('" + userField.getText() +
                         "', '" + passField.getText() + "', '" + typeBox.getValue() + "', '" + titleField.getText() + "', '" + firstNameField
                         .getText() + "', '" + lastNameField.getText() + "', '" + emailField.getText() + "', '" +
-                        addressField.getText() + "')";
+                        addressField.getText() + "', 1)";
                 statement.executeUpdate(sqlStatement);
 //                String fileName = userField.getText() + ".ser";
 //                FileOutputStream fileOut =

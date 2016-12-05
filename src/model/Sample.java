@@ -14,7 +14,7 @@ public class Sample
         try
         {
             // create a database connection
-            connection = DriverManager.getConnection("jdbc:sqlite:reportsDB.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
@@ -22,13 +22,11 @@ public class Sample
 //            statement.executeUpdate("create table accountsDB (id integer, name string)");
 ////            statement.executeUpdate("insert into person values(1, 'leo')");
 ////            statement.executeUpdate("insert into person values(2, 'yui')");
-            ResultSet rs = statement.executeQuery("select * from reportsDB");
+            ResultSet rs = statement.executeQuery("select * from purityReportsDB");
             while(rs.next())
             {
                 // read the result set
-                System.out.println(rs.getString("username"));
-                System.out.println(rs.getInt("id"));
-                System.out.println(rs.getInt("reportNum"));
+                System.out.println(rs.getString("date"));
             }
         }
         catch(SQLException e)
