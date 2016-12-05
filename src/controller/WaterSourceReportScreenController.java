@@ -43,6 +43,7 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
     private Stage sourceStage;
 
     private boolean allowReport;
+    private Connection connection;
 
     //private boolean firstRun;
 
@@ -86,7 +87,6 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
      * report, inserts the report into the database.
      */
     private void store() {
-        Connection connection;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:waterReportsDB.db");
             Statement statement = connection.createStatement();
@@ -102,6 +102,19 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
             statement.executeUpdate(sqlStatement);
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e);
+            }
         }
 //        WaterSourceReport myReport = new WaterSourceReport();
 //        myReport.setSubmitAccount(LoginScreenController.account);

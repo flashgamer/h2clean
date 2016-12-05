@@ -1,15 +1,16 @@
 package controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Profile;
 
 import java.io.IOException;
+import java.sql.*;
 
 /**
  * Controller for Profile Screen
@@ -37,21 +38,57 @@ public class ProfileScreenController {
     private Label accountTypeField;
 
     @FXML
-    private TextField changeTitle;
+    private JFXTextField changeTitle;
 
     @FXML
-    private TextField changeFirst;
+    private JFXTextField changeFirst;
 
     @FXML
-    private TextField changeLast;
+    private JFXTextField changeLast;
 
     @FXML
-    private TextField changeEmail;
+    private JFXTextField changeEmail;
 
     @FXML
-    private TextField changeAddress;
+    private JFXTextField changeAddress;
+    private Connection connection;
 
-
+    /**
+     * Automatically called to initialize the sreen
+     */
+    @FXML
+    private void initialize() {
+        String username = LoginScreenController.account.getUsername();
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * from accountsDB where username = '" + username + "'");
+            if (rs.next()) {
+                titleField.setText(rs.getString("title"));
+                nameField.setText(rs.getString("firstName") + " " + rs.getString("lastName"));
+                emailField.setText(rs.getString("email"));
+                addressField.setText(rs.getString("address"));
+                userField.setText(rs.getString("username"));
+                accountTypeField.setText(rs.getString("accountType"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
+    }
 
 // --Commented out by Inspection START (11/16/16, 3:11 PM):
 //    /**
@@ -74,24 +111,67 @@ public class ProfileScreenController {
      */
     @FXML
     private void handleEditPressed() {
+        String username = LoginScreenController.account.getUsername();
         Profile profile = LoginScreenController.account.getUser().getProfile();
-
-        if (!changeTitle.getText().equals("")) {
-            titleField.setText(changeTitle.getText());
-            profile.setTitle(changeTitle.getText());
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
+            Statement statement2 = connection.createStatement();
+            statement2.setQueryTimeout(30);
+            ResultSet rs = statement2.executeQuery("select * from accountsDB where username = '" + username + "'");
+            if (changeTitle.getText().length() != 0) {
+                titleField.setText(changeTitle.getText());
+                profile.setTitle(changeTitle.getText());
+                statement2.executeUpdate("update accountsDB set title = '" + changeTitle.getText() + "' where " +
+                        "username" +
+                        " = '" + username + "'");
+            }
+            if (changeFirst.getText().length() != 0) {
+                nameField.setText(changeFirst.getText() + " " + profile.getLastName());
+                profile.setFirstName(changeFirst.getText());
+                statement2.executeUpdate("update accountsDB set firstName = '" + changeFirst.getText() + "' where " +
+                        "username = '" + username + "'");
+            }
+            if (changeLast.getText().length() != 0) {
+                nameField.setText(profile.getFirstName() + " " + changeLast.getText());
+                profile.setLastName(changeLast.getText());
+                statement2.executeUpdate("update accountsDB set lastName = '" + changeLast.getText() + "' where " +
+                        "username = '" + username + "'");
+            }
+            if (changeEmail.getText().length() != 0) {
+                emailField.setText(changeEmail.getText());
+                profile.setEmail(changeEmail.getText());
+                statement2.executeUpdate("update accountsDB set email = '" + changeEmail.getText() + "' where " +
+                        "username = '" + username + "'");
+            }
+            if (changeAddress.getText().length() != 0) {
+                addressField.setText(changeAddress.getText());
+                profile.setAddress(changeAddress.getText());
+                statement2.executeUpdate("update accountsDB set address = '" + changeAddress.getText() + "' where " +
+                        "username = '" + username + "'");
+            }
+            if (rs.next()) {
+                titleField.setText(rs.getString("title"));
+                nameField.setText(rs.getString("firstName") + " " + rs.getString("lastName"));
+                emailField.setText(rs.getString("email"));
+                addressField.setText(rs.getString("address"));
+                userField.setText(rs.getString("username"));
+                accountTypeField.setText(rs.getString("accountType"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        if (!(changeFirst.getText().equals("") || changeLast.getText().equals(""))) {
-            nameField.setText(changeFirst.getText() + " " + changeLast.getText());
-            profile.setFirstName(changeFirst.getText());
-            profile.setLastName(changeLast.getText());
-        }
-        if (!changeEmail.getText().equals("")) {
-            emailField.setText(changeEmail.getText());
-            profile.setEmail(changeEmail.getText());
-        }
-        if (!changeAddress.getText().equals("")) {
-            addressField.setText(changeAddress.getText());
-            profile.setAddress(changeAddress.getText());
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e);
+            }
         }
     }
 

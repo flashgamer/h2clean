@@ -46,6 +46,7 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
     private Stage purityStage;
 
     private boolean allowReport;
+    private Connection connection;
 
     /**
      * Automatically called to initialize the screen.
@@ -74,7 +75,6 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
      * report, inserts the report into the database.
      */
     private void store() {
-        Connection connection;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
             Statement statement = connection.createStatement();
@@ -90,6 +90,19 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
             statement. executeUpdate(sqlStatement);
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e);
+            }
         }
 //        WaterPurityReport myReport = new WaterPurityReport();
 //        myReport.setSubmitAccount(LoginScreenController.account);

@@ -175,7 +175,8 @@
                         <JFXButton onAction="#handleCancelPressed" styleClass="button2" text="CANCEL" textFill="WHITE" />
                     </buttons>
                   </ButtonBar>
-                  <JFXTextField promptText="e.g. Mr./Ms." style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="changeTitle" promptText="e.g. Mr./Ms."
+                                style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <JFXTextField fx:id="changeFirst" maxWidth="100.0" promptText="First" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <JFXTextField fx:id="changeLast" maxWidth="110.0" promptText="Last" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
