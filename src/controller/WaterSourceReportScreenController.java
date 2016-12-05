@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.ReportDB;
 import model.WaterCondition;
@@ -40,6 +41,7 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
 
     @FXML
     private ComboBox<String> waterConditionField;
+
 
     private Stage sourceStage;
 

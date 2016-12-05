@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="registrationScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllReportsScreenController">
+<BorderPane fx:id="registrationScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="file:/Users/akc15/Documents/CS%202340/h2clean/src/resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllReportsScreenController">
     <top>
         <Label prefHeight="95.0" prefWidth="393.0" styleClass="title" text="All Reports" textFill="WHITE" BorderPane.alignment="CENTER">
             <font>
@@ -211,14 +211,6 @@
             </AnchorPane>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <JFXButton fx:id="availabilityButton" onAction="#handleViewAvailabilityReportsAction" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #606060;" styleClass="button1" text="VIEW" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="-85.0" top="-10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Roboto Bold" size="13.0" />
-                     </font>
-                  </JFXButton>
                   <JFXButton fx:id="backButton" onAction="#handleBackButtonAction" prefHeight="29.0" prefWidth="76.0" style="-fx-background-color: #606060;" styleClass="button1" text="BACK" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="13.0" />

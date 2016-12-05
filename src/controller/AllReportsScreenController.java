@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Created by Vaishak on 10/16/16.
  */
-public class AllReportsScreenController {
+public class AllReportsScreenController  {
 
     @FXML
     private ListView<String> locationColumn;
