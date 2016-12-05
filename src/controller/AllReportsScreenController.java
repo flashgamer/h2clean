@@ -93,6 +93,19 @@ public class AllReportsScreenController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
             Statement statement = connection.createStatement();
@@ -108,6 +121,19 @@ public class AllReportsScreenController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e);
+            }
         }
         locationColumn.setItems(FXCollections.observableArrayList(locations));
         this.currentReportList = new LinkedList<Report>();
@@ -147,6 +173,19 @@ public class AllReportsScreenController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
             Statement statement = connection.createStatement();
@@ -158,6 +197,19 @@ public class AllReportsScreenController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e);
+            }
         }
         reportNumberColumn.setItems(FXCollections.observableList(reportList));
 //        for (Report r : reportList) {
@@ -207,6 +259,19 @@ public class AllReportsScreenController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
             Statement statement = connection.createStatement();
@@ -236,6 +301,19 @@ public class AllReportsScreenController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e);
+            }
         }
 //        Report report = currentReportList.get(currentReportNumberList.indexOf(new Integer(newValue)));
 //        reportNumber.setText(newValue);

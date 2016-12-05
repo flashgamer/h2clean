@@ -32,6 +32,7 @@ public class LoginScreenController {
     private JFXPasswordField passField;
 
     private Stage _loginStage;
+    private Connection connection;
 
     // --Commented out by Inspection (11/16/16, 3:07 PM):private String userKey;
     public static String userType;
@@ -123,7 +124,6 @@ public class LoginScreenController {
         // Checks if username is in database
         if (userField.getText().length() != 0) {
 //            String fileName = userField.getText() + ".ser";
-            Connection connection;
             try {
                 connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
                 Statement statement = connection.createStatement();
@@ -148,12 +148,24 @@ public class LoginScreenController {
 //                c.printStackTrace();
 //                return false;
             }
+            finally
+            {
+                try
+                {
+                    if(connection != null)
+                        connection.close();
+                }
+                catch(SQLException e)
+                {
+                    // connection close failed.
+                    System.err.println(e);
+                }
+            }
         }
         // Checks if password matches to the user.
         if ((passField.getText() != null || passField.getText().length() != 0)
                 && userMatch) {
 //            String fileName = userField.getText() + ".ser";
-            Connection connection;
             try {
                 connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
                 Statement statement = connection.createStatement();
@@ -178,6 +190,19 @@ public class LoginScreenController {
 //                System.out.println("Deserialized class not found");
 //                c.printStackTrace();
 //                return false;
+            }
+            finally
+            {
+                try
+                {
+                    if(connection != null)
+                        connection.close();
+                }
+                catch(SQLException e)
+                {
+                    // connection close failed.
+                    System.err.println(e);
+                }
             }
 //            if (!passField.getText().equals(a.getPassword())) { errorMessage += "The password is invalid!\n"; }
         }

@@ -49,6 +49,7 @@ public class RegistrationScreenController {
 
     @FXML
     private JFXComboBox<String> typeBox;
+    private Connection connection;
 
     @FXML
     private void initialize() {
@@ -70,7 +71,6 @@ public class RegistrationScreenController {
             // Facade.getInstance().addAccount(account);
             // saveAccountJson();
             // System.out.println(database.containsKey(userField.getText()));
-            Connection connection = null;
             try {
                 connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
                 Statement statement = connection.createStatement();
@@ -93,6 +93,19 @@ public class RegistrationScreenController {
 //                fileOut.close();
             }catch(SQLException e) {
                 e.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    if(connection != null)
+                        connection.close();
+                }
+                catch(SQLException e)
+                {
+                    // connection close failed.
+                    System.err.println(e);
+                }
             }
             Stage thisStage = (Stage) userField.getScene().getWindow();
             thisStage.close();
@@ -148,7 +161,6 @@ public class RegistrationScreenController {
         if ((userField.getText() != null || userField.getText().length() != 0)) {
             Account a = null;
 //            String username = userField.getText() + ".ser";
-            Connection connection;
             boolean userNameExists = false;
             try {
                 connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
@@ -167,6 +179,19 @@ public class RegistrationScreenController {
 //                fileIn.close();
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
+            }
+            finally
+            {
+                try
+                {
+                    if(connection != null)
+                        connection.close();
+                }
+                catch(SQLException e)
+                {
+                    // connection close failed.
+                    System.err.println(e);
+                }
             }
             if (userNameExists){ errorMessage += "That username has already been taken!\n"; }
         }
