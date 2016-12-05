@@ -6,12 +6,14 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 public class HistoricalLineGraph {
     private final boolean virusButton;
     private final boolean contaminantButton;
-    private final double[] virusData;
-    private final double[] contaminantData;
-    private final int[] timeData;
+    private final List<Double> virusData;
+    private final List<Double> contaminantData;
+    private final List<Integer> timeList;
 
     /**
      * Constructor for HistoricalLineGraph
@@ -19,14 +21,15 @@ public class HistoricalLineGraph {
      * @param contaminantButton whether contaminant levels need to be shown on the graph
      * @param virusData data for virus levels
      * @param contaminantData data for contaminant levels
-     * @param timeData data for years
+     * @param timeList data for years
      */
-    public HistoricalLineGraph(boolean virusButton, boolean contaminantButton, double[] virusData, double[] contaminantData, int[] timeData) {
+    public HistoricalLineGraph(boolean virusButton, boolean contaminantButton, List<Double> virusData, List<Double>
+            contaminantData, List<Integer> timeList) {
         this.virusButton = virusButton;
         this.contaminantButton = contaminantButton;
         this.virusData = virusData;
         this.contaminantData = contaminantData;
-        this.timeData = timeData;
+        this.timeList = timeList;
     }
 
     /**
@@ -37,7 +40,7 @@ public class HistoricalLineGraph {
         stage.setTitle("Historical Line Graph");
 
         //defining the axes
-        final NumberAxis xAxis = new NumberAxis();
+        final NumberAxis xAxis = new NumberAxis(201601, 201612, 1);
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Year");
         yAxis.setLabel("PPM");
@@ -54,16 +57,16 @@ public class HistoricalLineGraph {
         if (virusButton) {
             XYChart.Series virusSeries = new XYChart.Series();
             virusSeries.setName("History of Virus Levels");
-            for (int i = 0; i < virusData.length; i++) {
-                virusSeries.getData().add(new XYChart.Data(timeData[i], virusData[i]));
+            for (int i = 0; i < virusData.size(); i++) {
+                virusSeries.getData().add(new XYChart.Data(timeList.get(i), virusData.get(i)));
             }
             lineChart.getData().add(virusSeries);
         }
         if (contaminantButton) {
             XYChart.Series contaminantSeries = new XYChart.Series();
             contaminantSeries.setName("History of Contaminant Levels");
-            for (int i = 0; i < contaminantData.length; i++) {
-                contaminantSeries.getData().add(new XYChart.Data(timeData[i], contaminantData[i]));
+            for (int i = 0; i < contaminantData.size(); i++) {
+                contaminantSeries.getData().add(new XYChart.Data(timeList.get(i), contaminantData.get(i)));
             }
             lineChart.getData().add(contaminantSeries);
         }

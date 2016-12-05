@@ -21,6 +21,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
+
             <JFXListView fx:id="userList" prefHeight="253.0" prefWidth="550.0">
                <VBox.margin>
                   <Insets bottom="20.0" left="10.0" right="10.0" />
@@ -38,17 +39,23 @@
                         <Insets left="10.0" top="5.0" />
                      </HBox.margin>
                   </JFXButton>
+
                   <JFXButton fx:id="unblockButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleUnblockButton" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #606060;" styleClass="button1" text="UNBLOCK" textAlignment="CENTER" textFill="WHITE">
+
                      <HBox.margin>
                         <Insets left="10.0" top="5.0" />
                      </HBox.margin>
                   </JFXButton>
+
                   <JFXButton fx:id="securityButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleSecurityLogButton" prefHeight="72.0" prefWidth="108.0" style="-fx-background-color: #B2B2B2;" styleClass="button1" text="SECURITY LOG" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+
                      <HBox.margin>
                         <Insets left="30.0" right="10.0" />
                      </HBox.margin>
                   </JFXButton>
+
                   <JFXButton fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleBackButton" prefHeight="73.0" prefWidth="93.0" style="-fx-background-color: #B2B2B2;" styleClass="button1" text="BACK" textAlignment="CENTER" textFill="WHITE">
+
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

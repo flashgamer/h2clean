@@ -290,7 +290,7 @@ public class AllReportsScreenController {
                 ResultSet rs2 = statement2.executeQuery("select * from accountsDB where username = '"
                         + rs.getString("username") + "'");
                 reportNumber.setText(newValue);
-                dateTime.setText(rs.getString("submitDate"));
+                dateTime.setText(rs.getString("date"));
                 reporterName.setText(rs2.getString("firstName") + " " + rs2.getString("lastName"));
                 waterLocation.setText(rs.getString("location"));
                 waterCondition.setText(rs.getString("condition"));
