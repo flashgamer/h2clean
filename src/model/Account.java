@@ -23,10 +23,17 @@ public class Account implements Serializable {
      * @param address the address of the owner of the account.
      */
     public Account(String username, String password, String accountType, String title, String firstName, String lastName, String email, String address) {
-        this.user = new User(title, firstName, lastName, email, address);
+
+        if (accountType.equals("Administrator")) {
+            this.user = new Administrator(title, firstName, lastName, email, address);
+        } else {
+            this.user = new User(title, firstName, lastName, email, address);
+        }
+
         this.username = username;
         this.password = password;
         this.accountType = accountType;
+
     }
 
     /**

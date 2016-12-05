@@ -1,5 +1,7 @@
 package model;
 
+import controller.LoginScreenController;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,7 @@ import java.io.Serializable;
 public class User implements Serializable{
 
     private Profile profile;
+    private boolean canSubmitReport;
 
     /**
     * No args constructor
@@ -28,6 +31,7 @@ public class User implements Serializable{
      */
     public User(String title, String firstName, String lastName, String email, String address) {
         this.profile = new Profile(title, firstName, lastName, email, address);
+        this.canSubmitReport = true;
     }
 
 // --Commented out by Inspection START (11/16/16, 3:12 PM):
@@ -54,6 +58,22 @@ public class User implements Serializable{
      */
     public Profile getProfile() {
         return profile;
+    }
+
+    /**
+     * checks if user can submit report
+     * @return true if user can submit report
+     */
+    public boolean canSubmitReport() { return this.canSubmitReport; }
+
+    /**
+     * sets submit status if current user is admin
+     * @param b submit status
+     */
+    public void setCanSubmitReport(boolean b) {
+        if (LoginScreenController.account.getAccountType().equals("Administrator")) {
+            this.canSubmitReport = b;
+        }
     }
 
 }
