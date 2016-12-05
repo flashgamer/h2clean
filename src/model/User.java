@@ -3,6 +3,10 @@ package model;
 import controller.LoginScreenController;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by Lillian on 9/29/2016.
@@ -12,6 +16,7 @@ public class User implements Serializable{
 
     private Profile profile;
     private boolean canSubmitReport;
+    private Connection connection;
 
     /**
     * No args constructor

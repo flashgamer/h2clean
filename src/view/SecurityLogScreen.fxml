@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SecurityLogController">
    <children>
       <VBox layoutX="15.0" layoutY="15.0" prefHeight="371.0" prefWidth="570.0">
          <children>
@@ -26,7 +25,7 @@
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>
             </JFXListView>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="85.0" style="-fx-background-color: #606060;" styleClass="button1" text="BACK" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleBackButton" prefHeight="44.0" prefWidth="85.0" style="-fx-background-color: #606060;" styleClass="button1" text="BACK" textAlignment="CENTER" textFill="WHITE">
                <VBox.margin>
                   <Insets left="240.0" top="15.0" />
                </VBox.margin>
