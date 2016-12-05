@@ -14,8 +14,6 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Report;
 import model.ReportDB;
-import model.WaterPurityReport;
-import model.WaterSourceReport;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -85,6 +83,9 @@ public class AllReportsScreenController {
             connection = DriverManager.getConnection("jdbc:sqlite:waterReportsDB.db");
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
+            statement.executeUpdate("create table if not exists waterReportsDB (id integer, username " +
+                    "string, location " +
+                    "string, waterType string, condition string, reportNum integer, submitDate datetime)");
             ResultSet rs = statement.executeQuery("select location from waterReportsDB");
             while (rs.next()) {
                 locations.add(rs.getString("location"));
@@ -96,6 +97,9 @@ public class AllReportsScreenController {
             connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
+            statement.executeUpdate("create table if not exists purityReportsDB (id integer, username string, " +
+                    "location string, condition string, contaminantPPM double, virusPPM double, reportNum integer, " +
+                    "submitDate datetime)");
             ResultSet rs = statement.executeQuery("select location from purityReportsDB");
             while (rs.next()) {
                 if (!locations.contains(rs.getString("location"))) {
@@ -170,30 +174,88 @@ public class AllReportsScreenController {
      *                 to view.
      */
     private void onNumberSelect(String newValue) {
-
         if (newValue == null) {
             return;
         }
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:waterReportsDB.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            statement.executeUpdate("create table if not exists waterReportsDB (id integer, username " +
+                    "string, location " +
+                    "string, waterType string, condition string, reportNum integer, submitDate datetime)");
+            ResultSet rs = statement.executeQuery("select * from " +
+                    "waterReportsDB where reportNum = " +
+                    newValue);
+            connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
+            Statement statement2 = connection.createStatement();
+            statement2.setQueryTimeout(30);
 
-        Report report = currentReportList.get(currentReportNumberList.indexOf(new Integer(newValue)));
-        reportNumber.setText(newValue);
-        dateTime.setText(report.getSubmitTime().toString());
-        reporterName.setText(report.getSubmitAccount().getUser().getProfile().getFirstName()
-                + " " + report.getSubmitAccount().getUser().getProfile().getLastName());
-        waterLocation.setText(report.getLocation());
-        if (report instanceof WaterSourceReport) {
-            waterType.setText(((WaterSourceReport) report).getType().toString());
-            waterCondition.setText(((WaterSourceReport) report).getCondition().toString());
-            reportType.setText("Water Source Report");
-            virusPPM.setText("--");
-            contaminantPPM.setText("--");
-        } else if (report instanceof WaterPurityReport) {
-            waterCondition.setText(((WaterPurityReport) report).getCondition().toString());
-            waterType.setText("--");
-            reportType.setText("Water Purity Report");
-            virusPPM.setText(Double.toString(((WaterPurityReport) report).getVirusPPM()));
-            contaminantPPM.setText(Double.toString(((WaterPurityReport) report).getContaminantPPM()));
+            if (rs.next()) {
+                ResultSet rs2 = statement2.executeQuery("select * from accountsDB where username = '" + rs.getString
+                        ("username") + "'");
+                reportNumber.setText(newValue);
+                dateTime.setText(rs.getString("submitDate"));
+                reporterName.setText(rs2.getString("firstName") + " " + rs2.getString("lastName"));
+                waterLocation.setText(rs.getString("location"));
+                waterType.setText(rs.getString("waterType"));
+                waterCondition.setText(rs.getString("condition"));
+                reportType.setText("Water Source Report");
+                virusPPM.setText("--");
+                contaminantPPM.setText("--");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            statement.executeUpdate("create table if not exists purityReportsDB (id integer, username string, " +
+                    "location string, condition string, contaminantPPM double, virusPPM double, reportNum integer, " +
+                    "submitDate datetime)");
+            ResultSet rs = statement.executeQuery("select * from " +
+                    "purityReportsDB where reportNum = " +
+                    newValue);
+            connection = DriverManager.getConnection("jdbc:sqlite:accountsDB.db");
+            Statement statement2 = connection.createStatement();
+            statement2.setQueryTimeout(30);
+
+            if (rs.next()) {
+                ResultSet rs2 = statement2.executeQuery("select * from accountsDB where username = '"
+                        + rs.getString("username") + "'");
+                reportNumber.setText(newValue);
+                dateTime.setText(rs.getString("submitDate"));
+                reporterName.setText(rs2.getString("firstName") + " " + rs2.getString("lastName"));
+                waterLocation.setText(rs.getString("location"));
+                waterCondition.setText(rs.getString("condition"));
+                waterType.setText("--");
+                reportType.setText("Water Purity Report");
+                virusPPM.setText(rs.getString("virusPPM"));
+                contaminantPPM.setText(rs.getString("contaminantPPM"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//        Report report = currentReportList.get(currentReportNumberList.indexOf(new Integer(newValue)));
+//        reportNumber.setText(newValue);
+//        dateTime.setText(report.getSubmitTime().toString());
+//        reporterName.setText(report.getSubmitAccount().getUser().getProfile().getFirstName()
+//                + " " + report.getSubmitAccount().getUser().getProfile().getLastName());
+//        waterLocation.setText(report.getLocation());
+//        if (report instanceof WaterSourceReport) {
+//            waterType.setText(((WaterSourceReport) report).getType().toString());
+//            waterCondition.setText(((WaterSourceReport) report).getCondition().toString());
+//            reportType.setText("Water Source Report");
+//            virusPPM.setText("--");
+//            contaminantPPM.setText("--");
+//        } else if (report instanceof WaterPurityReport) {
+//            waterCondition.setText(((WaterPurityReport) report).getCondition().toString());
+//            waterType.setText("--");
+//            reportType.setText("Water Purity Report");
+//            virusPPM.setText(Double.toString(((WaterPurityReport) report).getVirusPPM()));
+//            contaminantPPM.setText(Double.toString(((WaterPurityReport) report).getContaminantPPM()));
+//        }
     }
 
     /**

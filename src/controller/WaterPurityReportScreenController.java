@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,11 +80,13 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             statement.executeUpdate("create table if not exists purityReportsDB (id integer, username string, " +
-                    "location string, condition string, contaminantPPM double, virusPPM double, reportNum integer)");
+                    "location string, condition string, contaminantPPM double, virusPPM double, reportNum integer, " +
+                    "submitDate datetime)");
             String sqlStatement = "insert into purityReportsDB (username, location, condition, contaminantPPM, " +
-                    "virusPPM, reportNum) values ('" + LoginScreenController.account.getUsername() + "', '" +
+                    "virusPPM, reportNum, submitDate) values ('" + LoginScreenController.account.getUsername() + "', " +
+                    "'" +
                     locationField.getText() + "', '" + conditionField.getValue() + "', " + new Double(contaminantField.getText()) + ", " + new Double(virusField.getText()) + ", " + LoginScreenController.reportNum++
-                    + ")";
+                    + ", " + LocalDate.now() + ")";
             statement. executeUpdate(sqlStatement);
         } catch (SQLException e) {
             e.printStackTrace();

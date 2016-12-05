@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,12 +93,12 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
             statement.setQueryTimeout(30);
             statement.executeUpdate("create table if not exists waterReportsDB (id integer, username " +
                     "string, location " +
-                    "string, waterType string, condition string, reportNum integer)");
+                    "string, waterType string, condition string, reportNum integer, submitDate datetime)");
             String sqlStatement = "insert into waterReportsDB (username, location, waterType, condition, " +
-                    "reportNum) values" +
+                    "reportNum, submitDate) values" +
                     " ('" + LoginScreenController.account.getUsername() + "', '" + locationField.getText
                     () + "', '" + waterTypeField.getValue() + "', '" + waterConditionField.getValue() + "', " +
-                    LoginScreenController.reportNum++ + ")";
+                    LoginScreenController.reportNum++ + ", " + LocalDate.now() + ")";
             statement.executeUpdate(sqlStatement);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -108,10 +109,7 @@ public class WaterSourceReportScreenController implements MapComponentInitialize
 //        myReport.setLocation(locationField.getText());
 //        myReport.setType(WaterType.findByKey(waterTypeField.getValue()));
 //        myReport.setCondition(WaterCondition.findByKey(waterConditionField.getValue()));
-//        // myReport.setMarker(generateMarker(locationField.getText()));
 //        myReport.setReportNumber(LoginScreenController.reportNum++);
-//        // Facade.getInstance().getReports().add(myReport);
-//        // saveReportJson();
 //        ReportDB.database.insert(myReport);
 //        try {
 //            String fileName = myReport.getLocation() + ".ser";
