@@ -3,14 +3,13 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3fa9f5;" stylesheets="@../resources/css/jfoenix-design.css" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminAccountScreenController">
    <children>
       <VBox layoutX="15.0" layoutY="15.0" prefHeight="371.0" prefWidth="570.0">
          <children>
@@ -22,22 +21,43 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <JFXListView prefHeight="218.0" prefWidth="550.0">
+            <JFXListView fx:id="userList" prefHeight="253.0" prefWidth="550.0">
                <VBox.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets bottom="20.0" left="10.0" right="10.0" />
                </VBox.margin>
             </JFXListView>
-            <ButtonBar prefHeight="40.0" prefWidth="555.0">
-              <buttons>
-                  <JFXButton fx:id="deleteButton" contentDisplay="CENTER" prefHeight="44.0" prefWidth="85.0" style="-fx-background-color: #606060;" styleClass="button1" text="DELETE" textAlignment="CENTER" textFill="WHITE" />
-                  <JFXButton fx:id="banButton" alignment="CENTER" contentDisplay="CENTER" layoutX="495.0" layoutY="10.0" prefHeight="44.0" prefWidth="85.0" style="-fx-background-color: #606060;" styleClass="button1" text="BAN" textAlignment="CENTER" textFill="WHITE" />
-                  <JFXButton fx:id="unblockButton" alignment="CENTER" contentDisplay="CENTER" layoutX="400.0" layoutY="10.0" prefHeight="40.0" prefWidth="144.0" style="-fx-background-color: #606060;" styleClass="button1" text="UNBLOCK" textAlignment="CENTER" textFill="WHITE" />
-                  <JFXButton fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="305.0" layoutY="10.0" prefHeight="40.0" prefWidth="85.0" style="-fx-background-color: #B2B2B2;" styleClass="button1" text="BACK" textAlignment="CENTER" textFill="WHITE" />
-              </buttons>
+            <HBox prefHeight="77.0" prefWidth="570.0">
+               <children>
+                  <JFXButton fx:id="deleteButton" contentDisplay="CENTER" onAction="#handleDeleteButton" prefHeight="44.0" prefWidth="85.0" style="-fx-background-color: #606060;" styleClass="button1" text="DELETE" textAlignment="CENTER" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="banButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleBanButton" prefHeight="44.0" prefWidth="78.0" style="-fx-background-color: #606060;" styleClass="button1" text="BAN" textAlignment="CENTER" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="unblockButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleUnblockButton" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #606060;" styleClass="button1" text="UNBLOCK" textAlignment="CENTER" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="securityButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleSecurityLogButton" prefHeight="72.0" prefWidth="108.0" style="-fx-background-color: #B2B2B2;" styleClass="button1" text="SECURITY LOG" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <HBox.margin>
+                        <Insets left="30.0" right="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleBackButton" prefHeight="73.0" prefWidth="93.0" style="-fx-background-color: #B2B2B2;" styleClass="button1" text="BACK" textAlignment="CENTER" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
                <VBox.margin>
-                  <Insets right="25.0" top="15.0" />
+                  <Insets left="10.0" />
                </VBox.margin>
-            </ButtonBar>
+            </HBox>
          </children>
       </VBox>
    </children>

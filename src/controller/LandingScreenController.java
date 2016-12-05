@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +30,11 @@ public class LandingScreenController {
 
     @FXML
     private JFXButton viewReportButton;
+
+    @FXML
+    private JFXButton controlPanel;
+
+    private Stage _landingStage;
 
 
 //    /**
@@ -139,6 +145,38 @@ public class LandingScreenController {
             reportStage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Called when user clicks on Admin button.
+     * @param event
+     */
+    @FXML
+    private void handleControlPanelButtonAction(ActionEvent event) {
+        if (LoginScreenController.account.getAccountType().equals("Administrator")) {
+            Stage thisStage = (Stage) viewReportButton.getScene().getWindow();
+            thisStage.close();
+            thisStage.hide();
+            try {
+                System.out.println("Staged");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource
+                        ("../view/AdminAccountScreen.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage reportStage = new Stage();
+                reportStage.setTitle("Admin Account");
+                reportStage.setScene(new Scene(root, 600, 400));
+                reportStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(_landingStage);
+            alert.setTitle("Invalid Credentials");
+            alert.setHeaderText("You are not an administrator.");
+            alert.setContentText("You must be an administrator to view this.");
+            alert.showAndWait();
         }
     }
 
