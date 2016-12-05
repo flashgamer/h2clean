@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,10 @@ import model.ReportDB;
 import model.WaterPurityReport;
 import model.WaterSourceReport;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,61 +73,39 @@ public class AllReportsScreenController {
     private List<Report> currentReportList;
     private List<Integer> currentReportNumberList;
     private ReportDB myDB;
+    private Connection connection;
 
     /**
      * Called automatically to initialize the screen.
      */
-    //@FXML
+    @FXML
     private void initialize() {
-        List<String> locations = null;
+        LinkedList<String> locations = new LinkedList<>();
         try {
-            FileInputStream fileIn = new FileInputStream("reportLocations.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            locations = (List<String>) in.readObject();
-            in.close();
-            fileIn.close();
-        }catch(IOException i) {
-            i.printStackTrace();
-            return;
-        }catch(ClassNotFoundException c) {
-            System.out.println("List class not found");
-            c.printStackTrace();
-            return;
-        }
-        try {
-            FileInputStream fileIn = new FileInputStream("ReportDB.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            myDB = (ReportDB) in.readObject();
-            in.close();
-            fileIn.close();
-        }catch(IOException i) {
-            i.printStackTrace();
-//            return;
-        }catch(ClassNotFoundException c) {
-            System.out.println("ReportDB class not found");
-            c.printStackTrace();
-//            return;
-        }
-        for (String s: locations) {
-            Report myReport = null;
-            try {
-                String fileName = s + ".ser";
-                FileInputStream fileIn = new FileInputStream(fileName);
-                ObjectInputStream in = new ObjectInputStream(fileIn);
-                myReport = (Report) in.readObject();
-                in.close();
-                fileIn.close();
-            }catch(IOException i) {
-                i.printStackTrace();
-//                return;
-            }catch(ClassNotFoundException c) {
-                System.out.println("Report class not found");
-                c.printStackTrace();
-//                return;
+            connection = DriverManager.getConnection("jdbc:sqlite:waterReportsDB.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select location from waterReportsDB");
+            while (rs.next()) {
+                locations.add(rs.getString("location"));
             }
-            ReportDB.database.insert(myReport);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        locationColumn.getItems().addAll(ReportDB.database.getKeys());
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select location from purityReportsDB");
+            while (rs.next()) {
+                if (!locations.contains(rs.getString("location"))) {
+                    locations.add(rs.getString("location"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        locationColumn.setItems(FXCollections.observableArrayList(locations));
         this.currentReportList = new LinkedList<Report>();
         this.currentReportNumberList = new LinkedList<Integer>();
 
@@ -148,13 +130,38 @@ public class AllReportsScreenController {
      * @param newValue String representation of the Location.
      */
     private void onLocationSelect(String newValue) {
-        List<Report> reportList = myDB.get(newValue);
-        for (Report r : reportList) {
-            reportNumberColumn.getItems().add(r.getReportNumber().toString());
-            currentReportNumberList.add(r.getReportNumber());
+        List<String> reportList = new LinkedList<>();
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:waterReportsDB.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select reportNum from waterReportsDB where location = '" +
+                    newValue + "'");
+            while (rs.next()) {
+                reportList.add(rs.getString("reportNum"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        this.currentReportList = new LinkedList<>(reportList);
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select reportNum from purityReportsDB where location = '" +
+                    newValue + "'");
+            while (rs.next()) {
+                reportList.add(rs.getString("reportNum"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        reportNumberColumn.setItems(FXCollections.observableList(reportList));
+//        for (Report r : reportList) {
+//            reportNumberColumn.getItems().add(r.getReportNumber().toString());
+//            currentReportNumberList.add(r.getReportNumber());
+//        }
+//
+//        this.currentReportList = new LinkedList<>(reportList);
     }
 
     /**
