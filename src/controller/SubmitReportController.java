@@ -73,7 +73,16 @@ public class SubmitReportController {
      */
     @FXML
     private void handleProceedPressed(ActionEvent event) {
-        if (isUserValid().equals("error")) {
+        if (isUserValid().equals("banned")) {
+            String errorMessage = "You are not allowed to submit this report " +
+                    "because you are banned.\n";
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(_submitReportPopupStage);
+            alert.setTitle("Invalid Status");
+            alert.setHeaderText("Unban required.");
+            alert.setContentText(errorMessage);
+            alert.showAndWait();
+        } else if (isUserValid().equals("error")) {
             //show error message
             String errorMessage = "You are not authorized to submit this report" +
                     ".\n";
@@ -123,6 +132,8 @@ public class SubmitReportController {
                 return ("WaterSourceReportScreen");
             } else if (typeReport.getValue().equals("Water Purity Report")) {
                 return ("error");
+            } else if (!LoginScreenController.account.getUser().canSubmitReport()) {
+                return ("banned");
             }
         } else if (LoginScreenController.account.getAccountType().equals
                 ("Worker")) {

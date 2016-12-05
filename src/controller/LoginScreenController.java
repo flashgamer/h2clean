@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.Account;
+import model.SecurityLog;
 
 import java.io.IOException;
 import java.sql.*;
@@ -130,6 +131,7 @@ public class LoginScreenController {
                         .getText() + "'");
                 if (!rs.next()) {
                     errorMessage += "That username doesn't exist!\n";
+                    SecurityLog.recordLogin(userField.getText(), SecurityLog.Status.UNKNOWN_ID);
                 } else {
                     userMatch = true;
                     userType = rs.getString("accountType");
@@ -159,6 +161,7 @@ public class LoginScreenController {
                         .getText() + "'");
                 if (!rs.getString("password").equals(passField.getText())) {
                     errorMessage += "The password is invalid!\n";
+                    SecurityLog.recordLogin(userField.getText(), SecurityLog.Status.BAD_PASSWORD);
                 } else {
                     a = new Account(rs.getString("username"), rs.getString("password"), rs.getString("accountType"),
                             rs.getString("title"), rs.getString("firstName"), rs.getString("lastName"), rs.getString
@@ -183,6 +186,7 @@ public class LoginScreenController {
         //successful login
         if (errorMessage.length() == 0) {
             account = a;
+            SecurityLog.recordLogin(userField.getText(), SecurityLog.Status.SUCCESS);
             return true;
         } else {
             //show error message
