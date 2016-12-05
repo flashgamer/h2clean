@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import model.HistoricalLineGraph;
 
 import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -31,6 +34,7 @@ public class HistoricalReportScreenController {
     private JFXDatePicker datePick;
 
     private Stage historicalStage;
+    private Connection connection;
 
     /**
      * called when the confirm button is pressed
@@ -40,11 +44,46 @@ public class HistoricalReportScreenController {
     private void handleConfirmButtonAction() {
         validateData();
         if (validateData()) {
-            double[] virusData = {1, 2, 3, 4, 5};
-            double[] contaminantData = {2, 3, 4, 5, 6};
-            int[] timeData = {1, 2, 3, 4, 5};
+            List<Double> virusData = new ArrayList<>();
+            List<Double> contaminantData = new ArrayList<>();
+            List<String> timeData = new ArrayList<>();
+            try {
+                connection = DriverManager.getConnection("jdbc:sqlite:purityReportsDB.db");
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery("select * from purityReportsDB where location = '" +
+                        locationInput.getText() + "'");
+                while (rs.next()) {
+                    virusData.add(rs.getDouble("virusPPM"));
+                    contaminantData.add(rs.getDouble("contaminantPPM"));
+                    timeData.add(rs.getString("date"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    if(connection != null)
+                        connection.close();
+                }
+                catch(SQLException e)
+                {
+                    // connection close failed.
+                    System.err.println(e);
+                }
+            }
+            List<Integer> timeList = new ArrayList<>();
+
+            for (String date : timeData) {
+                String year = date.substring(0, 4);
+                String month = date.substring(5, 7);
+                String strDate = year + month;
+                timeList.add(Integer.parseInt(strDate));
+            }
             //set timeData int array to real time data points
-            HistoricalLineGraph historicalGraph = new HistoricalLineGraph(virusCheck.isSelected(), contaminantCheck.isSelected(), virusData, contaminantData, timeData);
+            HistoricalLineGraph historicalGraph = new HistoricalLineGraph(virusCheck.isSelected(), contaminantCheck
+                    .isSelected(), virusData, contaminantData, timeList);
             historicalGraph.showGraph();
         }
     }
