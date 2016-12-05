@@ -11,6 +11,9 @@ import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -67,6 +70,20 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
     @Override
     public void mapInitialized() {
         GoogleMap map = new GoogleMap();
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LandingScreen.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage landingStage = new Stage();
+//            LandingScreenController lsc = fxmlLoader.<LandingScreenController>getController();
+
+            landingStage.close();
+            landingStage.setTitle("Landing Screen");
+            landingStage.setScene(new Scene(root,600,400));
+            landingStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     /**
      * Method for storing a new report in the Report Database
@@ -117,6 +134,7 @@ public class WaterPurityReportScreenController implements MapComponentInitialize
             thisStage.close();
             thisStage.hide();
         }
+
     }
 
     /**

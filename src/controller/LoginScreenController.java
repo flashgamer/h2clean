@@ -129,7 +129,7 @@ public class LoginScreenController {
                 in.close();
                 fileIn.close();
             }catch(IOException i) {
-                throw new NullPointerException("Unable to find serial file");
+//                throw new NullPointerException("Unable to find serial file");
             }catch(ClassNotFoundException c) {
                 System.out.println("Deserialized class not found");
                 c.printStackTrace();
