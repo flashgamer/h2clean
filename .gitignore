@@ -1,5 +1,4 @@
 .idea/
 h2clean.iml
 out/
-lib/
 *.ser
